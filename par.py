@@ -18,13 +18,12 @@ class Dependency:
     def url(self, base_url):
         url = '"' + dependency.groupId  + '"' + "&rows=20&wt=json"
         return base_url + url
+
 class bcolors:
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
     OKGREEN = '\033[92m'
     WARNING = '\033[93m'
-    FAIL = '\033[91m'
     ENDC = '\033[0m'
+
 if __name__ == "__main__":
 
     ns = "{http://maven.apache.org/POM/4.0.0}"
@@ -34,11 +33,9 @@ if __name__ == "__main__":
 
     tree = et.ElementTree()
     tree.parse("pom.xml")
-
     root = tree.getroot()
 
     propertiesMap = {}
-
     list = []
 
     properties = root.find("%sproperties" % ns)
@@ -53,7 +50,7 @@ if __name__ == "__main__":
         artifactId = dependency.find("%sartifactId" % ns).text
         version = dependency.find("%sversion" % ns).text
         if version.startswith("${"):
-            key = version.replace('$', '').replace('{', '').replace('}', '')
+            key = version[2:-1]
             version = propertiesMap[key]
         #print "%s:%s:%s" % (groupId, artifactId, version)
         dep = Dependency(groupId, artifactId, version)
@@ -66,10 +63,7 @@ if __name__ == "__main__":
         r = data['response']['docs']
         for a in r:
             if dependency.artifactId == a['a']:
-                #print "%s:%s:>>>>>>>>>%s" % (a['a'], dependency.version,  a['latestVersion'])
-                #print "%s:%s" % (a['a'], a['latestVersion'])
                 if dependency.version != a['latestVersion']:
-                    print bcolors.WARNING + "%s:%s" % (a['a'], a['latestVersion'])
+                    print bcolors.WARNING + "%s:%s:>>%s" % (a['a'], dependency.version, a['latestVersion']) + bcolors.ENDC
                 else:
-                    print bcolors.OKBLUE + "%s:%s" % (a['a'], a['latestVersion'])
-#        print json.dumps(r, sort_keys=True, indent=4, separators=(',', ': '))
+                    print bcolors.OKGREEN + "%s:%s:>>%s" % (a['a'], dependency.version, a['latestVersion']) + bcolors.ENDC

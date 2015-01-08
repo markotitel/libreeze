@@ -1,19 +1,15 @@
 #!/usr/bin/env python
+import requests
+import json
 
 from xml.etree import ElementTree as et
-from lxml import html
-import requests
-import sys
-import json
+
 
 class Dependency:
     def __init__(self, groupId, artifactId, version):
         self.groupId = groupId
         self.artifactId = artifactId
         self.version = version
-
-    def __str__(self):
-        return "%s:%s:%s" % (self.groupId, self.artifactId, self.version)
 
     def url(self, base_url):
         url = '"' + dependency.groupId  + '"' + "&rows=20&wt=json"
@@ -43,7 +39,7 @@ if __name__ == "__main__":
         key = prop.tag[len(ns):]
         value = prop.text
         propertiesMap[key] = value
-
+        print propertiesMap
     dependencies = root.iter("%sdependency" % ns)
     for dependency in dependencies:
         groupId = dependency.find("%sgroupId" % ns).text
@@ -52,7 +48,6 @@ if __name__ == "__main__":
         if version.startswith("${"):
             key = version[2:-1]
             version = propertiesMap[key]
-        #print "%s:%s:%s" % (groupId, artifactId, version)
         dep = Dependency(groupId, artifactId, version)
         list.append(dep)
 

@@ -4,6 +4,8 @@ from django.db import models
 
 class Developer(models.Model):
     email = models.EmailField()
+    def __str__(self):
+        return self.email
 
 class Project(models.Model):
     POM = 'pm'
@@ -19,10 +21,14 @@ class Project(models.Model):
     owner = models.ForeignKey(Developer)
     name = models.TextField(max_length=512)
     type = models.CharField(max_length=2, choices=PROJECT_TYPE_CHOICES, default=POM)
+    def __str__(self):
+        return self.name + ' ' + self.type
 
 class LatestDependency(models.Model):
-    key = models.TextField(max_length=1024, unique=True, db_index=True)
+    name = models.TextField(max_length=512, db_index=True)
     version = models.TextField(max_length=256, db_index=True)
+    def __str__(self):
+        return self.name + ' ' + self.version
 
 class ProjectDependency(models.Model):
     project = models.ForeignKey(Project)

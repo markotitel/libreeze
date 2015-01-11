@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             name='LatestDependency',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('key', models.TextField(unique=True, max_length=1024, db_index=True)),
+                ('name', models.TextField(max_length=512, db_index=True)),
                 ('version', models.TextField(max_length=256, db_index=True)),
             ],
             options={

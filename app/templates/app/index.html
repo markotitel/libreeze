@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+{% load staticfiles %}
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+		<!-- Google web fonts -->
+		<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel='stylesheet' />
+        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+        
+        <!-- Normalize CSS -->
+        <link rel="stylesheet" href="{% static 'app/css/normalize.css' %}">
+        
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="{% static 'app/css/skeleton-2.0.4/skeleton.css' %}">
+        
+		<!-- The main CSS file -->
+        <link rel="stylesheet" href="{% static 'app/css/main.css' %}">
+		<!-- <link href="css/uploadstyle.css" rel="stylesheet" /> -->
+       
+        <script src="{% static 'app/js/vendor/modernizr-2.6.2.min.js' %}"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->        
+        
+        <div class="container">
+        	<div class="row">        		
+				<header>libreeze.net</header>
+				<br/>
+				<br/>
+				<br/>
+				<nav></nav>
+        	</div>
+        	<div class="row">
+				<div class="column">
+					<div class="steps_container">
+						<span>step 1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<span>step 2</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<span>step 3</span>
+					</div>
+					
+					<br/>
+					<br/>
+					<br/>
+					
+					<div class="upload">
+						<!-- Browse form -->
+
+						<form method="post" action="{% url 'app:submit_file' %}" enctype="multipart/form-data">
+							<div id="drop">
+								<div>Drop Here</div>
+								<button type="button">Browse</button>
+								<input type="file" name="upload" accept=".xml" />
+								<button type="submit" class="submit_upload">Upload</button>
+							</div>
+
+							<ul>
+								<!-- The file uploads will be shown here -->
+
+							</ul>
+						</form>
+
+						<span>- or -</span>
+						
+						<!-- Paste form -->
+						<div class="toggle_paste_form">
+							<button type="button">Paste</button>
+						</div>
+						<form id="paste_form" method="post" action="{% url 'app:submit_text' %}" enctype="text/plain">
+							<textarea name="code"></textarea>
+							<button type="submit" name="submit_text">Upload</button>
+						</form>
+					</div>
+				</div>
+        	</div>
+        </div>
+        
+        <br/>
+        <br/>
+        <br/>
+        
+        <footer>&copy;libreeze 2015</footer>
+        
+        <!-- JavaScript Includes -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="{% static 'app/js/jquery.knob.js' %}"></script>
+
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+
+		<!-- jQuery File Upload Dependencies -->
+		<script src="{% static 'app/js/jquery.ui.widget.js' %}"></script>
+		<script src="{% static 'app/js/jquery.iframe-transport.js' %}"></script>
+		<script src="{% static 'app/js/jquery.fileupload.js' %}"></script>
+       
+         <!-- Our JS files -->
+        <script src="{% static 'app/js/plugins.js' %}"></script>
+        <script src="{% static 'app/js/main.js' %}"></script>
+		<script src="{% static 'app/js/uploadscript.js' %}"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X');ga('send','pageview');
+        </script>
+    </body>
+</html>

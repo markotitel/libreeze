@@ -39,7 +39,6 @@ if __name__ == "__main__":
         key = prop.tag[len(ns):]
         value = prop.text
         propertiesMap[key] = value
-        print propertiesMap
     dependencies = root.iter("%sdependency" % ns)
     for dependency in dependencies:
         groupId = dependency.find("%sgroupId" % ns).text
@@ -58,7 +57,7 @@ if __name__ == "__main__":
         r = data['response']['docs']
         for a in r:
             if dependency.artifactId == a['a']:
-                if dependency.version != a['latestVersion']:
-                    print bcolors.WARNING + "%s:%s:>>%s" % (a['a'], dependency.version, a['latestVersion']) + bcolors.ENDC
-                else:
+                if dependency.version == a['latestVersion']:
                     print bcolors.OKGREEN + "%s:%s:>>%s" % (a['a'], dependency.version, a['latestVersion']) + bcolors.ENDC
+                else:
+                    print bcolors.WARNING + "%s:%s:>>%s" % (a['a'], dependency.version, a['latestVersion']) + bcolors.ENDC

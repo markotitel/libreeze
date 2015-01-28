@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from app.controller import parse_xml
+from app.controller import check_versions
 
 # Create your views here.
 
@@ -8,7 +8,7 @@ def index(request):
 
 def submit_text(request):
     xml = request.POST['code']
-    dependencies = parse_xml(xml)
+    dependencies = check_versions(xml)
     return render(request, 'app/result.html', {'dependencies': dependencies})
 
 def submit_file(request):

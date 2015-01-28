@@ -38,8 +38,6 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->        
 
-		{{ item }}
-
 		<div class="container">
         	<div class="row">
 				<header>libreeze.net</header>
@@ -61,12 +59,14 @@
 							</tr>
 						</thead>
 						<tbody>
+                            {% for dependency in dependencies %}
 							<tr>
-								<td>12</td>
-								<td>43</td>
-								<td>3.2</td>
-								<td>3.3</td>
+								<td>{{ dependency.groupId }}</td>
+								<td>{{ dependency.artifactId }}</td>
+								<td>{{ dependency.version }}</td>
+								<td>???</td>
 							</tr>
+                            {% endfor %}
 							<tr>                               
 								<td colspan="3">
 									<textarea readonly class="xml_result" name="clipboard-text" id="clipboard-text">

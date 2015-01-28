@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from app.controller import parse_xml
 
 # Create your views here.
 
@@ -6,9 +7,11 @@ def index(request):
     return render(request, 'app/index.html')
 
 def submit_text(request):
-    item = request.body
-    return render(request, 'app/result.html', {'item': item})
+    xml = request.POST['code']
+    dependencies = parse_xml(xml)
+    return render(request, 'app/result.html', {'dependencies': dependencies})
 
 def submit_file(request):
     item = request.FILES.get('upload')
+    print item
     return render(request, 'app/result.html', { 'item': item})

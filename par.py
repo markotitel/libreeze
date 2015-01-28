@@ -25,7 +25,7 @@ if __name__ == "__main__":
     ns = "{http://maven.apache.org/POM/4.0.0}"
     maven_repo_url = "http://search.maven.org/solrsearch/select?q=g:"
 
-    group = artifact = version = ""
+#    group = artifact = version = ""
 
     tree = et.ElementTree()
     tree.parse("pom.xml")

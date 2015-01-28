@@ -10,10 +10,11 @@ class Dependency:
         self.groupId = groupId
         self.artifactId = artifactId
         self.version = version
+        self.latest = '???'
 
-    def url(self, base_url):
+    def url(self):
         url = '"' + self.groupId  + '"' + "&rows=20&wt=json"
-        return base_url + url
+        return "http://search.maven.org/solrsearch/select?q=g:" + url
 
 
 def parse_xml(xml):
@@ -22,7 +23,7 @@ def parse_xml(xml):
     root = ET.fromstring(xml)
 
     propertiesMap = {}
-    list = []
+
 
     properties = root.find("%sproperties" % ns)
     for prop in properties:
@@ -30,7 +31,11 @@ def parse_xml(xml):
         value = prop.text
         propertiesMap[key] = value
         print propertiesMap
+        print propertiesMap
 
+    parsedList = []
+
+    # parse the xml
     dependencies = root.iter("%sdependency" % ns)
     for dependency in dependencies:
         groupId = dependency.find("%sgroupId" % ns).text
@@ -40,6 +45,17 @@ def parse_xml(xml):
             key = version[2:-1]
             version = propertiesMap[key]
         dep = Dependency(groupId, artifactId, version)
-        list.append(dep)
+        parsedList.append(dep)
 
-    return list
+    # assign latest version to list
+    # TODO split this later in another method
+    for dependency in parsedList:
+        url = dependency.url()
+        page = requests.get(url)
+        data = json.loads(page.text)
+        responses = data['response']['docs']
+        for response in responses:
+            if dependency.artifactId == response['a']:
+                dependency.latest = response['latestVersion']
+
+    return parsedList

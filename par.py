@@ -10,6 +10,7 @@ class Dependency:
         self.groupId = groupId
         self.artifactId = artifactId
         self.version = version
+        self.latest = ''
 
     def url(self, base_url):
         url = '"' + dependency.groupId  + '"' + "&rows=20&wt=json"

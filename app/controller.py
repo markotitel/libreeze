@@ -15,8 +15,9 @@ class MavenDependency:
         self.latest = '???'
 
     def url(self):
-        url = '"' + self.groupId  + '"' + "&rows=20&wt=json"
-        return "http://search.maven.org/solrsearch/select?q=g:" + url
+        url = self.groupId + "/"
+        url = url.replace(".", "/")
+        return "http://mirrors.ibiblio.org/maven2/" + url
 
     def key(self):
         return self.groupId + '.' + self.artifactId
@@ -70,13 +71,20 @@ def retrieve_latest(dependencies):
             print 'Retrieved from db ' + stored.__str__()
         else:
             # If not, look it up online and store it to the db
-            url = dependency.url()
+            url = dependency.url() + dependency.artifactId + "/maven-metadata.xml"
             page = requests.get(url)
-            data = json.loads(page.text)
-            responses = data['response']['docs']
-            for response in responses:
-                if dependency.artifactId == response['a']:
-                    dependency.latest = response['latestVersion']
+            if page.status_code == requests.codes.ok:
+                tree = ET.fromstring(page.content)
+                metadata = tree.iter('versioning')
+                for release in metadata:
+                    try:
+                        rel = release.find('release').text
+                    except AttributeError:
+                        rel = tree.find("version").text
+
+           # for response in responses:
+                if dependency.artifactId == rel:
+                    dependency.latest = rel
                     latest = LatestDependency(name = dependency.key(), version = dependency.latest)
                     latest.save()
                     print 'Stored to db ' + latest.__str__()

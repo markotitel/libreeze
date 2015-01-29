@@ -1,6 +1,10 @@
 libreeze
 ========
 
-sudo pip install Django
+vagrant up
 
-sudo pip install mysql-python or sudo apt-get install python-mysqldb
+vagrant ssh
+
+cd /vagrant
+./manage.py migrate
+./manage.py runserver 0.0.0.0:8000

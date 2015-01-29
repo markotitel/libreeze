@@ -1,0 +1,20 @@
+---
+- name: Install python deps
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+      - python-pip
+      - python-dev
+
+- name: Install mysql
+  apt:
+    name: "{{ item }}"
+  with_items:
+      - mysql-server
+      - libmysqlclient-dev
+
+- name: Install needed packages for libreeze
+  with_items: packages
+  pip:
+    name: "{{ item }}"

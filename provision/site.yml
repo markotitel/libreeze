@@ -1,0 +1,6 @@
+---
+- name: Setup Django
+  hosts: all
+  sudo: yes
+  roles:
+    - role: common

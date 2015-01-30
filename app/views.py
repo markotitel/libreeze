@@ -12,7 +12,7 @@ def submit_text(request):
     return render(request, 'app/result.html', {'dependencies': dependencies})
 
 def submit_file(request):
-    file = request.FILES.get('upload')git 
+    file = request.FILES.get('upload')
     # TODO check file size first and check that the file is actually uploaded
     xml = file.read()
     dependencies = check_versions(xml)

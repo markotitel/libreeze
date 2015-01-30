@@ -57,10 +57,10 @@
 					<br/>
 					<br/>
 					
-					<div class="upload">
+					<div id="upload">
 						<!-- Browse form -->
 
-						<form method="post" action="{% url 'app:submit_file' %}" enctype="multipart/form-data">
+						<form id="upload_form" method="post" action="{% url 'app:submit_file' %}" enctype="multipart/form-data">
 							<div id="drop">
 								<div>Drop Here</div>
 								<button type="button">Browse</button>
@@ -109,7 +109,7 @@
          <!-- Our JS files -->
         <script src="{% static 'app/js/plugins.js' %}"></script>
         <script src="{% static 'app/js/main.js' %}"></script>
-		<script src="{% static 'app/js/uploadscript.js' %}"></script>
+		<!--<script src="{% static 'app/js/uploadscript.js' %}"></script>-->
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

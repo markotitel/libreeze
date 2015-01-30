@@ -4,6 +4,15 @@ $(function(){
     
     var init = function(){
 		initZeroClipboard();
+		initFileUpload();
+    };
+
+    var initFileUpload = function(){
+        $('input[name=upload]').change(function(e){
+            console.log('file selected');
+            var form = $('#upload_form');
+            form.submit();
+        });
     };
     
     //=begin Toggle paste section

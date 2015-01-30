@@ -12,6 +12,8 @@ def submit_text(request):
     return render(request, 'app/result.html', {'dependencies': dependencies})
 
 def submit_file(request):
-    item = request.FILES.get('upload')
-    print item
-    return render(request, 'app/result.html', { 'item': item})
+    file = request.FILES.get('upload')git 
+    # TODO check file size first and check that the file is actually uploaded
+    xml = file.read()
+    dependencies = check_versions(xml)
+    return render(request, 'app/result.html', {'dependencies': dependencies})

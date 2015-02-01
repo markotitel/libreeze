@@ -5,7 +5,7 @@ import json
 
 from xml.etree import ElementTree as ET
 
-from app.models import MavenDependency, MavenProjectDependency
+from app.models import MavenDependency
 
 def check_versions(xml):
     dependencies = parse_xml(xml)

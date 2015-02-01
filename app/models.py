@@ -27,7 +27,7 @@ class Project(models.Model):
 
 class MavenDependency(models.Model):
     group_id = models.TextField(max_length=512, db_index=True)
-    artifact_id = models.TextField(max_lenghth=256, db_index=True)
+    artifact_id = models.TextField(max_length=256, db_index=True)
     latest = models.TextField(max_length=256)
     release = models.TextField(max_length=256)
 

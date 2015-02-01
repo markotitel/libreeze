@@ -55,15 +55,17 @@
 								<th>Group Id</th>
 								<th>Artifact Id</th>
 								<th>Your version</th>
+                                <th>Release version</th>
 								<th>Latest version</th>
 							</tr>
 						</thead>
 						<tbody>
                             {% for dependency in dependencies %}
 							<tr>
-								<td>{{ dependency.groupId }}</td>
-								<td>{{ dependency.artifactId }}</td>
+								<td>{{ dependency.group_id }}</td>
+								<td>{{ dependency.artifact_id }}</td>
 								<td>{{ dependency.version }}</td>
+                                <td>{{ dependency.release }}</td>
 								<td>{{ dependency.latest }}</td>
 							</tr>
                             {% endfor %}

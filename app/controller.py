@@ -5,25 +5,20 @@ import json
 
 from xml.etree import ElementTree as ET
 
-from app.models import LatestDependency
-
-class MavenDependency:
-    def __init__(self, groupId, artifactId, version):
-        self.groupId = groupId
-        self.artifactId = artifactId
-        self.version = version
-        self.latest = '???'
-
-    def url(self):
-        url = '"' + self.groupId  + '"' + "&rows=20&wt=json"
-        return "http://search.maven.org/solrsearch/select?q=g:" + url
-
-    def key(self):
-        return self.groupId + '.' + self.artifactId
+from app.models import MavenDependency, MavenProjectDependency
 
 def check_versions(xml):
     dependencies = parse_xml(xml)
     return retrieve_latest(dependencies)
+
+class MavenViewDependency:
+    def __init__(self, group_id, artifact_id, version):
+        self.group_id = group_id
+        self.artifact_id = artifact_id
+        self.version = version
+        self.release = ''
+        self.latest = ''
+
 
 # TODO add error handling
 def parse_xml(xml):
@@ -31,29 +26,29 @@ def parse_xml(xml):
 
     root = ET.fromstring(xml)
 
-    propertiesMap = {}
+    properties_map = {}
 
     properties = root.find("%sproperties" % ns)
     for prop in properties:
         key = prop.tag[len(ns):]
         value = prop.text
-        propertiesMap[key] = value
+        properties_map[key] = value
 
-    parsedList = []
+    parsed_list = []
 
     # parse the xml
     dependencies = root.iter("%sdependency" % ns)
     for dependency in dependencies:
-        groupId = dependency.find("%sgroupId" % ns).text
-        artifactId = dependency.find("%sartifactId" % ns).text
+        group_id = dependency.find("%sgroupId" % ns).text
+        artifact_id = dependency.find("%sartifactId" % ns).text
         version = dependency.find("%sversion" % ns).text
         if version.startswith("${"):
             key = version[2:-1]
-            version = propertiesMap[key]
-        dep = MavenDependency(groupId, artifactId, version)
-        parsedList.append(dep)
+            version = properties_map[key]
+        project_dependency = MavenViewDependency(group_id, artifact_id, version)
+        parsed_list.append(project_dependency)
 
-    return parsedList
+    return parsed_list
 
 
 # TODO add task that periodically (once a day) updates latest versions
@@ -62,7 +57,7 @@ def retrieve_latest(dependencies):
     # assign latest version to list
     for dependency in dependencies:
 
-        stored = LatestDependency.objects.filter(name=dependency.key())
+        stored = MavenDependency.objects.filter(group_id = dependency.group_id, artifact_id = dependency.artifact_id)
 
         # First check if the latest dependency is already stored in the database
         if (stored):
@@ -77,7 +72,7 @@ def retrieve_latest(dependencies):
             for response in responses:
                 if dependency.artifactId == response['a']:
                     dependency.latest = response['latestVersion']
-                    latest = LatestDependency(name = dependency.key(), version = dependency.latest)
+                    latest = MavenDependency(group_id = dependency.groupId, artifact_id = dependency.artifactId, latest = dependency.latest, release = dependency.latest)
                     latest.save()
                     print 'Stored to db ' + latest.__str__()
 

@@ -1,0 +1,93 @@
+@import url('lb-main.css');
+
+/*
+ * Custom
+ */
+
+.lb-upload {
+	text-align: center;
+}
+
+.lb-steps {
+	display: table;
+	margin: auto;
+}
+
+.lb-steps div {
+    display: table-cell;
+}
+
+.lb-upload {
+	font-family: 'PT Sans Narrow', sans-serif;
+	width: 300px;
+	padding: 30px;
+	border-radius: 3px;
+	margin: 0 auto;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	text-transform: uppercase;
+	color: #7f858a;
+}
+
+.lb-upload button {
+	Xbackground-color: #007a96;
+	padding: 12px 26px;
+	Xcolor: #fff;
+	font-size: 14px;
+	border-radius: 2px;
+	Xborder-color: #007a96;
+	cursor: pointer;
+	margin-top: 12px;
+	line-height: 1;
+}
+
+.lb-upload .browse-btn {
+	display: inline-block;
+}
+
+.lb-upload textarea {
+	Xborder-color: #373a3d;
+	Xcolor: #7f858a;
+	margin-bottom: .2rem;
+}
+
+#upload-file {
+	Xbackground-color: #2E3134;
+	padding: 40px 50px;
+	margin-bottom: 30px;
+	Xborder: 6px dashed #373a3d;
+	text-align: center;
+	font-weight: bold;
+}
+
+#upload-file,
+.upload textarea {
+	Xbackground-color: #2E3134;
+}
+
+textarea {
+	font-size: .75em;
+	height: 10em;
+	width: 100%;
+}
+
+/* 
+ * Javascript dependent styles 
+ */
+
+#upload-text,
+input[type="file"],
+#upload-file button[type="submit"] {
+    display: none;
+}
+
+.no-js #upload-text,
+.no-js input[type="file"]{
+    display: block;
+}
+.no-js #upload-file button[type="submit"] {
+    display: inline-block;
+}
+.no-js .browse-btn,
+.no-js .toggle-upload-text {
+    display: none;
+}

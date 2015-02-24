@@ -2,10 +2,13 @@ from django.db import models
 
 # Create your models here.
 
+
 class Developer(models.Model):
     email = models.EmailField()
+
     def __str__(self):
         return self.email
+
 
 class Project(models.Model):
     POM = 'pm'
@@ -25,6 +28,7 @@ class Project(models.Model):
     def __str__(self):
         return self.name + ' ' + self.type
 
+
 class MavenDependency(models.Model):
     group_id = models.TextField(max_length=512, db_index=True)
     artifact_id = models.TextField(max_length=256, db_index=True)
@@ -32,7 +36,7 @@ class MavenDependency(models.Model):
     release = models.TextField(max_length=256)
 
     def __str__(self):
-        return self.name + ' ' + self.version
+        return "%s.%s:%s" % (self.group_id, self.artifact_id, self.latest)
 
 # class MavenProjectDependency(models.Model):
 #     project = models.ForeignKey(Project, blank=True)

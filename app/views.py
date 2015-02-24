@@ -8,11 +8,11 @@ def index(request):
     return render(request, 'app/index.html')
 
 def submit_text(request):
-    xml = request.POST['code']
+    xml = request.POST['pom-code']
     return parse_and_render(request, xml)
 
 def submit_file(request):
-    file = request.FILES.get('upload')
+    file = request.FILES.get('pom-file')
     # TODO check file size first and check that the file is actually uploaded
     xml = file.read()
     return parse_and_render(request, xml)

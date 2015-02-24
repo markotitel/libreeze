@@ -17,18 +17,11 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 		<!-- Google web fonts -->
-		<link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" rel='stylesheet' />
-        <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-        
-        <!-- Normalize CSS -->
-        <link rel="stylesheet" href="{% static 'app/css/normalize.css' %}">
-        
-        <!-- Responsive CSS -->
-        <link rel="stylesheet" href="{% static 'app/css/skeleton-2.0.4/skeleton.css' %}">
-        
-		<!-- The main CSS file -->
-        <link rel="stylesheet" href="{% static 'app/css/main.css' %}">
-		<!-- <link href="css/uploadstyle.css" rel="stylesheet" /> -->
+		<link rel='stylesheet' href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" />
+        <link rel='stylesheet' href="//fonts.googleapis.com/css?family=Raleway:400,300,600" type="text/css" />
+                        
+		<!-- CSS styles -->
+        <link rel="stylesheet" href="{% static 'app/css/lb-upload.css' %}" />
        
         <script src="{% static 'app/js/vendor/modernizr-2.6.2.min.js' %}"></script>
     </head>
@@ -47,41 +40,32 @@
         	</div>
         	<div class="row">
 				<div class="column">
-					<div class="steps_container">
-						<span>step 1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<span>step 2</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<span>step 3</span>
+					<div class="lb-steps">
+						<div>You upload pom</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<div>We check dependencies</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<div>You leave email<span class="sub-text">(to get notified when updates are released)</span></div>
 					</div>
 					
 					<br/>
 					<br/>
 					<br/>
 					
-					<div id="upload">
+					<div class="lb-upload">
 						<!-- Browse form -->
-
-						<form id="upload_form" method="post" action="{% url 'app:submit_file' %}" enctype="multipart/form-data">
-							<div id="drop">
-								<div>Drop Here</div>
-								<button type="button">Browse</button>
-								<input type="file" name="upload" accept=".xml" />
-								<button type="submit" class="submit_upload">Upload</button>
-							</div>
-
-							<ul>
-								<!-- The file uploads will be shown here -->
-
-							</ul>
+						<form id="upload-file" method="post" action="{% url 'app:submit_file' %}" enctype="multipart/form-data">
+                            <button class="browse-btn" type="button">Browse</button>
+                            <input type="file" name="pom-file" accept=".xml" />
+                            <button type="submit">Upload</button>
 						</form>
 
 						<span>- or -</span>
 						
 						<!-- Paste form -->
-						<div class="toggle_paste_form">
-							<button type="button">Paste</button>
+						<div>
+							<button type="button" class="toggle-upload-text">Paste</button>
 						</div>
-						<form id="paste_form" method="post" action="{% url 'app:submit_text' %}">
-							<textarea name="code"></textarea>
+						<form id="upload-text" method="post" action="{% url 'app:submit_text' %}">
+							<textarea name="pom-code"></textarea>
 							<button type="submit">Upload</button>
 						</form>
 					</div>
@@ -97,19 +81,11 @@
         
         <!-- JavaScript Includes -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="{% static 'app/js/jquery.knob.js' %}"></script>
-
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-
-		<!-- jQuery File Upload Dependencies -->
-		<script src="{% static 'app/js/jquery.ui.widget.js' %}"></script>
-		<script src="{% static 'app/js/jquery.iframe-transport.js' %}"></script>
-		<script src="{% static 'app/js/jquery.fileupload.js' %}"></script>
        
          <!-- Our JS files -->
         <script src="{% static 'app/js/plugins.js' %}"></script>
-        <script src="{% static 'app/js/main.js' %}"></script>
-		<!--<script src="{% static 'app/js/uploadscript.js' %}"></script>-->
+        <script src="{% static 'app/js/lb-fileupload.js' %}"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

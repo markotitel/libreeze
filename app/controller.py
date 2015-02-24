@@ -19,7 +19,6 @@ class MavenViewDependency:
         self.release = ''
         self.latest = ''
 
-
 # TODO add error handling
 def parse_xml(xml):
     ns = "{http://maven.apache.org/POM/4.0.0}"
@@ -61,7 +60,8 @@ def retrieve_latest(dependencies):
 
         # First check if the latest dependency is already stored in the database
         if (stored):
-            dependency.latest = stored[0].version
+            dependency.latest = stored[0].latest
+            dependency.release = stored[0].release
             print 'Retrieved from db ' + stored.__str__()
         else:
             # If not, look it up online and store it to the db

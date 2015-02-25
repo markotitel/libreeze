@@ -77,7 +77,8 @@ def retrieve_latest(dtos):
             print 'Retrieved from db ' + stored[0].__str__()
         else:
             # If not, look it up online and store it to the db
-            url = "http://repo1.maven.org/maven2/" + dto.group_id.replace('.', '/') + '/' + dto.artifact_id + "/maven-metadata.xml"
+            url = "http://repo1.maven.org/maven2/" + dto.group_id.replace('.', '/') \
+                  + '/' + dto.artifact_id + "/maven-metadata.xml"
             maven_metadata_xml_page = requests.get(url)
 
             if maven_metadata_xml_page.status_code == 200:
@@ -103,7 +104,8 @@ def retrieve_latest(dtos):
                 dto.latest = latest
                 dto.release = release
 
-                maven_dependency = MavenDependency(group_id=dto.group_id, artifact_id=dto.artifact_id, latest=dto.latest, release=dto.latest)
+                maven_dependency = MavenDependency(group_id=dto.group_id, artifact_id=dto.artifact_id,
+                                                   latest=dto.latest, release=dto.release)
                 maven_dependency.save()
                 print 'Stored to db ' + maven_dependency.__str__()
 

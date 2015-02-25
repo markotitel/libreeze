@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from app.models import Project, Developer, MavenDependency
+from app.models import MavenRepoDependency, Developer, MavenProject, MavenProjectDependency
 
 # Register your models here.
 
-admin.site.register(Project)
+admin.site.register(MavenRepoDependency)
 admin.site.register(Developer)
-admin.site.register(MavenDependency)
+admin.site.register(MavenProject)
+admin.site.register(MavenProjectDependency)

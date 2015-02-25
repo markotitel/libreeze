@@ -5,7 +5,7 @@ import requests
 from pkg_resources import parse_version
 from xml.etree import ElementTree as ET
 
-from app.models import MavenDependency
+from app.models import MavenRepoDependency
 
 
 def check_versions(xml):
@@ -68,7 +68,7 @@ def retrieve_latest(dtos):
 
     for dto in dtos:
 
-        stored = MavenDependency.objects.filter(group_id=dto.group_id, artifact_id=dto.artifact_id)
+        stored = MavenRepoDependency.objects.filter(group_id=dto.group_id, artifact_id=dto.artifact_id)
 
         # First check if the latest dependency is already stored in the database
         if stored:
@@ -104,7 +104,7 @@ def retrieve_latest(dtos):
                 dto.latest = latest
                 dto.release = release
 
-                maven_dependency = MavenDependency(group_id=dto.group_id, artifact_id=dto.artifact_id,
+                maven_dependency = MavenRepoDependency(group_id=dto.group_id, artifact_id=dto.artifact_id,
                                                    latest=dto.latest, release=dto.release)
                 maven_dependency.save()
                 print 'Stored to db ' + maven_dependency.__str__()

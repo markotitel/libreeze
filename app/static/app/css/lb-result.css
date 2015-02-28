@@ -1,13 +1,26 @@
 @import url('lb-main.css');
-
-
 /*
  * Custom
  */
+caption {
+    font-size: .85em;
+    margin-bottom: 4em;
+}
 
+.version {
+  padding-right: 40px;
+}
 
-
+.warn {
+  background-color: #ffe559;
+  border: 1px solid #efd442;
+  font-size: .8em;
+  float: right;
+  color: #666;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 0 .65em;
+}
 /* 
  * Javascript dependent styles 
  */
-

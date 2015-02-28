@@ -20,6 +20,7 @@ class MavenDependencyDTO:
         self.version = version
         self.release = ''
         self.latest = ''
+        self.up_to_date = True
 
 
 # TODO add error handling
@@ -105,12 +106,19 @@ def retrieve_latest(dtos):
                 dto.release = release
 
                 maven_dependency = MavenRepoDependency(group_id=dto.group_id, artifact_id=dto.artifact_id,
-                                                   latest=dto.latest, release=dto.release)
+                                                       latest=dto.latest, release=dto.release)
                 maven_dependency.save()
                 print 'Stored to db ' + maven_dependency.__str__()
 
             else:
                 # This dependency is not found in the maven repo
                 print "Received response code %s for url %s" % (maven_metadata_xml_page.status_code, url)
+
+        # Set up_to_date flag
+        if dto.latest:
+            dto.up_to_date = dto.version == dto.latest
+        else:
+            if dto.release:
+                dto.up_to_date = dto.version == dto.release
 
     return dtos

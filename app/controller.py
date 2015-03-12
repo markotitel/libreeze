@@ -96,7 +96,7 @@ def retrieve_latest(dtos):
                 root = ET.fromstring(maven_metadata_xml_page.text)
 
                 latest_element = root.find("./versioning/latest")
-                latest = ''
+
                 if latest_element is not None:
                     latest = latest_element.text
                     print "Retrieved latest directly from metadata: " + latest

@@ -32,22 +32,31 @@ def parse_xml(xml):
     properties_map = {}
 
     properties = root.find("%sproperties" % ns)
-    for prop in properties:
-        key = prop.tag[len(ns):]
-        value = prop.text
-        properties_map[key] = value
+    if properties is not None:
+        for prop in properties:
+            key = prop.tag[len(ns):]
+            value = prop.text
+            properties_map[key] = value
 
     parsed_list = []
 
     # parse the xml
     dependencies = root.iter("%sdependency" % ns)
     for dependency in dependencies:
+
         group_id = dependency.find("%sgroupId" % ns).text
+
         artifact_id = dependency.find("%sartifactId" % ns).text
-        version = dependency.find("%sversion" % ns).text
+
+        version = ""
+        xml_version = dependency.find("%sversion" % ns)
+        if xml_version is not None:
+            version = xml_version.text
+
         if version.startswith("${"):
             key = version[2:-1]
             version = properties_map[key]
+
         dto = MavenDependencyDTO(group_id, artifact_id, version)
         parsed_list.append(dto)
 

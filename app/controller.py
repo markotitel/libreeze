@@ -9,6 +9,7 @@ from app.models import MavenRepoDependency
 
 MAVEN_NAMESPACE = "{http://maven.apache.org/POM/4.0.0}"
 
+
 def process_pom_file(xml):
     project = parse_xml(xml)
     return retrieve_latest(project)

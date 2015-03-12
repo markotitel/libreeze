@@ -24,6 +24,9 @@ class MavenProject(models.Model):
     developer = models.ForeignKey(Developer, blank=True)
     group_id = models.TextField(max_length=512, db_index=True)
     artifact_id = models.TextField(max_length=256, db_index=True)
+    version = models.TextField(max_length=256, db_index=True)
+    send_updates = models.BooleanField(default=True)
+    unsubscribe_code = models.TextField(max_length=64, db_index=True)
 
     def __str__(self):
         return "Project: %s.%s" % (self.group_id, self.artifact_id)

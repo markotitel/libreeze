@@ -9,8 +9,16 @@ from app.models import MavenRepoDependency
 
 
 def check_versions(xml):
-    dtos = parse_xml(xml)
-    return retrieve_latest(dtos)
+    project = parse_xml(xml)
+    return retrieve_latest(project)
+
+
+class MavenProjectDTO:
+    def __init__(self, group_id, artifact_id, version, dependencies):
+        self.group_id = group_id
+        self.artifact_id = artifact_id
+        self.version = version
+        self.dependencies = dependencies
 
 
 class MavenDependencyDTO:
@@ -29,38 +37,43 @@ def parse_xml(xml):
 
     root = ET.fromstring(xml)
 
+    project_group_id = root.find("%sgroupId" % ns).text
+    project_artifact_id = root.find("%sartifactId" % ns).text
+    project_version = root.find("%sversion" % ns).text
+
     properties_map = {}
 
-    properties = root.find("%sproperties" % ns)
-    if properties is not None:
-        for prop in properties:
-            key = prop.tag[len(ns):]
-            value = prop.text
+    property_nodes = root.find("%sproperties" % ns)
+    if property_nodes is not None:
+        for node in property_nodes:
+            key = node.tag[len(ns):]
+            value = node.text
             properties_map[key] = value
 
-    parsed_list = []
+    dependencies = []
 
     # parse the xml
-    dependencies = root.iter("%sdependency" % ns)
-    for dependency in dependencies:
+    dependency_nodes = root.iter("%sdependency" % ns)
+    for node in dependency_nodes:
 
-        group_id = dependency.find("%sgroupId" % ns).text
+        group_id = node.find("%sgroupId" % ns).text
 
-        artifact_id = dependency.find("%sartifactId" % ns).text
+        artifact_id = node.find("%sartifactId" % ns).text
 
-        version = ""
-        xml_version = dependency.find("%sversion" % ns)
-        if xml_version is not None:
-            version = xml_version.text
+        version = ''
+        node_version = node.find("%sversion" % ns)
+        if node_version is not None:
+            version = node_version.text
 
         if version.startswith("${"):
             key = version[2:-1]
-            version = properties_map[key]
+            if key in properties_map:
+                version = properties_map[key]
 
-        dto = MavenDependencyDTO(group_id, artifact_id, version)
-        parsed_list.append(dto)
+        dependency = MavenDependencyDTO(group_id, artifact_id, version)
+        dependencies.append(dependency)
 
-    return parsed_list
+    return MavenProjectDTO(project_group_id, project_artifact_id, project_version, dependencies)
 
 
 # TODO add task that periodically (once a day) updates latest versions
@@ -74,9 +87,9 @@ def determine_latest_version(versions):
     return latest
 
 
-def retrieve_latest(dtos):
+def retrieve_latest(project):
 
-    for dto in dtos:
+    for dto in project.dependencies:
 
         stored = MavenRepoDependency.objects.filter(group_id=dto.group_id, artifact_id=dto.artifact_id)
 
@@ -124,10 +137,9 @@ def retrieve_latest(dtos):
                 print "Received response code %s for url %s" % (maven_metadata_xml_page.status_code, url)
 
         # Set up_to_date flag
-        if dto.latest:
+        if dto.release:
+            dto.up_to_date = dto.version == dto.release
+        elif dto.latest:
             dto.up_to_date = dto.version == dto.latest
-        else:
-            if dto.release:
-                dto.up_to_date = dto.version == dto.release
 
-    return dtos
+    return project

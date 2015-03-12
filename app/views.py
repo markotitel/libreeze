@@ -21,10 +21,10 @@ def submit_file(request):
     return parse_and_render(request, xml)
 
 def parse_and_render(request, xml):
-    dependencies = check_versions(xml)
-    dependencies_total_count = len(dependencies)
-    dependencies_out_of_date = sum(d.up_to_date == False for d in dependencies)
-    return render(request, 'app/result.html', {'dependencies': dependencies,
+    project = check_versions(xml)
+    dependencies_total_count = len(project.dependencies)
+    dependencies_out_of_date = sum(dependency.up_to_date is False for dependency in project.dependencies)
+    return render(request, 'app/result.html', {'dependencies': project.dependencies,
                                                'dependencies_total_count': dependencies_total_count,
                                                'dependencies_out_of_date': dependencies_out_of_date
                                               })

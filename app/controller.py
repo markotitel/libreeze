@@ -7,8 +7,9 @@ from xml.etree import ElementTree as ET
 
 from app.models import MavenRepoDependency
 
+MAVEN_NAMESPACE = "{http://maven.apache.org/POM/4.0.0}"
 
-def check_versions(xml):
+def process_pom_file(xml):
     project = parse_xml(xml)
     return retrieve_latest(project)
 
@@ -29,6 +30,21 @@ class MavenDependencyDTO:
         self.release = ''
         self.latest = ''
         self.up_to_date = True
+
+
+# Need this to handle pom files without namespace
+def node_find(root, tag):
+    node = root.find("%s%s" % (MAVEN_NAMESPACE, tag))
+    if node is None:
+        node = root.find(tag)
+    return node
+
+
+def node_find(root, tag):
+    node = root.iter("%s%s" % (MAVEN_NAMESPACE, tag))
+    if node is None:
+        node = root.iter(tag)
+    return node
 
 
 # TODO add error handling

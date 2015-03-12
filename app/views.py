@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from app.controller import check_versions
+from app.controller import process_pom_file
 
 # Create your views here.
 
@@ -11,17 +11,27 @@ def index(request):
 
 def submit_text(request):
     xml = request.POST['pom-code']
-    return parse_and_render(request, xml)
+    project = process_pom_file(xml)
+    request.session['project'] = project
+    return parse_and_render(request, project)
 
 
 def submit_file(request):
-    file = request.FILES.get('pom-file')
-    # TODO check file size first and check that the file is actually uploaded
-    xml = file.read()
-    return parse_and_render(request, xml)
 
-def parse_and_render(request, xml):
-    project = check_versions(xml)
+    pom_file = request.FILES.get('pom-file')
+
+    if pom_file is not None:
+        xml = pom_file.read()
+        project = process_pom_file(xml)
+        request.session['project'] = project
+    else:
+        # This handles refresh without submit on result page
+        project = request.session['project']
+
+    return parse_and_render(request, project)
+
+
+def parse_and_render(request, project):
     dependencies_total_count = len(project.dependencies)
     dependencies_out_of_date = sum(dependency.up_to_date is False for dependency in project.dependencies)
     return render(request, 'app/result.html', {'dependencies': project.dependencies,

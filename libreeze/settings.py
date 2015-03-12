@@ -53,6 +53,7 @@ ROOT_URLCONF = 'libreeze.urls'
 
 WSGI_APPLICATION = 'libreeze.wsgi.application'
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

@@ -40,7 +40,7 @@ def node_find(root, tag):
     return node
 
 
-def node_find(root, tag):
+def node_iter(root, tag):
     node = root.iter("%s%s" % (MAVEN_NAMESPACE, tag))
     if node is None:
         node = root.iter(tag)
@@ -49,35 +49,34 @@ def node_find(root, tag):
 
 # TODO add error handling
 def parse_xml(xml):
-    ns = "{http://maven.apache.org/POM/4.0.0}"
 
     root = ET.fromstring(xml)
 
-    project_group_id = root.find("%sgroupId" % ns).text
-    project_artifact_id = root.find("%sartifactId" % ns).text
-    project_version = root.find("%sversion" % ns).text
+    project_group_id = node_find(root, "groupId").text
+    project_artifact_id = node_find(root, "artifactId").text
+    project_version = node_find(root, "version").text
 
     properties_map = {}
 
-    property_nodes = root.find("%sproperties" % ns)
+    property_nodes = node_find(root, "properties")
     if property_nodes is not None:
         for node in property_nodes:
-            key = node.tag[len(ns):]
+            key = node.tag[len(MAVEN_NAMESPACE):]
             value = node.text
             properties_map[key] = value
 
     dependencies = []
 
     # parse the xml
-    dependency_nodes = root.iter("%sdependency" % ns)
+    dependency_nodes = node_iter(root, "dependency")
     for node in dependency_nodes:
 
-        group_id = node.find("%sgroupId" % ns).text
+        group_id = node_find(node, "groupId").text
 
-        artifact_id = node.find("%sartifactId" % ns).text
+        artifact_id = node_find(node, "artifactId").text
 
         version = ''
-        node_version = node.find("%sversion" % ns)
+        node_version = node_find(node, "version")
         if node_version is not None:
             version = node_version.text
 

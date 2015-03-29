@@ -2,25 +2,106 @@
 /*
  * Custom
  */
+
 caption {
-    font-size: .85em;
-    margin-bottom: 4em;
+	font-size: .85em;
+	margin-bottom: 4em;
 }
 
 .version {
-  padding-right: 40px;
+	padding-right: 25px;
 }
-
+/*
 .warn {
   background-color: #ffe559;
   border: 1px solid #efd442;
   font-size: .8em;
-  float: right;
   color: #666;
   font-weight: bold;
   border-radius: 20px;
   padding: 0 .65em;
 }
-/* 
- * Javascript dependent styles 
+*/
+/*
+.warning {
+	float: right;
+	font-size: .8em;
+	font-weight: bold;
+	color: #666;
+	border-width: 0 11px 18px;
+	border-style: solid;
+	border-color: #F8D201 transparent;
+	background: transparent;
+}
+*/
+
+.v-flag {
+	position: relative;
+	overflow: hidden;
+	padding: 0;
+	margin: 0 0 0 1em;
+}
+
+.v-flag:before,
+.v-flag:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+}
+
+.v-flag:before {}
+
+.v-flag:after {}
+
+.v-warn:before {
+	content: "!";
+	color: #000;
+	z-index: 2;
+	left: .65em;
+	margin-top: -10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.v-warn:after {
+	border-width: 0 11px 18px;
+	border-color: #fce04a transparent;
+	background: transparent;
+	z-index: 1;
+	border-style: solid;
+	margin-top: -10px;
+}
+
+.v-ok:before {
+	left: 3px;
+	width: 18px;
+	height: 18px;
+	margin-top: -8px;
+	-webkit-border-radius: 16px;
+	-moz-border-radius: 16px;
+	border-radius: 16px;
+	background: #6dc147;
+}
+
+.v-ok:after {
+	left: .55em;
+	width: 4px;
+	height: 10px;
+	border-width: 0 2px 2px 0;
+	border-style: solid;
+	border-color: #fff;
+	margin-top: -6px;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.fix-width {
+	min-width: 10em;
+}
+/*
+ * Javascript dependent styles
  */

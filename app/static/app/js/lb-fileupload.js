@@ -1,35 +1,37 @@
 $(function () {
-  "use strict";
+	"use strict";
 
-  function initFileUpload() {
-    var $fileInput = $('input[name=pom-file]');
+	function initFileUpload() {
+		var $fileInput = $('input[name=pom-file]');
 
-    $fileInput.on('change', (function () {
-      var form = $('#upload-file');
-      console.debug('file selected; submit form');
-      form.submit();
-    }));
+		$fileInput.on('change', (function () {
+			var form = $('#upload-file');
+			console.debug('file selected; submit form');
+			form.submit();
+		}));
 
-    $('.browse-btn').click(function () {
-      $fileInput.val('');
-      $fileInput.click();
-    });
-  }
+		$('.browse-btn').click(function () {
+			$fileInput.val('');
+			$fileInput.click();
+		});
+	}
 
-  function initPasteFile() {
-    $('.toggle-upload-text').click(function (e) {
-      e.stopPropagation();
-      $('#upload-text').show();
-      $("textarea[name='enter-code']").focus();
-      $(this).hide();
-    });
-  }
+	function initPasteFile() {
+		$('.toggle-upload-text').click(function (e) {
+			e.stopImmediatePropagation();
+			$('#upload-text').toggle();
+			if ($('#upload-text').is(":visible")){
+				$("textarea[name='pom-code']").focus();
+			}
+			$('button.toggle-upload-text').toggle();
+		});
+	}
 
-  function init() {
-    initFileUpload();
-    initPasteFile();
-  }
+	function init() {
+		initFileUpload();
+		initPasteFile();
+	}
 
-  init();
+	init();
 
 });

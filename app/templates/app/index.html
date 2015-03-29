@@ -9,106 +9,113 @@
 {% load staticfiles %}
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-  <!-- Google web fonts -->
-  <link rel='stylesheet' href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" />
-  <link rel='stylesheet' href="//fonts.googleapis.com/css?family=Raleway:400,300,600" type="text/css" />
+	<!-- Google web fonts -->
+	<link rel='stylesheet' href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700" />
+	<link rel='stylesheet' href="//fonts.googleapis.com/css?family=Raleway:400,300,600" type="text/css" />
 
-  <!-- CSS styles -->
-  <link rel="stylesheet" href="{% static 'app/css/lb-upload.css' %}" />
+	<!-- CSS styles -->
+	<link rel="stylesheet" href="{% static 'app/css/lb-upload.css' %}" />
 
-  <script src="{% static 'app/js/vendor/modernizr-2.6.2.min.js' %}"></script>
+	<script src="{% static 'app/js/vendor/modernizr-2.6.2.min.js' %}"></script>
 </head>
 
 <body>
-  <!--[if lt IE 7]>
+	<!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-  <div class="container">
-    <div class="row">
-      <header>libreeze.net</header>
-      <br/>
-      <br/>
-      <br/>
-      <nav></nav>
-    </div>
-    <div class="row">
-      <div class="column">
-        <div class="lb-steps">
-          <div>Upload your pom file<span class="sub-text">(don't worry, we do not scan anything except your project dependencies and name)</span></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div>See if your libraries are up-to-date</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <div>Optionally, leave your email and receive notifications when new versions of your libraries are released</div>
-        </div>
+	<div class="container">
+		<div class="row">
+			<header>libreeze.net</header>
+			<br/>
+			<br/>
+			<br/>
+			<nav></nav>
+		</div>
+		<div class="row">
+			<div class="column">
+				<div class="lb-steps">
+					<div>Upload your pom file<span class="sub-text">(don't worry, we do not scan anything except your project dependencies and name)</span>
+					</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<div>See if your libraries are up-to-date</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<div>Optionally, leave your email and receive notifications when new versions of your libraries are released</div>
+				</div>
 
-        <br/>
-        <br/>
-        <br/>
+				<br/>
 
-        <div class="lb-upload">
-          <!-- Browse form -->
-          <form id="upload-file" method="post" action="{% url 'app:submit_file' %}" enctype="multipart/form-data">
-            <button class="browse-btn" type="button">Browse</button>
-            <input type="file" name="pom-file" accept=".xml" />
-            <button type="submit">Upload</button>
-          </form>
+				<!-- @todo: conditionally set classes "lb-err", "lb-warn", "lb-success" to declare notification type and class "hidden" to toggle it's visibility -->
+				<div class="lb-err hidden">
+					Tellus scelerisque consequat parturient eleifend ad mattis amet nisi ad a a molestie ultricies suspendisse nulla vestibulum parturient dui aliquam luctus.
+				</div>
 
-          <span>- or -</span>
+				<br/>
 
-          <!-- Paste form -->
-          <div>
-            <button type="button" class="toggle-upload-text">Paste</button>
-          </div>
-          <form id="upload-text" method="post" action="{% url 'app:submit_text' %}">
-            <textarea name="pom-code"></textarea>
-            <button type="submit">Upload</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+				<div class="lb-upload">
+					<!-- Browse form -->
+					<form id="upload-file" method="post" action="{% url 'app:submit_file' %}" enctype="multipart/form-data">
+						<button class="browse-btn" type="button">Browse</button>
+						<input type="file" name="pom-file" accept=".xml" />
+						<button type="submit">Upload</button>
+					</form>
 
-  <br/>
-  <br/>
-  <br/>
+					<span>- or -</span>
 
-  <footer class="centered">&copy;libreeze 2015</footer>
+					<!-- Paste form -->
+					<div>
+						<button type="button" class="toggle-upload-text">Paste</button>
+					</div>
+					<form id="upload-text" method="post" action="{% url 'app:submit_text' %}">
+						<span class="lb-close-upload toggle-upload-text">x</span>
+						<textarea name="pom-code"></textarea>
+						<button type="submit">Upload</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
-  <!-- JavaScript Includes -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script>
-    window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
-  </script>
+	<br/>
+	<br/>
+	<br/>
 
-  <!-- Our JS files -->
-  <script src="{% static 'app/js/plugins.js' %}"></script>
-  <script src="{% static 'app/js/lb-fileupload.js' %}"></script>
+	<footer class="centered">&copy;libreeze 2015</footer>
 
-  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-  <script>
-    (function (b, o, i, l, e, r) {
-      b.GoogleAnalyticsObject = l;
-      b[l] || (b[l] =
-        function () {
-          (b[l].q = b[l].q || []).push(arguments)
-        });
-      b[l].l = +new Date;
-      e = o.createElement(i);
-      r = o.getElementsByTagName(i)[0];
-      e.src = '//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e, r)
-    }(window, document, 'script', 'ga'));
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-  </script>
+	<!-- JavaScript Includes -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>
+		window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
+	</script>
+
+	<!-- Our JS files -->
+	<script src="{% static 'app/js/plugins.js' %}"></script>
+	<script src="{% static 'app/js/lb-fileupload.js' %}"></script>
+
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<script>
+		(function (b, o, i, l, e, r) {
+			b.GoogleAnalyticsObject = l;
+			b[l] || (b[l] =
+				function () {
+					(b[l].q = b[l].q || []).push(arguments)
+				});
+			b[l].l = +new Date;
+			e = o.createElement(i);
+			r = o.getElementsByTagName(i)[0];
+			e.src = '//www.google-analytics.com/analytics.js';
+			r.parentNode.insertBefore(e, r)
+		}(window, document, 'script', 'ga'));
+		ga('create', 'UA-XXXXX-X');
+		ga('send', 'pageview');
+	</script>
 </body>
 
 </html>

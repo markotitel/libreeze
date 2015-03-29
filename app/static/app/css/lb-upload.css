@@ -1,31 +1,32 @@
 @import url('lb-main.css');
-
 /*
  * Custom
  */
 
-.lb-upload {
-	text-align: center;
-}
-
 .lb-steps {
 	display: table;
-	margin: auto;
+	margin-bottom: 2.5rem;
 }
 
 .lb-steps div {
-    display: table-cell;
+	display: table-cell;
+}
+
+.lb-upload-container p {
+	margin: 0;
+	font-size: .8em;
 }
 
 .lb-upload {
+	text-transform: uppercase;
+	text-align: center;
+	color: #7f858a;
 	font-family: 'PT Sans Narrow', sans-serif;
-	width: 300px;
+	width: 14em;
 	padding: 30px;
 	border-radius: 3px;
 	margin: 0 auto;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-	text-transform: uppercase;
-	color: #7f858a;
 }
 
 .lb-upload button {
@@ -52,11 +53,15 @@
 
 #upload-file {
 	Xbackground-color: #2E3134;
-	padding: 40px 50px;
-	margin-bottom: 30px;
+	Xpadding: 40px 50px;
+	Xmargin-bottom: 30px;
 	Xborder: 6px dashed #373a3d;
 	text-align: center;
 	font-weight: bold;
+}
+
+#upload-text {
+	margin-bottom: 0;
 }
 
 #upload-file,
@@ -70,24 +75,65 @@ textarea {
 	width: 100%;
 }
 
-/* 
- * Javascript dependent styles 
+.lb-err,
+.lb-warn,
+.lb-success {
+	width: 63%;
+	margin: 0 auto;
+	font-size: .75em;
+	padding: 14px 25px;
+}
+
+.lb-err {
+	background-color: rgba(255, 0, 0, 0.15);
+}
+
+.lb-warn {
+	background-color: rgba(255, 196, 0, 0.15);
+}
+
+.lb-success {
+	background-color: rgba(0, 255, 69, 0.15);
+}
+
+.lb-close-upload {
+	Xbackground-color: #cc3737;
+	color: #cc3737;
+	float: right;
+	font-weight: bold;
+	font-size: .6em;
+	border-radius: 10px;
+	border: 1px solid #910000;
+	padding: 0 .5em;
+	margin-right: -20px;
+}
+
+.lb-close-upload:hover {
+	background-color: rgba(255, 0, 0, 0.15);
+	border: 0 none;
+	color: #cc3737;
+	cursor: pointer;
+}
+/*
+ * Javascript dependent styles
  */
 
 #upload-text,
 input[type="file"],
 #upload-file button[type="submit"] {
-    display: none;
+	display: none;
 }
 
 .no-js #upload-text,
-.no-js input[type="file"]{
-    display: block;
+.no-js input[type="file"] {
+	display: block;
 }
+
 .no-js #upload-file button[type="submit"] {
-    display: inline-block;
+	display: inline-block;
 }
+
 .no-js .browse-btn,
 .no-js .toggle-upload-text {
-    display: none;
+	display: none;
 }

@@ -35,63 +35,58 @@ caption {
 }
 */
 
-.v-flag {
+.lb-ico {
 	position: relative;
 	overflow: hidden;
 	padding: 0;
-	margin: 0 0 0 1em;
+	margin: 0 0 0 10px;
 }
 
-.v-flag:before,
-.v-flag:after {
+.lb-ico:before,
+.lb-ico:after {
 	content: "";
 	position: absolute;
-	top: 50%;
-	left: 0;
+	top: 15%;
 }
 
-.v-flag:before {}
-
-.v-flag:after {}
-
-.v-warn:before {
+.lb-ico-warn:before {
 	content: "!";
 	color: #000;
 	z-index: 2;
 	left: .65em;
-	margin-top: -10px;
+	Xmargin-top: -10px;
 	font-size: 14px;
 	font-weight: bold;
 }
 
-.v-warn:after {
+.lb-ico-warn:after {
 	border-width: 0 11px 18px;
 	border-color: #fce04a transparent;
 	background: transparent;
 	z-index: 1;
 	border-style: solid;
-	margin-top: -10px;
+	Xmargin-top: -10px;
 }
 
-.v-ok:before {
+.lb-ico-ok:before {
 	left: 3px;
 	width: 18px;
 	height: 18px;
-	margin-top: -8px;
+	Xmargin-top: -8px;
 	-webkit-border-radius: 16px;
 	-moz-border-radius: 16px;
 	border-radius: 16px;
 	background: #6dc147;
 }
 
-.v-ok:after {
+.lb-ico-ok:after {
 	left: .55em;
 	width: 4px;
 	height: 10px;
 	border-width: 0 2px 2px 0;
 	border-style: solid;
 	border-color: #fff;
-	margin-top: -6px;
+	margin-top: 2px;
 	-webkit-transform: rotate(45deg);
 	-moz-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
@@ -99,9 +94,70 @@ caption {
 	transform: rotate(45deg);
 }
 
-.fix-width {
-	min-width: 10em;
+.lb-ico-eye:before {
+	width: 1em;
+	height: 1em;
+	Xmargin-top: -3px;
+	background: #555;
+	-webkit-border-top-left-radius: 12px;
+	-webkit-border-bottom-right-radius: 12px;
+	-moz-border-radius: 12px 0 12px 0;
+	border-radius: 12px 0 12px 0;
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
 }
+
+.lb-ico-eye:after {
+	left: 4px;
+	width: 4px;
+	height: 4px;
+	border: 2px solid #fff;
+	margin-top: 3px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.view-xml:hover .lb-ico-eye:before,
+.view-xml.active .lb-ico-eye:before {
+	background: #1a1ab5;
+}
+
+.view-xml,
+.hide-xml,
+#copy-xml {
+	cursor: pointer;
+}
+
+.xml_result {
+	width: 100%;
+	height: 9em;
+	font-size: .8em;
+	margin: 0;
+}
+
+.xml-acts {
+	list-style: none;
+	font-size: .8em;
+	margin-bottom: 0;
+	float: right;
+	padding-right: 1em;
+}
+
+.xml-acts li {
+	display: inline;
+	padding: 0 10px;
+	color: #1a1ab5;
+}
+
+.hide-xml:hover,
+.zeroclipboard-is-hover {
+	text-decoration: underline;
+}
+
 /*
  * Javascript dependent styles
  */

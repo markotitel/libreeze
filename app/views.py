@@ -28,13 +28,20 @@ def submit_file(request):
         # This handles refresh without submit on result page
         project = request.session['project']
 
+    # TODO handle when project is not in the session
+
     return parse_and_render(request, project)
+
+
+def submit_email(request):
+    return render(request, 'app/email.html')
 
 
 def parse_and_render(request, project):
     dependencies_total_count = len(project.dependencies)
     dependencies_out_of_date = sum(dependency.up_to_date is False for dependency in project.dependencies)
-    return render(request, 'app/result.html', {'dependencies': project.dependencies,
+    return render(request, 'app/result.html', {'project_name': project.group_id + ' ' + project.artifact_id,
+                                               'dependencies': project.dependencies,
                                                'dependencies_total_count': dependencies_total_count,
                                                'dependencies_out_of_date': dependencies_out_of_date
                                               })

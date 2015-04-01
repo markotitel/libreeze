@@ -5,6 +5,9 @@ from django.db import models
 
 class Developer(models.Model):
     email = models.EmailField()
+    email_verification_code = models.TextField(max_length= 64, db_index=True)
+    email_verified = models.BooleanField(default=False)
+    send_emails = models.BooleanField(default=True)
 
     def __str__(self):
         return self.email

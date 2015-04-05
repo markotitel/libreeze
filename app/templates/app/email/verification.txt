@@ -1,0 +1,2 @@
+
+To verify your email address, please go to http://libreeze.net/verify_email?code={{ verification_code }}

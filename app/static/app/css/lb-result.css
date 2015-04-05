@@ -19,20 +19,6 @@ caption {
 
 h4 {
 	margin: 3rem 0;
-	color: #085078;
-	background-image: -webkit-linear-gradient(95deg, #085078, #85D8CE);
-/*
-	background: rgba(8,81,120,1);
-	background: -moz-linear-gradient(45deg, rgba(8,81,120,1) 0%, rgba(133,216,206,1) 66%, rgba(133,216,206,1) 100%);
-	background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(8,81,120,1)), color-stop(66%, rgba(133,216,206,1)), color-stop(100%, rgba(133,216,206,1)));
-	background: -webkit-linear-gradient(45deg, rgba(8,81,120,1) 0%, rgba(133,216,206,1) 66%, rgba(133,216,206,1) 100%);
-	background: -o-linear-gradient(45deg, rgba(8,81,120,1) 0%, rgba(133,216,206,1) 66%, rgba(133,216,206,1) 100%);
-	background: -ms-linear-gradient(45deg, rgba(8,81,120,1) 0%, rgba(133,216,206,1) 66%, rgba(133,216,206,1) 100%);
-	background: linear-gradient(45deg, rgba(8,81,120,1) 0%, rgba(133,216,206,1) 66%, rgba(133,216,206,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#085178', endColorstr='#85d8ce', GradientType=1 );
-*/
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 }
 /*
  * Icons
@@ -200,10 +186,10 @@ tr.active td,
 	font-size: .9em;
 	margin: 2rem auto;
 	width: 55%;
+	text-align: center;
 }
 
 .contact-form form {
-	text-align: center;
 	margin: 0;
 }
 

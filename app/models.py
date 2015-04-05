@@ -4,8 +4,9 @@ from django.db import models
 
 
 class Developer(models.Model):
-    email = models.EmailField()
-    email_verification_code = models.TextField(max_length= 64, db_index=True)
+    email = models.EmailField(unique=True)
+    email_verification_code = models.TextField(max_length=64, db_index=True, unique=True)
+    email_verification_timestamp = models.DateTimeField
     email_verified = models.BooleanField(default=False)
     send_emails = models.BooleanField(default=True)
 

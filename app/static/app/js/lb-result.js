@@ -1,16 +1,20 @@
 $(function () {
 	"use strict";
 
+	var _dependencyCodeCSSClass = 'dependency-xml',
+		_dependencyCollapsedCSSClass = 'dependency-collapsed',
+		_dependencyRowActiveCSSClass = 'active';
+
 	function showDependencyCode() {
 		$('.view-xml').click(function () {
 			// Show next table row containing dependency xml
-			$(this).toggleClass('active');
-			$(this).parent('tr').next('tr.dependency-xml').toggleClass('hidden');
+			$(this).closest('tr').toggleClass(_dependencyRowActiveCSSClass);
+			$(this).parent('tr').next('tr.' + _dependencyCodeCSSClass).toggleClass(_dependencyCollapsedCSSClass);
 		});
 
 		$('.hide-xml').click(function(){
-			$(this).closest('tr.dependency-xml').addClass('hidden');
-			$(this).closest('tr.dependency-xml').prev('tr').children('.view-xml').removeClass('active');
+			$(this).closest('tr.' + _dependencyCodeCSSClass).toggleClass(_dependencyCollapsedCSSClass);
+			$(this).closest('tr.' + _dependencyCodeCSSClass).prev('tr').toggleClass(_dependencyRowActiveCSSClass);
 		});
 	}
 
@@ -29,7 +33,7 @@ $(function () {
 	}
 
 	function zeroClipboard() {
-		var $copyButton = $("#copy-xml");
+		var $copyButton = $(".copy-xml");
 
 		if ($copyButton.length === 0) {
 			return false;

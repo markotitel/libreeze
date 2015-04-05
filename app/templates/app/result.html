@@ -35,30 +35,30 @@
 
 	<div class="container">
 		<div class="row">
-			<header>libreeze.net</header>
+			<header><a href="/">libreeze.net</a></header>
 			<nav></nav>
 		</div>
-		<h5 class="row text-center">{{ project_name }}</h5>
-        <div class="contact-form">
-            <!-- Email form -->
-            <caption>To receive notifications when new versions of libraries in your project are released,
-                <br/>leave your email</caption>
-			<form id="submit-email" method="post" action="{% url 'app:submit_email' %}">
-				<input type="text" name="email" />
+
+		<h4 class="row text-center">{{ project_name }}</h4>
+
+		<div class="contact-form">
+			<label for="email">To receive notifications when new versions of libraries in your project are released, leave your email</label>
+			<form method="post" action="{% url 'app:submit_email' %}">
+				<input type="text" name="email" id="email"/>
 				<button type="submit">Submit</button>
 			</form>
-        </div>
+		</div>
 
 		<div class="row">
 			<div class="column">
 				<table class="u-full-width">
 					<thead>
 						<tr>
-							<th>Group Id</th>
-							<th>Artifact Id</th>
+							<th class="widecell">Group Id</th>
+							<th class="widecell">Artifact Id</th>
 							<th class="text-right">Your version</th>
-							<th class="text-right">Official release version</th>
-							<th class="text-right">Latest available version</th>
+							<th class="text-right">Official</th>
+							<th class="text-right">Latest</th>
 							<th>XML</th>
 						</tr>
 					</thead>
@@ -67,11 +67,11 @@
 						<tr>
 							<td>{{ dependency.group_id }}</td>
 							<td>{{ dependency.artifact_id }}</td>
-							<td class="text-right version fix-width">
+							<td class="text-right version">
 								{% if dependency.up_to_date == False %}
 									{% if dependency.version %}
 										{{ dependency.version }}
-										<span class="lb-ico lb-ico-warn"></span>
+										<span class="lb-ico lb-ico-warn" title="Oops, out of date"></span>
 									{% else %}
 										--
 										<span class="lb-ico"></span>
@@ -81,14 +81,14 @@
 									<span class="lb-ico lb-ico-ok"></span>
 								{% endif %}
 							</td>
-							<td class="text-right fix-width">
+							<td class="text-right">
 								{% if dependency.release %}
 									{{ dependency.release }}
 								{% else %}
 									--
 								{% endif %}
 							</td>
-							<td class="text-right fix-width">
+							<td class="text-right">
 								{% if dependency.latest %}
 									{{ dependency.latest }}
 								{% else %}
@@ -96,11 +96,26 @@
 								{% endif %}
 							</td>
 							<td class="view-xml">
-								<span class="eye"></span>
-								<span class="lb-ico lb-ico-eye">&nbsp;</span>
+								<span class="lb-ico lb-ico-chevron" title="Click to view XML"></span>
 							</td>
 						</tr>
-						<tr class="dependency-xml hidden">
+						<tr class="dependency-xml dependency-collapsed">
+							<td colspan="6">
+								<div>
+									<ul class="xml-acts">
+										<li class="copy-xml" data-clipboard-target="clipboard-text" title="Click to copy xml"><b>copy xml</b></li>
+										<li class="hide-xml" title="Hide XML"><b>hide</b></li>
+									</ul>
+									<!-- Textarea preserves indentation so please do not indent it's value -->
+									<textarea readonly class="xml_result" name="clipboard-text" id="clipboard-text">
+<dependency>
+	<groupId>com.datastax.cassandra</groupId>
+	<artifactId>cassandra-driver-core</artifactId>
+	<version>2.0.1</version>
+</dependency></textarea>
+								</div>
+							</td>
+<!--
 							<td></td>
 							<td></td>
 							<td colspan="4">
@@ -108,7 +123,7 @@
 									<li id="copy-xml" data-clipboard-target="clipboard-text" title="Click to copy xml">copy xml</li>
 									<li class="hide-xml">hide</li>
 								</ul>
-								<!-- Textarea preserves indentation so please do not indent it's value -->
+								 Textarea preserves indentation so please do not indent it's value
 								<textarea readonly class="xml_result" name="clipboard-text" id="clipboard-text">
 <dependency>
 	<groupId>com.datastax.cassandra</groupId>
@@ -117,20 +132,21 @@
 </dependency>
 								</textarea>
 							</td>
+-->
 						</tr>
 
 						{% endfor %}
 					</tbody>
-					<caption>out of date: {{dependencies_out_of_date}}
-						<br/> total: {{dependencies_total_count}}</caption>
 				</table>
+					<p>out of date: {{dependencies_out_of_date}}
+						<br/> total: {{dependencies_total_count}}</p>
 			</div>
 		</div>
 	</div>
 	<br/>
 	<br/>
 	<br/>
-	<footer class="centered">&copy;libreeze 2015</footer>
+	<footer class="text-center">&copy;libreeze 2015</footer>
 
 	<!-- JavaScript Includes -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

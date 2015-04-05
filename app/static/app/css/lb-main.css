@@ -10,14 +10,6 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
-html,
-button,
-input,
-select,
-textarea {
-	color: #222;
-}
-
 html {
 	font-size: 1em;
 	line-height: 1.4;
@@ -89,6 +81,11 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+
+label, button, th {
+	color: #2c3e50;
+}
+
 /*
  * Sticky footer
  */
@@ -120,6 +117,10 @@ footer,
 
 th {
 	vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #16a085;
 }
 /*
  * Helper classes

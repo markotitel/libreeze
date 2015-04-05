@@ -40,7 +40,7 @@ def submit_email(request):
 def parse_and_render(request, project):
     dependencies_total_count = len(project.dependencies)
     dependencies_out_of_date = sum(dependency.up_to_date is False for dependency in project.dependencies)
-    return render(request, 'app/result.html', {'project_name': project.group_id + ' ' + project.artifact_id,
+    return render(request, 'app/result.html', {'project_name': project.group_id + ' : ' + project.artifact_id,
                                                'dependencies': project.dependencies,
                                                'dependencies_total_count': dependencies_total_count,
                                                'dependencies_out_of_date': dependencies_out_of_date

@@ -110,7 +110,7 @@
 <dependency>
 	<groupId>{{ dependency.group_id }}</groupId>
 	<artifactId>{{ dependency.artifact_id }}</artifactId>
-	<version>{% if dependency.release %}{{ dependency.release }}{% elif dependency.latest %}{{ dependency.latest }}{% else %}???{% endif %}</version>
+	<version>{% if dependency.release %}{{ dependency.release }}{% elif dependency.latest %}{{ dependency.latest }}{% else %}{{ dependency.version }}{% endif %}</version>
 </dependency></textarea>
 								</div>
 							</td>

@@ -67,7 +67,7 @@
 						<tr>
 							<td>{{ dependency.group_id }}</td>
 							<td>{{ dependency.artifact_id }}</td>
-							<td class="text-right version">
+							<td class="text-right version small">
 								{% if dependency.up_to_date == False %}
 									{% if dependency.version %}
 										{{ dependency.version }}
@@ -104,7 +104,6 @@
 								<div>
 									<ul class="xml-acts">
 										<li class="copy-xml" data-clipboard-target="clipboard-text" title="Click to copy xml"><b>copy xml</b></li>
-										<li class="hide-xml" title="Hide XML"><b>hide</b></li>
 									</ul>
 									<!-- Textarea preserves indentation so please do not indent it's value -->
 									<textarea readonly class="xml_result" name="clipboard-text" id="clipboard-text">

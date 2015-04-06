@@ -4,7 +4,7 @@
  */
 
 .widecell {
-	width: 13em;
+	width: 11em;
 }
 
 caption {
@@ -24,10 +24,13 @@ h4 {
  * Icons
  */
 
-.lb-ico {
+td.version, td.view-xml {
 	position: relative;
-	overflow: hidden;
-	padding: 0;
+}
+
+.lb-ico {
+	position: absolute;
+	top: 35%;
 	margin: 0 0 0 10px;
 }
 
@@ -35,7 +38,6 @@ h4 {
 .lb-ico:after {
 	content: "";
 	position: absolute;
-	top: 15%;
 }
 /*
  * Warning icon
@@ -86,7 +88,9 @@ h4 {
  */
 
 .lb-ico-chevron {
-	padding: 5px 10px;
+	padding: 15px 20px;
+	margin: 0;
+	top: 20%;
 }
 
 .lb-ico-chevron:before {
@@ -94,11 +98,12 @@ h4 {
 	border-width: 0 0 3px 3px;
 	border-color: #34495e;
 	border-style: solid;
-	left: 0;
+	left: 13px;
+  	top: 20%;
 	width: 10px;
 	height: 10px;
-	-webkit-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg) scale(1);
+	-ms-transform: rotate(-45deg) scale(1);
 	transform: rotate(-45deg) scale(1);
 	-webkit-transition: border .3s, -webkit-transform .3s, top .3s;
 	transition: border .3s, transform .3s, top .3s;
@@ -119,11 +124,10 @@ h4 {
 	transform: rotate(135deg);
 }
 /*
- * View XML code
+ * XML code
  */
 
 .view-xml span,
-.hide-xml,
 .copy-xml {
 	cursor: pointer;
 }
@@ -144,13 +148,15 @@ h4 {
 
 .xml-acts li {
 	display: inline;
-	padding: 0 10px;
+	padding: 3px 8px;
 	color: #2980b9;
 }
 
-.hide-xml:hover,
-.zeroclipboard-is-hover {
-	text-decoration: underline;
+.copy-xml.zeroclipboard-is-hover {
+	background-color: #eee;
+}
+.copy-xml.zeroclipboard-is-active {
+	background-color: #ddd;
 }
 
 .dependency-xml td {

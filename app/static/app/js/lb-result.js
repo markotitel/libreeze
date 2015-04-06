@@ -7,14 +7,9 @@ $(function () {
 
 	function showDependencyCode() {
 		$('.view-xml').click(function () {
-			// Show next table row containing dependency xml
+			// Toggle next table row containing dependency xml
 			$(this).closest('tr').toggleClass(_dependencyRowActiveCSSClass);
 			$(this).parent('tr').next('tr.' + _dependencyCodeCSSClass).toggleClass(_dependencyCollapsedCSSClass);
-		});
-
-		$('.hide-xml').click(function(){
-			$(this).closest('tr.' + _dependencyCodeCSSClass).toggleClass(_dependencyCollapsedCSSClass);
-			$(this).closest('tr.' + _dependencyCodeCSSClass).prev('tr').toggleClass(_dependencyRowActiveCSSClass);
 		});
 	}
 

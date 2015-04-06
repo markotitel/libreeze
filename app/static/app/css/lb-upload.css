@@ -22,20 +22,17 @@
 	text-align: center;
 	color: #7f858a;
 	font-family: 'PT Sans Narrow', sans-serif;
-	width: 14em;
-	padding: 30px;
+	width: 18em;
+	padding: 40px 25px;
 	border-radius: 3px;
 	margin: 0 auto;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .lb-upload button {
-	Xbackground-color: #007a96;
 	padding: 12px 26px;
-	Xcolor: #fff;
 	font-size: 14px;
 	border-radius: 2px;
-	Xborder-color: #007a96;
 	cursor: pointer;
 	margin-top: 12px;
 	line-height: 1;
@@ -46,16 +43,10 @@
 }
 
 .lb-upload textarea {
-	Xborder-color: #373a3d;
-	Xcolor: #7f858a;
 	margin-bottom: .2rem;
 }
 
 #upload-file {
-	Xbackground-color: #2E3134;
-	Xpadding: 40px 50px;
-	Xmargin-bottom: 30px;
-	Xborder: 6px dashed #373a3d;
 	text-align: center;
 	font-weight: bold;
 }
@@ -64,14 +55,9 @@
 	margin-bottom: 0;
 }
 
-#upload-file,
-.upload textarea {
-	Xbackground-color: #2E3134;
-}
-
 textarea {
 	font-size: .75em;
-	height: 10em;
+	height: 15em;
 	width: 100%;
 }
 
@@ -97,20 +83,18 @@ textarea {
 }
 
 .lb-close-upload {
-	Xbackground-color: #cc3737;
 	color: #cc3737;
 	float: right;
 	font-weight: bold;
 	font-size: .6em;
 	border-radius: 10px;
-	border: 1px solid #910000;
-	padding: 0 .5em;
-	margin-right: -20px;
+	border: 2px solid rgba(255, 0, 0, 0.15);
+	padding: 0 6px;
+	margin-right: -22px;
 }
 
 .lb-close-upload:hover {
 	background-color: rgba(255, 0, 0, 0.15);
-	border: 0 none;
 	color: #cc3737;
 	cursor: pointer;
 }

@@ -24,6 +24,7 @@
 
 	<!-- CSS styles -->
 	<link rel="stylesheet" href="{% static 'app/css/lb-result.css' %}" />
+    <link rel="stylesheet" href="{% static 'app/css/lb-upload.css' %}" />
 
 	<script src="{% static 'app/js/vendor/modernizr-2.6.2.min.js' %}"></script>
 </head>
@@ -47,6 +48,9 @@
 				<input type="text" name="email" id="email"/>
 				<button type="submit">Submit</button>
 			</form>
+        {% if error %}
+			<div class="lb-err">{{ error }}</div>
+        {% endif %}
 		</div>
 
 		<div class="row">

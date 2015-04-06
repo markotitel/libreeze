@@ -1,5 +1,6 @@
 import uuid
 import re
+import logging
 
 from datetime import datetime
 
@@ -9,6 +10,8 @@ from app.controller import process_pom_file
 from app.models import Developer
 from app.mail import send_verification_email
 
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 EMAIL_REGEX = re.compile(r"[^@]+@[^@]+\.[^@]+")
 
@@ -25,8 +28,12 @@ def submit_text(request):
     xml = request.POST['pom-code']
 
     if xml is not None:
-        project = process_pom_file(xml)
-        request.session['project'] = project
+        try:
+            project = process_pom_file(xml)
+            request.session['project'] = project
+        except Exception as e:
+            logger.exception("Invalid xml supplied!", e)
+            return render(request, 'app/index.html', {'error': 'Supplied xml is not a valid pom file.'})
     else:
         if not request.session.__contains__('project'):
             return render(request, 'app/index.html')
@@ -41,8 +48,13 @@ def submit_file(request):
 
     if pom_file is not None:
         xml = pom_file.read()
-        project = process_pom_file(xml)
-        request.session['project'] = project
+        try:
+            project = process_pom_file(xml)
+            request.session['project'] = project
+        except Exception as e:
+            print("Invalid pom file supplied!")
+            logger.exception("Invalid pom file!", e)
+            return render(request, 'app/index.html', {'error': 'Supplied file is not a valid pom file.'})
     else:
         if not request.session.__contains__('project'):
             return render(request, 'app/index.html')
@@ -58,8 +70,8 @@ def submit_email(request):
     # TODO
     if not EMAIL_REGEX.match(developer_email):
         print "invalid email!"
-    else:
-        print "valid email!"
+        project = request.session['project']
+        return render_project(request, project, 'Supplied email is not a valid email address.')
 
     verification_code = uuid.uuid4().__str__()
     verification_code = verification_code.replace('-', '')
@@ -79,11 +91,14 @@ def submit_email(request):
     return render(request, 'app/email-verification-pending.html')
 
 
-def render_project(request, project):
+def render_project(request, project, error=None):
     dependencies_total_count = len(project.dependencies)
     dependencies_out_of_date = sum(dependency.up_to_date is False for dependency in project.dependencies)
-    return render(request, 'app/result.html', {'project_name': project.group_id + ' : ' + project.artifact_id,
-                                               'dependencies': project.dependencies,
-                                               'dependencies_total_count': dependencies_total_count,
-                                               'dependencies_out_of_date': dependencies_out_of_date
-                                              })
+    context = {'project_name': project.group_id + ' : ' + project.artifact_id,
+               'dependencies': project.dependencies,
+               'dependencies_total_count': dependencies_total_count,
+               'dependencies_out_of_date': dependencies_out_of_date}
+    if error is not None:
+        print error
+        context['error'] = error
+    return render(request, 'app/result.html', context)

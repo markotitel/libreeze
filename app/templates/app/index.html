@@ -52,10 +52,10 @@
 
 				<br/>
 
-				<!-- @todo: conditionally set classes "lb-err", "lb-warn", "lb-success" to declare notification type and class "hidden" to toggle it's visibility -->
-				<div class="lb-err hidden">
-					Tellus scelerisque consequat parturient eleifend ad mattis amet nisi ad a a molestie ultricies suspendisse nulla vestibulum parturient dui aliquam luctus.
-				</div>
+				<!-- conditionally set classes "lb-err", "lb-warn", "lb-success" to declare notification type and class "hidden" to toggle it's visibility -->
+                {% if error %}
+				<div class="lb-err">{{ error }}</div>
+                {% endif %}
 
 				<br/>
 

@@ -3,8 +3,16 @@
  * Custom
  */
 
+table {
+	font-size: .9em;
+}
+
 .widecell {
-	width: 11em;
+	min-width: 11em;
+}
+
+.mediumcell {
+	min-width: 6em;
 }
 
 caption {
@@ -13,8 +21,9 @@ caption {
 }
 
 .version {
+	min-width: 10em;
 	padding-left: 0;
-	padding-right: 25px;
+	padding-right: 35px;
 }
 
 h4 {
@@ -30,7 +39,7 @@ td.version, td.view-xml {
 
 .lb-ico {
 	position: absolute;
-	top: 35%;
+	top: 31%;
 	margin: 0 0 0 10px;
 }
 

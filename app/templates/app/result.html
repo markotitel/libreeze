@@ -56,9 +56,9 @@
 						<tr>
 							<th class="widecell">Group Id</th>
 							<th class="widecell">Artifact Id</th>
-							<th class="text-right">Your version</th>
-							<th class="text-right">Official</th>
-							<th class="text-right">Latest</th>
+							<th class="text-right mediumcell">Your version</th>
+							<th class="text-right mediumcell">Official</th>
+							<th class="text-right mediumcell">Latest</th>
 							<th>XML</th>
 						</tr>
 					</thead>
@@ -114,31 +114,14 @@
 </dependency></textarea>
 								</div>
 							</td>
-<!--
-							<td></td>
-							<td></td>
-							<td colspan="4">
-								<ul class="xml-acts">
-									<li id="copy-xml" data-clipboard-target="clipboard-text" title="Click to copy xml">copy xml</li>
-									<li class="hide-xml">hide</li>
-								</ul>
-								 Textarea preserves indentation so please do not indent it's value
-								<textarea readonly class="xml_result" name="clipboard-text" id="clipboard-text">
-<dependency>
-	<groupId>com.datastax.cassandra</groupId>
-	<artifactId>cassandra-driver-core</artifactId>
-	<version>2.0.1</version>
-</dependency>
-								</textarea>
-							</td>
--->
 						</tr>
-
 						{% endfor %}
 					</tbody>
 				</table>
+<!--
 					<p>out of date: {{dependencies_out_of_date}}
 						<br/> total: {{dependencies_total_count}}</p>
+-->
 			</div>
 		</div>
 	</div>

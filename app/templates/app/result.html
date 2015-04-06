@@ -108,9 +108,9 @@
 									<!-- Textarea preserves indentation so please do not indent it's value -->
 									<textarea readonly class="xml_result" name="clipboard-text" id="clipboard-text">
 <dependency>
-	<groupId>com.datastax.cassandra</groupId>
-	<artifactId>cassandra-driver-core</artifactId>
-	<version>2.0.1</version>
+	<groupId>{{ dependency.group_id }}</groupId>
+	<artifactId>{{ dependency.artifact_id }}</artifactId>
+	<version>{% if dependency.release %}{{ dependency.release }}{% elif dependency.latest %}{{ dependency.latest }}{% else %}???{% endif %}</version>
 </dependency></textarea>
 								</div>
 							</td>

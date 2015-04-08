@@ -227,6 +227,10 @@ tr.active td,
 .contact-form input {
 	width: 20em;
 }
+
+.contact-form button {
+	vertical-align: top; /*for some reason, button is misaligned with the input for no more than a pixe but it's anoying - Chrome only*/
+}
 /*
  * Javascript dependent styles
  */

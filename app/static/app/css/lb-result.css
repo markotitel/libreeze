@@ -29,6 +29,11 @@ caption {
 h4 {
 	margin: 3rem 0;
 }
+
+tr.dependency-item:nth-child(4n+1),
+tr.dependency-item:nth-child(4n+1) + tr.dependency-xml {
+	background-color: #f0f0f0;
+}
 /*
  * Icons
  */
@@ -114,15 +119,14 @@ td.version, td.view-xml {
 	-webkit-transform: rotate(-45deg) scale(1);
 	-ms-transform: rotate(-45deg) scale(1);
 	transform: rotate(-45deg) scale(1);
-	-webkit-transition: border .3s, -webkit-transform .3s, top .3s;
-	transition: border .3s, transform .3s, top .3s;
-	-webkit-transition-timing-function: linear;
-	transition-timing-function: linear;
+	-webkit-transition: border .2s, -webkit-transform .2s, top .2s;
+	transition: border .2s, transform .2s, top .2s;
 }
 
 .lb-ico-chevron:hover:before {
 	border-color: #2980b9;
 	transform: rotate(-45deg) scale(1.15);
+	transition: .5s;
 }
 
 .active .view-xml .lb-ico-chevron:before {
@@ -151,7 +155,7 @@ td.version, td.view-xml {
 .xml-acts {
 	list-style: none;
 	font-size: .8em;
-	margin: .5em 0em .5em .5em;
+	margin: .5em;
 	float: right;
 }
 
@@ -160,12 +164,24 @@ td.version, td.view-xml {
 	padding: 3px 8px;
 	color: #2980b9;
 }
-
-.copy-xml.zeroclipboard-is-hover {
-	background-color: #eee;
+.copy-xml
+{
+	position: relative;
+	overflow: hidden;
 }
-.copy-xml.zeroclipboard-is-active {
-	background-color: #ddd;
+.copy-xml:before {
+	content: "~>";
+	color: #888;
+	font-weight: bold;
+	position: absolute;
+	left: -1.25em;
+	padding-right: 5px;
+	transition: .3s;
+}
+.copy-xml.zeroclipboard-is-hover:before {
+	color: #2980b9;
+    left: -0.8em;
+	transition: .55s;
 }
 
 .dependency-xml td {

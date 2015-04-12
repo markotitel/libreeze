@@ -986,7 +986,16 @@
 				padding-right: 10px !important;
 			}
 		}
-		/* Custom Libreeze styles */
+		/*------- Custom Libreeze styles ------*/
+
+		table.dependency-list {
+			margin: 20px 0 30px 0;
+		}
+
+		table.dependency-list th,
+		table.dependency-list td {
+			font-size: 12px;
+		}
 
 		table.dependency-list th {
 			border-bottom: 1px solid #666;
@@ -997,8 +1006,44 @@
 			border-bottom: 1px solid #999;
 		}
 
-		table.dependency-list .fix-width {
-			min-width: 6em;
+		table.dependency-list td.version {
+			padding-left: 0;
+			padding-right: 15px;
+		}
+
+		table.dependency-list tbody tr:nth-child(2n+1) {
+			background-color: #f0f0f0;
+		}
+
+		table th:first-child, table td:first-child
+		{
+			padding-left: 5px;
+		}
+
+		table th:last-child, table td:last-child
+		{
+			padding-right: 5px;
+		}
+
+		.cell-L {
+			width: 160px;
+		}
+
+		.cell-M {
+			min-width: 130px;
+		}
+
+		.cell-S {
+			width: 96.6px;
+		}
+
+		caption {
+			font-size: .85em;
+			margin-bottom: 4em;
+		}
+
+		h4 {
+			margin: 3rem 0;
 		}
 
 		.text-center {
@@ -1013,7 +1058,7 @@
 			position: relative;
 			overflow: hidden;
 			padding: 0;
-			margin: 0 0 0 10px;
+			margin: 0 0 0 3px;
 		}
 
 		.lb-ico:before,
@@ -1027,13 +1072,13 @@
 			content: "!";
 			color: #000;
 			z-index: 2;
-			left: .5em;
-			font-size: 14px;
-			font-weight: bold;
+			left: 6.5px;
+			font-size: 12px;
+			line-height: 16px;
 		}
 
 		.lb-ico-warn:after {
-			border-width: 0 9px 15px;
+			border-width: 0 8px 13px;
 			border-color: #fce04a transparent;
 			background: transparent;
 			z-index: 1;
@@ -1042,8 +1087,8 @@
 
 		.lb-ico-ok:before {
 			left: 3px;
-			width: 16px;
-			height: 16px;
+			width: 12px;
+			height: 12px;
 			-webkit-border-radius: 16px;
 			-moz-border-radius: 16px;
 			border-radius: 16px;
@@ -1051,13 +1096,13 @@
 		}
 
 		.lb-ico-ok:after {
-			left: .6em;
-			width: 3px;
-			height: 8px;
+			left: 7px;
+			width: 2px;
+			height: 6px;
 			border-width: 0 2px 2px 0;
 			border-style: solid;
 			border-color: #fff;
-			margin-top: 2px;
+			margin-top: 1px;
 			-webkit-transform: rotate(45deg);
 			-moz-transform: rotate(45deg);
 			-ms-transform: rotate(45deg);
@@ -1086,10 +1131,10 @@
 												<table class="twelve columns">
 													<tr>
 														<td class="six sub-columns">
-															<img src="http://placehold.it/200x50">
+															<a href="http://www.libreeze.com"><img src="http://placehold.it/200x50"></a>
 														</td>
 														<td class="six sub-columns last" style="text-align:right; vertical-align:middle;">
-															<span class="template-label">BASIC</span>
+															<span class="template-label"></span>
 														</td>
 														<td class="expander"></td>
 													</tr>
@@ -1117,7 +1162,8 @@
 													<td>
 														<h1>Hi, Susan Calvin</h1>
 														<p class="lead">Phasellus dictum sapien a neque luctus cursus. Pellentesque sem dolor, fringilla et pharetra vitae.</p>
-														<p>Phasellus dictum sapien a neque luctus cursus. Pellentesque sem dolor, fringilla et pharetra vitae. consequat vel lacus. Sed iaculis pulvinar ligula, ornare fringilla ante viverra et. In hac habitasse platea dictumst. Donec vel orci mi, eu congue justo. <br/>You have <strong>xx</strong> out of date dependencies.</p>
+														<p>Phasellus dictum sapien a neque luctus cursus. Pellentesque sem dolor, fringilla et pharetra vitae. consequat vel lacus. Sed iaculis pulvinar ligula, ornare fringilla ante viverra et. In hac habitasse platea dictumst.
+															<br/>You have <strong>xx</strong> out of date dependencies.</p>
 													</td>
 													<td class="expander"></td>
 												</tr>
@@ -1130,11 +1176,11 @@
 								<table class="row dependency-list">
 									<thead>
 										<tr>
-											<th>Group Id</th>
-											<th>Artifact Id</th>
-											<th class="text-right">Your version</th>
-											<th class="text-right">Official</th>
-											<th class="text-right">Latest</th>
+											<th class="cell-L">Group Id</th>
+											<th class="cell-M">Artifact Id</th>
+											<th class="text-right cell-S">Your version</th>
+											<th class="text-right cell-S">Official</th>
+											<th class="text-right cell-S">Latest</th>
 										</tr>
 									</thead>
 									<tbody>

@@ -24,7 +24,6 @@
 
 	<!-- CSS styles -->
 	<link rel="stylesheet" href="{% static 'app/css/lb-result.css' %}" />
-    <link rel="stylesheet" href="{% static 'app/css/lb-upload.css' %}" />
 
 	<script src="{% static 'app/js/vendor/modernizr-2.6.2.min.js' %}"></script>
 </head>
@@ -43,14 +42,15 @@
 		<h4 class="row text-center">{{ project_name }}</h4>
 
 		<div class="contact-form">
-			<label for="email">Leave your email and get notified when new versions are released</label>
+			{% if error %}
+			<div class="notification lb-err">{{ error }}</div>
+        	{% endif %}
+
 			<form method="post" action="{% url 'app:submit_email' %}">
+				<label for="email">Leave your email and get notified when new versions are released</label>
 				<input type="text" name="email" id="email"/>
 				<button type="submit">Submit</button>
 			</form>
-        {% if error %}
-			<div class="lb-err">{{ error }}</div>
-        {% endif %}
 		</div>
 
 		<div class="row">

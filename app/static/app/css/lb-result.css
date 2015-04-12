@@ -224,19 +224,32 @@ tr.active td,
 	opacity: 0;
 	height: 0px;
 }
+.no-js .dependency-collapsed div {
+	opacity: 1;
+	height: auto;
+}
+.no-js .dependency-collapsed td {
+	border-bottom: 1px solid #E1E1E1;
+}
+.no-js .dependency-item td {
+	border-bottom: 0 none;
+}
 /*
  * Email form
  */
 
 .contact-form {
-	font-size: .9em;
 	margin: 4rem auto 3rem;
-	width: 55%;
+	width: 50%;
 	text-align: center;
 }
 
 .contact-form form {
-	margin: 0;
+	font-size: .9em;
+}
+
+.contact-form .notification {
+	margin-bottom: 1.5em;
 }
 
 .contact-form input {

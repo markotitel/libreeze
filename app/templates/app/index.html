@@ -54,12 +54,12 @@
 
 				<!-- conditionally set classes "lb-err", "lb-warn", "lb-success" to declare notification type and class "hidden" to toggle it's visibility -->
                 {% if error %}
-				<div class="lb-err">{{ error }}</div>
+				<div class="notification lb-err">{{ error }}</div>
                 {% endif %}
 
 				<br/>
 
-				<div class="lb-upload">
+				<div class="shadowbox lb-upload">
 					<!-- Browse form -->
 					<form id="upload-file" method="post" action="{% url 'app:submit_file' %}" enctype="multipart/form-data">
 						<button class="browse-btn" type="button">Browse</button>

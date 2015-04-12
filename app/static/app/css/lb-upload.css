@@ -17,69 +17,31 @@
 	font-size: .8em;
 }
 
-.lb-upload {
-	text-transform: uppercase;
+.shadowbox.lb-upload {
 	text-align: center;
-	color: #7f858a;
-	font-family: 'PT Sans Narrow', sans-serif;
 	width: 18em;
-	padding: 40px 25px;
-	border-radius: 3px;
-	margin: 0 auto;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.shadowbox.lb-upload {
+	text-align: center;
+	width: 18em;
+}
+
+.notification {
+	text-align: center;
+	width: 22em;
 }
 
 .lb-upload button {
-	padding: 12px 26px;
-	font-size: 14px;
-	border-radius: 2px;
-	cursor: pointer;
 	margin-top: 12px;
-	line-height: 1;
-}
-
-.lb-upload .browse-btn {
-	display: inline-block;
 }
 
 .lb-upload textarea {
 	margin-bottom: .2rem;
 }
 
-#upload-file {
-	text-align: center;
-	font-weight: bold;
-}
-
 #upload-text {
 	margin-bottom: 0;
-}
-
-textarea {
-	font-size: .75em;
-	height: 15em;
-	width: 100%;
-}
-
-.lb-err,
-.lb-warn,
-.lb-success {
-	width: 63%;
-	margin: 0 auto;
-	font-size: .75em;
-	padding: 14px 25px;
-}
-
-.lb-err {
-	background-color: rgba(255, 0, 0, 0.15);
-}
-
-.lb-warn {
-	background-color: rgba(255, 196, 0, 0.15);
-}
-
-.lb-success {
-	background-color: rgba(0, 255, 69, 0.15);
 }
 
 .lb-close-upload {

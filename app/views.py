@@ -88,7 +88,7 @@ def submit_email(request):
         developer.save()
         send_verification_email(developer_email, verification_code)
 
-    return render(request, 'app/email-verification-pending.html')
+    return render(request, 'app/email-verification.html')
 
 
 def render_project(request, project, error=None):

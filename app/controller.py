@@ -103,6 +103,40 @@ def determine_latest_version(versions):
     return latest
 
 
+def build_maven_repo_url(group_id, artifact_id):
+    return "http://repo1.maven.org/maven2/" + group_id.replace('.', '/')  + '/' + artifact_id + "/maven-metadata.xml"
+
+
+def check_maven_repo_dependency(group_id, artifact_id):
+    url = build_maven_repo_url(group_id, artifact_id)
+    maven_metadata_xml_page = requests.get(url)
+
+    if maven_metadata_xml_page.status_code == 200:
+
+        root = ET.fromstring(maven_metadata_xml_page.text)
+
+        latest_element = root.find("./versioning/latest")
+        if latest_element is not None:
+            latest = latest_element.text
+            print "Retrieved latest directly from metadata: " + latest
+        else:
+            versions = root.iter("version")
+            latest = determine_latest_version(versions)
+            print "Determined latest from metadata: " + latest
+
+        release = ''
+        release_element = root.find("./versioning/release")
+        if release_element is not None:
+            release = release_element.text
+            print "Retrieved release from metadata: " + release
+
+        return latest, release
+
+    else:
+        # This dependency is not found in the maven repo
+        print "Received response code %s for url %s" % (maven_metadata_xml_page.status_code, url)
+        return None, None
+
 def retrieve_latest(project):
 
     for dto in project.dependencies:
@@ -115,31 +149,10 @@ def retrieve_latest(project):
             dto.release = stored[0].release
             print 'Retrieved from db ' + stored[0].__str__()
         else:
-            # If not, look it up online and store it to the db
-            url = "http://repo1.maven.org/maven2/" + dto.group_id.replace('.', '/') \
-                  + '/' + dto.artifact_id + "/maven-metadata.xml"
-            maven_metadata_xml_page = requests.get(url)
 
-            if maven_metadata_xml_page.status_code == 200:
+            latest, release = check_maven_repo_dependency(dto.group_id, dto.artifact_id)
 
-                root = ET.fromstring(maven_metadata_xml_page.text)
-
-                latest_element = root.find("./versioning/latest")
-
-                if latest_element is not None:
-                    latest = latest_element.text
-                    print "Retrieved latest directly from metadata: " + latest
-                else:
-                    versions = root.iter("version")
-                    latest = determine_latest_version(versions)
-                    print "Determined latest from metadata: " + latest
-
-                release = ''
-                release_element = root.find("./versioning/release")
-                if release_element is not None:
-                    release = release_element.text
-                    print "Retrieved release from metadata: " + release
-
+            if latest is not None:
                 dto.latest = latest
                 dto.release = release
 
@@ -147,10 +160,6 @@ def retrieve_latest(project):
                                                        latest=dto.latest, release=dto.release)
                 maven_dependency.save()
                 print 'Stored to db ' + maven_dependency.__str__()
-
-            else:
-                # This dependency is not found in the maven repo
-                print "Received response code %s for url %s" % (maven_metadata_xml_page.status_code, url)
 
         # Set up_to_date flag
         if dto.release:

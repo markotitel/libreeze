@@ -67,7 +67,11 @@ def submit_email(request):
 
     developer_email = request.POST['email']
 
-    project = request.session['project']
+    # TODO handle session expiry
+    if not request.session.__contains__('project'):
+        return render(request, 'app/index.html')
+
+    project = request.session['project']            
 
     if not EMAIL_REGEX.match(developer_email):
         return render_project(request, project, 'Supplied email is not a valid email address.')
@@ -109,7 +113,7 @@ def submit_email(request):
         stored_project = stored_projects[0]
         stored_project.send_updates=True
         stored_project.save()
-        MavenProjectDependency.objects.delete(project=stored_project)
+        MavenProjectDependency.objects.filter(project=stored_project).delete()
         maven_project = stored_project
     else:
         unsubscribe_code = uuid.uuid4().__str__()
@@ -143,8 +147,6 @@ def verify_email(request):
 
     code = request.GET['code']
 
-    print Developer.objects.all()
-
     if code is not None:
         developers = Developer.objects.filter(email_verification_code=code)
         if developers.exists():
@@ -165,6 +167,5 @@ def render_project(request, project, error=None):
                'dependencies_total_count': dependencies_total_count,
                'dependencies_out_of_date': dependencies_out_of_date}
     if error is not None:
-        print error
         context['error'] = error
     return render(request, 'app/result.html', context)

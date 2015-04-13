@@ -7,7 +7,7 @@ from datetime import datetime
 from django.shortcuts import render
 
 from app.controller import process_pom_file
-from app.models import Developer
+from app.models import Developer, MavenProjectDependency, MavenProject, MavenRepoDependency
 from app.mail import send_verification_email
 
 # Get an instance of a logger
@@ -67,8 +67,9 @@ def submit_email(request):
 
     developer_email = request.POST['email']
 
+    project = request.session['project']
+
     if not EMAIL_REGEX.match(developer_email):
-        project = request.session['project']
         return render_project(request, project, 'Supplied email is not a valid email address.')
 
     verification_code = uuid.uuid4().__str__()
@@ -76,26 +77,64 @@ def submit_email(request):
 
     stored_developer = Developer.objects.filter(email=developer_email)
 
+    # Existing dev, verified email
     if stored_developer.exists():
         developer = stored_developer[0]
         if developer.email_verified:
             context = {'verified_email': developer_email}
         else:
+            # existing dev, email not verified yet
             developer.verification_code = verification_code
             developer.email_verification_timestamp=datetime.utcnow()
             developer.save()
-            #send_verification_email(developer_email, verification_code)
+            send_verification_email(developer_email, verification_code)
             context = {'unverified_email': developer_email}
 
     else:
+        # new developer
         developer = Developer(email=developer_email,
                               email_verification_code=verification_code,
                               email_verification_timestamp=datetime.utcnow(),
                               email_verified=False,
                               send_emails=True)
         developer.save()
-        #send_verification_email(developer_email, verification_code)
+        send_verification_email(developer_email, verification_code)
         context = {'unverified_email': developer_email}
+
+    # Create developer specific project
+    stored_projects = MavenProject.objects.filter(developer=developer, group_id=project.group_id, artifact_id=project.artifact_id)
+
+    if stored_projects.exists():
+        # project already stored, remove existing dependencies
+        stored_project = stored_projects[0]
+        stored_project.send_updates=True
+        stored_project.save()
+        MavenProjectDependency.objects.delete(project=stored_project)
+        maven_project = stored_project
+    else:
+        unsubscribe_code = uuid.uuid4().__str__()
+        unsubscribe_code = unsubscribe_code.replace('-', '')
+        maven_project = MavenProject(developer=developer,
+                                     group_id=project.group_id,
+                                     artifact_id=project.artifact_id,
+                                     version=project.version,
+                                     send_updates=True,
+                                     unsubscribe_code=unsubscribe_code)
+        maven_project.save()
+
+    # Mark its dependencies
+    for dto in project.dependencies:
+        repo_dependencies= MavenRepoDependency.objects.filter(group_id=dto.group_id, artifact_id=dto.artifact_id)
+        if repo_dependencies.exists():
+            repo_dependency = repo_dependencies[0]
+        else:
+            repo_dependency = None
+        project_dependency = MavenProjectDependency(project=maven_project,
+                                                    repo_dependency=repo_dependency,
+                                                    group_id=dto.group_id,
+                                                    artifact_id=dto.artifact_id,
+                                                    version=dto.version)
+        project_dependency.save()
 
     return render(request, 'app/email-verification.html', context)
 

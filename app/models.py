@@ -38,7 +38,7 @@ class MavenProject(models.Model):
 
 class MavenProjectDependency(models.Model):
     project = models.ForeignKey(MavenProject)
-    repo_version = models.ForeignKey(MavenRepoDependency, blank=True)
+    repo_dependency = models.ForeignKey(MavenRepoDependency, blank=True, null=True)
     group_id = models.TextField(max_length=512, db_index=True)
     artifact_id = models.TextField(max_length=256, db_index=True)
     version = models.TextField(max_length=256, blank=True)

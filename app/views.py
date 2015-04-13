@@ -67,9 +67,7 @@ def submit_email(request):
 
     developer_email = request.POST['email']
 
-    # TODO
     if not EMAIL_REGEX.match(developer_email):
-        print "invalid email!"
         project = request.session['project']
         return render_project(request, project, 'Supplied email is not a valid email address.')
 
@@ -77,8 +75,18 @@ def submit_email(request):
     verification_code = verification_code.replace('-', '')
 
     stored_developer = Developer.objects.filter(email=developer_email)
-    if stored_developer:
-        print "TODO already stored developer"
+
+    if stored_developer.exists():
+        developer = stored_developer[0]
+        if developer.email_verified:
+            context = {'verified_email': developer_email}
+        else:
+            developer.verification_code = verification_code
+            developer.email_verification_timestamp=datetime.utcnow()
+            developer.save()
+            #send_verification_email(developer_email, verification_code)
+            context = {'unverified_email': developer_email}
+
     else:
         developer = Developer(email=developer_email,
                               email_verification_code=verification_code,
@@ -86,9 +94,28 @@ def submit_email(request):
                               email_verified=False,
                               send_emails=True)
         developer.save()
-        send_verification_email(developer_email, verification_code)
+        #send_verification_email(developer_email, verification_code)
+        context = {'unverified_email': developer_email}
 
-    return render(request, 'app/email-verification.html')
+    return render(request, 'app/email-verification.html', context)
+
+
+def verify_email(request):
+
+    code = request.GET['code']
+
+    print Developer.objects.all()
+
+    if code is not None:
+        developers = Developer.objects.filter(email_verification_code=code)
+        if developers.exists():
+            developer = developers[0]
+            developer.email_verified=True
+            developer.save()
+            context = {'verified_email': developer.email}
+            return render(request, 'app/email-verification.html', context)
+
+    return render(request, 'app/index.html')
 
 
 def render_project(request, project, error=None):

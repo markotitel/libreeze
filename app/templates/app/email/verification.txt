@@ -1,2 +1,2 @@
 
-To verify your email address, please go to http://libreeze.net/verify_email?code={{ verification_code }}
+To receive notification when new version of any of your dependencies is available, you need to verify your email address first.  To do so, simply visit the link http://libreeze.net/verify_email?code={{ verification_code }}

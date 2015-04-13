@@ -14,8 +14,9 @@ class Migration(migrations.Migration):
             name='Developer',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('email', models.EmailField(max_length=75)),
-                ('email_verification_code', models.TextField(max_length=64, db_index=True)),
+                ('email', models.EmailField(unique=True, max_length=75)),
+                ('email_verification_code', models.TextField(unique=True, max_length=64, db_index=True)),
+                ('email_verification_timestamp', models.DateTimeField(blank=True)),
                 ('email_verified', models.BooleanField(default=False)),
                 ('send_emails', models.BooleanField(default=True)),
             ],

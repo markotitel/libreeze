@@ -45,22 +45,18 @@
 			<div class="column">
 				<div class="shadowbox verify-email-note">
 
-<!-- @TODO: Conditionally show one of the containers below, depending on the preceeding action -->
-
-<!--	CASE 1: EMAIL VERIFIED THROUGH EMAIL
-					<h4>
-						Email verified!
-					</h4>
-					<p>Updates on <strong>[project-name-here]</strong> dependencies will be be sent to <strong>[verified-email-here]</strong>.
+{% if verified_email %}
+					<h4>Email verified!</h4>
+					<p>Updates will be be sent to <strong>{{ verified_email }}</strong>.
 					<p>Thank you for relying on Libreeze.com</p>
--->
+{% elif unverified_email %}
 
-<!--	CASE 2: EMAIL SUBMIT CASE
 					<h4>Got it!</h4>
-					<p>We have sent an email to <strong>[submitted-email-here]</strong>. All you have to do now is confirm this is your email address.</p>
-					<p>Please check your email.</p>
+					<p>We have sent an email to <strong>{{ unverified_email }}</strong>. All you have to do now is confirm this is your email address.</p>
+					<p>Please check your inbox.</p>
 				</div>
--->
+{% endif %}
+
 			</div>
 		</div>
 	</div>

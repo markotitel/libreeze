@@ -6,12 +6,12 @@ from django.db import models
 class Developer(models.Model):
     email = models.EmailField(unique=True)
     email_verification_code = models.TextField(max_length=64, db_index=True, unique=True)
-    email_verification_timestamp = models.DateTimeField()
+    email_verification_timestamp = models.DateTimeField(blank=True)
     email_verified = models.BooleanField(default=False)
     send_emails = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.email
+        return "Developer: email=%s code=%s verified=%s" % (self.email, self.email_verification_code, self.email_verified)
 
 
 class MavenRepoDependency(models.Model):

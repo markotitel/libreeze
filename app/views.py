@@ -71,7 +71,7 @@ def submit_email(request):
     if not request.session.__contains__('project'):
         return render(request, 'app/index.html')
 
-    project = request.session['project']            
+    project = request.session['project']
 
     if not EMAIL_REGEX.match(developer_email):
         return render_project(request, project, 'Supplied email is not a valid email address.')

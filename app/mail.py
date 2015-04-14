@@ -32,7 +32,7 @@ def send_update_email(to_email, project, dependencies):
     plaintext_template = get_template('app/email/dependencies.txt')
     html_template = get_template('app/email/dependencies.html')
 
-    context = Context({'project': project}, {'dependencies': dependencies})
+    context = Context({'project': project, 'dependencies': dependencies})
 
     text_content = plaintext_template.render(context)
     html_content = html_template.render(context)

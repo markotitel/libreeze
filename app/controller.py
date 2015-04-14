@@ -5,7 +5,7 @@ import requests
 from pkg_resources import parse_version
 from xml.etree import ElementTree as ET
 
-from app.models import MavenRepoDependency
+from app.models import RepoDependency
 
 MAVEN_NAMESPACE = "{http://maven.apache.org/POM/4.0.0}"
 
@@ -137,11 +137,12 @@ def check_maven_repo_dependency(group_id, artifact_id):
         print "Received response code %s for url %s" % (maven_metadata_xml_page.status_code, url)
         return None, None
 
+
 def retrieve_latest(project):
 
     for dto in project.dependencies:
 
-        stored = MavenRepoDependency.objects.filter(group_id=dto.group_id, artifact_id=dto.artifact_id)
+        stored = RepoDependency.objects.filter(namespace=dto.group_id, name=dto.artifact_id)
 
         # First check if the latest dependency is already stored in the database
         if stored:
@@ -156,10 +157,10 @@ def retrieve_latest(project):
                 dto.latest = latest
                 dto.release = release
 
-                maven_dependency = MavenRepoDependency(group_id=dto.group_id, artifact_id=dto.artifact_id,
-                                                       latest=dto.latest, release=dto.release)
-                maven_dependency.save()
-                print 'Stored to db ' + maven_dependency.__str__()
+                dependency = RepoDependency(namespace=dto.group_id, name=dto.artifact_id,
+                                            latest=dto.latest, release=dto.release)
+                dependency.save()
+                print 'Stored to db ' + dependency.__str__()
 
         # Set up_to_date flag
         if dto.release:

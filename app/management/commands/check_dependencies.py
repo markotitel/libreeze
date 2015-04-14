@@ -2,16 +2,16 @@ __author__ = 'nmilinkovic'
 
 from django.core.management.base import BaseCommand
 
-from app.models import MavenRepoDependency
+from app.models import RepoDependency
 from app.controller import check_maven_repo_dependency
+
 
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        dependencies = MavenRepoDependency.objects.all()
+        dependencies = RepoDependency.objects.all()
 
-        #
         fresh_dependencies = []
 
         for dependency in dependencies:

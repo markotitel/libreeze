@@ -21,6 +21,9 @@ class RepoDependency(models.Model):
     latest = models.CharField(max_length=256)
     release = models.CharField(max_length=256)
 
+    def key(self):
+        return "%s.%s" % (self.namespace, self.name)
+
     def __str__(self):
         return "%s.%s:%s" % (self.namespace, self.name, self.latest)
 
@@ -43,6 +46,9 @@ class ProjectDependency(models.Model):
     namespace = models.CharField(max_length=512, db_index=True)
     name = models.CharField(max_length=256, db_index=True)
     version = models.CharField(max_length=256, blank=True)
+
+    def key(self):
+        return "%s.%s" % (self.namespace, self.name)
 
     def __str__(self):
         return "%s.%s:%s" % (self.namespace, self.name, self.version)

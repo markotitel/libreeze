@@ -24,8 +24,20 @@ def send_verification_email(to_email, verification_code):
     message.send()
 
 
-def send_subscription_notification(maven_project):
-    send_mail('project subscribed',
-              'you will be receiving updates soon',
-              'no-reply@libreeze.net',
-              maven_project.developer.email)
+def send_update_email(to_email, project, dependencies):
+
+    subject = 'New library versions available for ' + project.name
+    from_email = 'libreeze@libreeze.net'
+
+    plaintext_template = get_template('app/email/dependencies.txt')
+    html_template = get_template('app/email/dependencies.html')
+
+    context = Context({'project': project}, {'dependencies': dependencies})
+
+    text_content = plaintext_template.render(context)
+    html_content = html_template.render(context)
+
+    message = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
+    message.attach_alternative(html_content, "text/html")
+    message.send()
+

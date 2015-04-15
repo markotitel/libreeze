@@ -98,7 +98,7 @@ def submit_email(request):
         else:
             # existing dev, email not verified yet
             logger.debug("Developer's mail not yet verified, recreating the code...")
-            developer.verification_code = verification_code
+            developer.email_verification_code = verification_code
             developer.email_verification_timestamp=datetime.utcnow()
             developer.save()
             send_verification_email(developer_email, verification_code)

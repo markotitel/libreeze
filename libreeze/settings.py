@@ -78,6 +78,14 @@ ROOT_URLCONF = 'libreeze.urls'
 WSGI_APPLICATION = 'libreeze.wsgi.application'
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_ENGINE = 'django.contrib.sessions.backends.file'
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake-libreeze'
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

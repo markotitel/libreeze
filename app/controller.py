@@ -1,11 +1,14 @@
 __author__ = 'nmilinkovic'
 
 import requests
+import logging
 
 from pkg_resources import parse_version
 from xml.etree import ElementTree as ET
 
 from app.models import RepoDependency
+
+logger = logging.getLogger(__name__)
 
 MAVEN_NAMESPACE = "{http://maven.apache.org/POM/4.0.0}"
 
@@ -118,23 +121,23 @@ def check_maven_repo_dependency(group_id, artifact_id):
         latest_element = root.find("./versioning/latest")
         if latest_element is not None:
             latest = latest_element.text
-            print "Retrieved latest directly from metadata: " + latest
+            logger.debug("Retrieved latest directly from metadata: " + latest)
         else:
             versions = root.iter("version")
             latest = determine_latest_version(versions)
-            print "Determined latest from metadata: " + latest
+            logger.debug("Determined latest from metadata: " + latest)
 
         release = ''
         release_element = root.find("./versioning/release")
         if release_element is not None:
             release = release_element.text
-            print "Retrieved release from metadata: " + release
+            logger.debug("Retrieved release from metadata: " + release)
 
         return latest, release
 
     else:
         # This dependency is not found in the maven repo
-        print "Received response code %s for url %s" % (maven_metadata_xml_page.status_code, url)
+        logger.debug("Received response code %s for url %s" % (maven_metadata_xml_page.status_code, url))
         return None, None
 
 
@@ -148,7 +151,7 @@ def retrieve_latest(project):
         if stored:
             dto.latest = stored[0].latest
             dto.release = stored[0].release
-            print 'Retrieved from db ' + stored[0].__str__()
+            logger.debug('Retrieved from db ' + stored[0].__str__())
         else:
 
             latest, release = check_maven_repo_dependency(dto.group_id, dto.artifact_id)
@@ -160,7 +163,7 @@ def retrieve_latest(project):
                 dependency = RepoDependency(namespace=dto.group_id, name=dto.artifact_id,
                                             latest=dto.latest, release=dto.release)
                 dependency.save()
-                print 'Stored to db ' + dependency.__str__()
+                logger.debug('Stored to db ' + dependency.__str__())
 
         # Set up_to_date flag
         if dto.release:

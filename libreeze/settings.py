@@ -29,8 +29,6 @@ with open(home + '/libreeze.properties', 'r') as properties_file:
 
 production = properties['production'] == 'True'
 
-print 'production: %s' % production
-
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
@@ -153,3 +151,50 @@ EMAIL_USE_SSL = False
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(asctime)s %(levelname)s %(name)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'rotating_file': {
+            'level':'DEBUG',
+            'class':'logging.handlers.RotatingFileHandler',
+            'filename': home + '/libreeze.log',
+            'maxBytes': 1024*1024*20, # 20 MB
+            'backupCount': 5,
+            'formatter':'simple',
+        },
+    },
+    'loggers': {
+        'app.views': {
+            'handlers': ['console', 'rotating_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'app.controller': {
+            'handlers': ['console', 'rotating_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'app.mail': {
+            'handlers': ['console', 'rotating_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'app.management.commands.check_dependencies': {
+            'handlers': ['console', 'rotating_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    }
+}

@@ -20,7 +20,7 @@ EMAIL_REGEX = re.compile(r"[^@]+@[^@]+\.[^@]+")
 
 
 def index(request):
-    # TODO move to static
+
     return render(request, 'app/index.html')
 
 
@@ -30,6 +30,7 @@ def submit_text(request):
 
     if xml is not None:
         try:
+            logger.debug("Received xml as text: %s" % xml)
             project = process_pom_file(xml)
             request.session['project'] = project
         except Exception as e:
@@ -37,6 +38,7 @@ def submit_text(request):
             return render(request, 'app/index.html', {'error': 'Supplied xml is not a valid pom file.'})
     else:
         if not request.session.__contains__('project'):
+            logger.error("No project found in session, returning index page!")
             return render(request, 'app/index.html')
         project = request.session['project']
 
@@ -50,16 +52,15 @@ def submit_file(request):
     if pom_file is not None:
         xml = pom_file.read()
         try:
+            logger.debug("Received xml as file: %s" % xml)
             project = process_pom_file(xml)
             request.session['project'] = project
         except Exception as e:
-            print("Invalid pom file supplied!")
-            print traceback.format_exc()
-            print e
             logger.exception("Invalid pom file!", e)
             return render(request, 'app/index.html', {'error': 'Supplied file is not a valid pom file.'})
     else:
         if not request.session.__contains__('project'):
+            logger.error("No project found in session, returning index page!")
             return render(request, 'app/index.html')
         project = request.session['project']
 
@@ -72,12 +73,16 @@ def submit_email(request):
 
     # TODO handle session expiry
     if not request.session.__contains__('project'):
+        logger.error("No project found in session, returning index page!")
         return render(request, 'app/index.html')
 
     project = request.session['project']
 
     if not EMAIL_REGEX.match(developer_email):
+        logger.debug("Invalid email %s received" % developer_email)
         return render_project(request, project, 'Supplied email is not a valid email address.')
+
+    logger.debug("Received email %s" % developer_email)
 
     verification_code = create_unique_code()
 
@@ -86,10 +91,13 @@ def submit_email(request):
     # Existing dev, verified email
     if stored_developer.exists():
         developer = stored_developer[0]
+        logger.debug("Developer already known: %s" % developer)
         if developer.email_verified:
+            logger.debug("Developer's mail already verified, proceeding...")
             context = {'verified_email': developer_email}
         else:
             # existing dev, email not verified yet
+            logger.debug("Developer's mail not yet verified, recreating the code...")
             developer.verification_code = verification_code
             developer.email_verification_timestamp=datetime.utcnow()
             developer.save()
@@ -98,6 +106,7 @@ def submit_email(request):
 
     else:
         # new developer
+        logger.debug("New developer, creating a db entry...")
         developer = Developer(email=developer_email,
                               email_verification_code=verification_code,
                               email_verification_timestamp=datetime.utcnow(),
@@ -112,8 +121,8 @@ def submit_email(request):
     stored_projects = Project.objects.filter(developer=developer, namespace=project.group_id, name=project.artifact_id)
 
     if stored_projects.exists():
-        # project already stored, remove existing dependencies
         stored_project = stored_projects[0]
+        logger.debug("Project %s already stored, resetting dependencies..." % stored_project)
         stored_project.send_updates=True
         stored_project.save()
         ProjectDependency.objects.filter(project=stored_project).delete()
@@ -125,6 +134,7 @@ def submit_email(request):
                                 version=project.version,
                                 send_updates=True,
                                 unsubscribe_code=create_unique_code())
+        logger.debug("New project %s, creating a db entry..." % maven_project)
         maven_project.save()
 
     # Mark its dependencies
@@ -154,8 +164,11 @@ def verify_email(request):
             developer = developers[0]
             developer.email_verified=True
             developer.save()
+            logger.debug("Email %s verified!" % developer.email)
             context = {'verified_email': developer.email}
             return render(request, 'app/email-verification.html', context)
+        else:
+            logger.error("Unrecognized verification code %s received!" % code)
 
     return render(request, 'app/index.html')
 

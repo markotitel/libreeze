@@ -1,12 +1,16 @@
 __author__ = 'nmilinkovic'
 
-from django.core.mail import send_mail
+import logging
+
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
 
+logger = logging.getLogger(__name__)
 
 def send_verification_email(to_email, verification_code):
+
+    logger.debug("Sending verification email to %s" % to_email)
 
     subject = 'Verify your email address'
     from_email = 'libreeze@libreeze.net'
@@ -25,6 +29,8 @@ def send_verification_email(to_email, verification_code):
 
 
 def send_update_email(to_email, project, dependencies):
+
+    logger.debug("Sending update email to %s for project %s" % (to_email, project))
 
     subject = 'New library versions available for ' + project.name
     from_email = 'libreeze@libreeze.net'

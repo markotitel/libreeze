@@ -34,7 +34,7 @@ def submit_text(request):
             project = process_pom_file(xml)
             request.session['project'] = project
         except Exception as e:
-            logger.exception("Invalid xml supplied!", e)
+            logger.exception("Invalid xml supplied!")
             return render(request, 'app/index.html', {'error': 'Supplied xml is not a valid pom file.'})
     else:
         if not request.session.__contains__('project'):
@@ -56,7 +56,7 @@ def submit_file(request):
             project = process_pom_file(xml)
             request.session['project'] = project
         except Exception as e:
-            logger.exception("Invalid pom file!", e)
+            logger.exception("Invalid pom file!")
             return render(request, 'app/index.html', {'error': 'Supplied file is not a valid pom file.'})
     else:
         if not request.session.__contains__('project'):

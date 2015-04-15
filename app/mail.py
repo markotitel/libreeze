@@ -23,9 +23,12 @@ def send_verification_email(to_email, verification_code):
     text_content = verification_plaintext.render(context)
     html_content = verification_html.render(context)
 
-    message = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
-    message.attach_alternative(html_content, "text/html")
-    message.send()
+    try:
+        message = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
+        message.attach_alternative(html_content, "text/html")
+        message.send()
+    except Exception as e:
+        logger.exception("Verification email sending failed!")
 
 
 def send_update_email(to_email, project, dependencies):
@@ -43,7 +46,10 @@ def send_update_email(to_email, project, dependencies):
     text_content = plaintext_template.render(context)
     html_content = html_template.render(context)
 
-    message = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
-    message.attach_alternative(html_content, "text/html")
-    message.send()
+    try:
+        message = EmailMultiAlternatives(subject, text_content, from_email, [to_email])
+        message.attach_alternative(html_content, "text/html")
+        message.send()
+    except Exception as e:
+        logger.exception("Verification email sending failed!")
 

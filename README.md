@@ -3,4 +3,6 @@ libreeze
 
 sudo pip install Django
 
-sudo pip install mysql-python or sudo apt-get install python-mysqldb
+sudo apt-get install python-mysqldb
+
+copy libreeze.properties to ~ and configure it properly

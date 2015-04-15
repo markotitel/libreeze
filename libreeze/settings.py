@@ -29,6 +29,8 @@ with open(home + '/libreeze.properties', 'r') as properties_file:
 
 production = properties['production'] == 'True'
 
+print 'production: ' + production
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production

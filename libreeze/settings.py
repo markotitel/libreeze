@@ -43,7 +43,7 @@ DEBUG = not production
 TEMPLATE_DEBUG = not production
 
 if production:
-    ALLOWED_HOSTS = ['.libreeze.net']
+    ALLOWED_HOSTS = ['*']
 else:
     ALLOWED_HOSTS = []
 
@@ -136,6 +136,8 @@ if production:
     EMAIL_HOST = properties['smtp_host']
     EMAIL_HOST_USER = properties['smtp_username']
     EMAIL_HOST_PASSWORD = properties['smtp_password']
+    EMAIL_USE_TLS = True
+    # EMAIL_USE_SSL = True
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     EMAIL_HOST = 'localhost'
@@ -143,8 +145,6 @@ else:
     EMAIL_HOST_PASSWORD = ''
 
 EMAIL_PORT = properties['smtp_port']
-EMAIL_USE_SSL = False
-
 
 
 # Static files (CSS, JavaScript, Images)

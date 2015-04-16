@@ -37,6 +37,7 @@ class Command(BaseCommand):
         projects = Project.objects.filter(send_updates=True)
 
         for project in projects:
+
             updated_dependencies = []
             project_dependencies = ProjectDependency.objects.filter(project=project)
 
@@ -45,7 +46,6 @@ class Command(BaseCommand):
                     updated_dependencies.append(fresh_dependencies[project_dependency.key()])
 
             if updated_dependencies:
-                developer_email = project.developer.email
-                send_update_email(developer_email, project, updated_dependencies)
+                send_update_email(project, updated_dependencies)
 
         logger.info("Dependencies check finished.")

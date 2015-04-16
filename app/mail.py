@@ -31,7 +31,9 @@ def send_verification_email(to_email, verification_code):
         logger.exception("Verification email sending failed!")
 
 
-def send_update_email(to_email, project, dependencies):
+def send_update_email(project, dependencies):
+
+    to_email = project.developer.email
 
     logger.debug("Sending update email to %s for project %s" % (to_email, project))
 

@@ -8,7 +8,7 @@ from datetime import datetime
 from django.shortcuts import render
 
 from app.controller import process_pom_file
-from app.models import Developer, Project, ProjectDependency, Project, RepoDependency
+from app.models import Developer, ProjectDependency, Project, RepoDependency
 from app.mail import send_verification_email
 
 # Get an instance of a logger
@@ -183,6 +183,43 @@ def render_project(request, project, error=None):
     if error is not None:
         context['error'] = error
     return render(request, 'app/result.html', context)
+
+
+def unsubscribe(request):
+
+    code = request.GET['code']
+
+    if code is not None:
+        developers = Developer.objects.filter(email_verification_code=code)
+        if developers.exists():
+            developer = developers[0]
+            developer.send_emails=False
+            developer.save()
+            logger.warn("Developer %s unsubscribed!" % developer.email)
+            return render(request, 'app/unsubscribe.html')
+        else:
+            logger.error("Unrecognized unsubscribe code %s received!" % code)
+
+    return render(request, 'app/index.html')
+
+
+def unsubscribe_project(request):
+
+    code = request.GET['code']
+
+    if code is not None:
+        projects = Project.objects.filter(unsubscribe_code=code)
+        if projects.exists():
+            project = projects[0]
+            project.send_updates=False
+            project.save()
+            context = {'project_name': project.group_id + ' : ' + project.artifact_id}
+            logger.warn("Project %s unsubscribed!" % project)
+            return render(request, 'app/unsubscribe_project.html', context)
+        else:
+            logger.error("Unrecognized unsubscribe project code %s received!" % code)
+
+    return render(request, 'app/index.html')
 
 
 def create_unique_code():

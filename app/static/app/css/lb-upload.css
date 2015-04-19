@@ -4,12 +4,35 @@
  */
 
 .lb-steps {
-	display: table;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
 	margin-bottom: 2.5rem;
+	width: 100%;
+}
+
+.lb-steps h1,
+.lb-steps h2,
+.lb-steps h3 {
+	font-size: 1.15em;
+	letter-spacing: normal;
+	font-weight: 600;
+	text-align: center;
+	margin: 1.5em 0;
 }
 
 .lb-steps div {
-	display: table-cell;
+	max-width: 270px;
+}
+
+.lb-steps .next-step {
+	width: 75px;
+	text-align: center;
+	font-weight: bold;
+	color: #2c3e50;
+	font-size: 2em;
+	padding-top: 104px;
 }
 
 .lb-upload-container p {
@@ -59,6 +82,224 @@
 	background-color: rgba(255, 0, 0, 0.15);
 	color: #cc3737;
 	cursor: pointer;
+}
+/*
+ * Icons - copied from result.css
+ */
+
+/*
+.lb-step-ico {
+	position: relative;
+	top: -25px;
+	left: 39%;
+}
+
+.lb-step-ico:before,
+.lb-step-ico:after {
+	content: "";
+	position: absolute;
+}
+*/
+/* Upload */
+
+/*
+.upload:before {
+	width: 40px;
+	height: 10px;
+	border: 3px solid #999;
+	border-top: 0;
+	margin-top: -5px;
+	background: transparent;
+}
+
+.upload:after {
+	left: 9px;
+	border-width: 14px 14px 0;
+	border-style: solid;
+	border-color: #999 transparent;
+	margin-top: -17px;
+	background: transparent;
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+*/
+/* List */
+
+/*
+.list:before {
+	left: 15px;
+	width: 11px;
+	height: 25px;
+	border-width: 0 4px 4px 0;
+	border-style: solid;
+	border-color: #999;
+	top: -22px;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(40deg);
+}
+*/
+/* Email */
+
+/*
+.email:before {
+	width: 37px;
+	height: 22px;
+	border-color: #999;
+	border-style: solid;
+	border-width: 3px;
+	top: -17px;
+}
+
+.email:after {
+	top: 3px;
+	left: 2px;
+	border-width: 13px 20px 0;
+	border-style: solid;
+	border-color: #999 transparent;
+	top: -14px;
+}
+*/
+
+div.icon {
+	height: 48px;
+	width: 48px;
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+div.icon div.upload {
+	width: 40px;
+	height: 15px;
+	border: 4px solid #2ba6cb;
+	border-top: none;
+	position: absolute;
+	bottom: 0;
+}
+
+div.icon div.pointerTop {
+	width: 15px;
+	height: 15px;
+	border: solid #2ba6cb;
+	border-width: 5px 5px 0 0;
+	position: relative;
+	margin: 0 auto;
+	top: 22px;
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+div.icon div.tick {
+	width: 32px;
+	height: 4px;
+	background: #2ba6cb;
+	margin: 0 0 0 10px;
+	position: absolute;
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	bottom: 10px;
+	/* margin: 0 auto; */
+}
+
+div.icon div.tick:after {
+	content: '';
+	width: 16px;
+	height: 4px;
+	background: #2ba6cb;
+	position: absolute;
+	top: -6px;
+	left: -6px;
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+div.icon div.belltop {
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	border: 2px solid #2ba6cb;
+	border-radius: 50px;
+	left: 17px;
+	bottom: 22px;
+}
+
+div.icon div.belltop:before {
+	content: '';
+	position: absolute;
+	left: -11px;
+	top: 14px;
+	width: 20px;
+	height: 0;
+	border-style: solid;
+	border-color: transparent transparent #2ba6cb transparent;
+	border-width: 0 4px 9px;
+}
+
+div.icon div.belltop:after {
+	content: '';
+	position: absolute;
+	top: 1px;
+	width: 20px;
+	height: 20px;
+	background: #2ba6cb;
+	left: -7px;
+	border-radius: 50px 50px 0 0;
+}
+
+div.icon div.bellbottom {
+	position: absolute;
+	bottom: 5px;
+	left: 8px;
+	width: 28px;
+	height: 2px;
+	background: #2ba6cb;
+}
+
+div.icon div.bellbottom:after {
+	content: '';
+	position: absolute;
+	width: 6px;
+	height: 3px;
+	background: #2ba6cb;
+	border-radius: 0 0 50px 50px;
+	top: 3px;
+	left: 5px;
+}
+
+div.icon div.letter {
+  margin: 110px auto;
+  background-color: #2ba6cb;
+  position: relative;
+  height: 70px;
+  width: 100px;
+  overflow: hidden;
+}
+div.icon div.letter:before, div.icon div.letter:after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  height: 60px;
+  width: 60px;
+  -webkit-transform: rotate(45deg) skew(-5deg, -5deg);
+  -ms-transform: rotate(45deg) skew(-5deg, -5deg);
+  transform: rotate(45deg) skew(-5deg, -5deg);
+  margin-left: -50px;
+  height: 100px;
+  width: 100px;
+  background-color: #2ba6cb;
+}
+div.icon div.letter:before {
+  bottom: -100%;
+  box-shadow: -5px -5px 0 0 transparent;
+}
+div.icon div.letter:after {
+  top: -95%;
+  box-shadow: 5px 5px 0 0 transparent;
 }
 /*
  * Javascript dependent styles

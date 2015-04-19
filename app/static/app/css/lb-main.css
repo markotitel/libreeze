@@ -82,10 +82,20 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-label, button, th {
+label,
+button,
+th {
 	color: #2c3e50;
 }
 
+nav {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+nav ul {
+	list-style: none;
+}
 /*
  * Sticky footer
  */
@@ -119,7 +129,12 @@ th {
 	vertical-align: top;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	color: #2c3e50;
 }
 
@@ -163,7 +178,6 @@ textarea {
 .verify-email-note {
 	width: 50%;
 }
-
 /*
  * Helper classes
  */
@@ -171,7 +185,7 @@ textarea {
 .sub-text {
 	display: block;
 	color: #999;
-	font-size: .9em;
+	font-size: 0.8em;
 }
 
 .text-center {
@@ -289,7 +303,6 @@ textarea {
 }
 
 @media print,
-(-o-min-device-pixel-ratio: 5/4),
 (-webkit-min-device-pixel-ratio: 1.25),
 (min-resolution: 120dpi) {
 	/* Style adjustments for high resolution devices */

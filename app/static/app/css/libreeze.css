@@ -182,7 +182,6 @@ footer,
 .text-right {
 	text-align: right;
 }
-
 /* === Steps === */
 
 .lb-steps {
@@ -211,13 +210,14 @@ footer,
 .lb-steps .next-step {
 	width: 75px;
 	text-align: center;
-	font-weight: bold;
-	color: #2c3e50;
-	font-size: 2em;
-	padding-top: 104px;
-}
+	/* font-weight: bold; */
 
+	color: #2c3e50;
+	font-size: 1.5em;
+	padding-top: 115px;
+}
 /* === Upload Section === */
+
 .lb-upload-container p {
 	margin: 0;
 	font-size: .8em;
@@ -249,8 +249,8 @@ footer,
 #upload-text {
 	margin-bottom: 0;
 }
-
 /* === Close Upload Icon === */
+
 .lb-close-upload {
 	color: #cc3737;
 	float: right;
@@ -341,8 +341,8 @@ footer,
 	top: -14px;
 }
 */
-
 /* === Icons === */
+
 div.icon {
 	height: 48px;
 	width: 48px;
@@ -350,8 +350,8 @@ div.icon {
 	overflow: hidden;
 	margin: 0 auto;
 }
-
 /* === Upload Icon === */
+
 div.icon div.upload {
 	width: 40px;
 	height: 15px;
@@ -365,7 +365,7 @@ div.icon div.pointerTop {
 	width: 15px;
 	height: 15px;
 	border: solid #2ba6cb;
-	border-width: 5px 5px 0 0;
+	border-width: 4px 4px 0 0;
 	position: relative;
 	margin: 0 auto;
 	top: 22px;
@@ -373,35 +373,38 @@ div.icon div.pointerTop {
 	-ms-transform: rotate(-45deg);
 	transform: rotate(-45deg);
 }
-
 /* === Tick Icon === */
+
 div.icon div.tick {
-	width: 32px;
+	width: 35px;
 	height: 4px;
-	background: #2ba6cb;
+	border-color: #2ba6cb;
 	margin: 0 0 0 10px;
 	position: absolute;
 	-webkit-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
 	transform: rotate(-45deg);
-	bottom: 10px;
-	/* margin: 0 auto; */
+	bottom: 11px;
+	border-width: 0px 0 4px 0;
+	border-style: solid;
 }
 
 div.icon div.tick:after {
 	content: '';
-	width: 16px;
-	height: 4px;
-	background: #2ba6cb;
+	width: 18px;
+	height: 6px;
+	border-color: #2ba6cb;
 	position: absolute;
 	top: -6px;
-	left: -6px;
+	left: -4px;
 	-webkit-transform: rotate(90deg);
 	-ms-transform: rotate(90deg);
 	transform: rotate(90deg);
+	border-style: solid;
+	border-width: 0px 0px 4px 0px;
 }
-
 /* === Bell Icon === */
+
 div.icon div.belltop {
 	position: absolute;
 	width: 6px;
@@ -454,12 +457,13 @@ div.icon div.bellbottom:after {
 	top: 3px;
 	left: 5px;
 }
-
 /* === Letter Icon === */
+
 .letter {
-	background: #2ba6cb;
-	height: 30px;
-	width: 48px;
+	background: #fff;
+	height: 27px;
+	border: 4px solid #2ba6cb;
+	width: 40px;
 	position: absolute;
 	bottom: 0;
 	overflow: hidden;
@@ -469,7 +473,7 @@ div.icon div.bellbottom:after {
 .letter:after {
 	content: '';
 	position: absolute;
-	left: 92%;
+	left: 96%;
 	height: 60px;
 	width: 60px;
 	-webkit-transform: rotate(45deg) skew(-5deg, -5deg);
@@ -478,19 +482,20 @@ div.icon div.bellbottom:after {
 	margin-left: -50px;
 	height: 60px;
 	width: 60px;
-	background-color: #2ba6cb;
+	background-color: #fff;
+	border-color: #2ba6cb;
+	border-style: solid;
 }
 
 .letter:before {
-	bottom: -155%;
-	box-shadow: -3px -3px 0 0 #fff;
+	bottom: -190%;
+	border-width: 4px 0px 0px 4px;
 }
 
 .letter:after {
-	top: -156%;
-	box-shadow: 3px 3px 0 0 #fff;
+	top: -195%;
+	border-width: 0px 4px 4px 0;
 }
-
 /* === Dependencies Table === */
 
 table {
@@ -743,7 +748,6 @@ tr.active td,
 	vertical-align: top;
 	/*for some reason, button is misaligned with the input for no more than a pixe but it's anoying - Chrome only*/
 }
-
 /*
  * Javascript dependent styles
  */

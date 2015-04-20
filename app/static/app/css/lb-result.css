@@ -30,10 +30,6 @@ caption {
 	padding-right: 35px;
 }
 
-h4 {
-	margin: 3rem 0;
-}
-
 tr.dependency-item:nth-child(4n+1),
 tr.dependency-item:nth-child(4n+1) + tr.dependency-xml {
 	background-color: #f0f0f0;
@@ -140,7 +136,10 @@ td.version, td.view-xml {
 
 .lb-ico-chevron:hover:before {
 	border-color: #2980b9;
+	-webkit-transform: rotate(-45deg) scale(1.15);
+	-ms-transform: rotate(-45deg) scale(1.15);
 	transform: rotate(-45deg) scale(1.15);
+	-webkit-transition: .5s;
 	transition: .5s;
 }
 
@@ -191,11 +190,13 @@ td.version, td.view-xml {
 	position: absolute;
 	left: -1.25em;
 	padding-right: 5px;
+	-webkit-transition: .3s;
 	transition: .3s;
 }
 .copy-xml.zeroclipboard-is-hover:before {
 	color: #2980b9;
     left: -0.8em;
+	-webkit-transition: .55s;
 	transition: .55s;
 }
 

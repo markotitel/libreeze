@@ -1,0 +1,952 @@
+@import url('normalize.css');
+@import url('skeleton-2.0.4/skeleton.css');
+/*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html {
+	font-size: 1em;
+	line-height: 1.4;
+}
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+
+::selection {
+	background: #b3d4fc;
+	text-shadow: none;
+}
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+/*
+ * Remove the gap between images, videos, audio and canvas and the bottom of
+ * their containers: h5bp.com/i/440
+ */
+
+audio,
+canvas,
+img,
+video {
+	vertical-align: middle;
+}
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+	resize: vertical;
+}
+/* ==========================================================================
+   Browse Happy prompt
+   ========================================================================== */
+
+.browsehappy {
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
+}
+/* ==========================================================================
+   Libreeze custom styles
+   ========================================================================== */
+/* === Global === */
+
+th {
+	vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #2c3e50;
+}
+
+header {
+	height: 50px;
+	margin-bottom: 40px;
+}
+
+textarea {
+	font-size: .75em;
+	height: 15em;
+	width: 100%;
+}
+
+label,
+button,
+th {
+	color: #2c3e50;
+}
+/* === Sticky Footer === */
+
+html,
+body {
+	height: 100%;
+}
+
+.container {
+	min-height: 100%;
+	/* equal to footer height */
+
+	margin-bottom: -142px;
+}
+
+.container:after {
+	content: "";
+	display: block;
+}
+
+footer,
+.container:after {
+	height: 142px;
+}
+/* === Notifications === */
+
+.notification {
+	margin: 0 auto;
+	font-size: .85em;
+	padding: 14px 25px;
+}
+
+.notification.lb-err {
+	background-color: rgba(255, 0, 0, 0.15);
+}
+
+.notification.lb-warn {
+	background-color: rgba(255, 196, 0, 0.15);
+}
+
+.notification.lb-success {
+	background-color: rgba(0, 255, 69, 0.15);
+}
+/* === Shadow Boxes === */
+
+.shadowbox {
+	border: 1px solid #ccc;
+	padding: 40px 25px;
+	border-radius: 3px;
+	margin: 0 auto;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.verify-email-note {
+	width: 50%;
+}
+/* === Helper classes === */
+
+.sub-text {
+	display: block;
+	color: #999;
+	font-size: 0.8em;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-right {
+	text-align: right;
+}
+/* === Steps === */
+
+.lb-steps {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin-bottom: 2.5rem;
+	width: 100%;
+}
+
+.lb-steps h1,
+.lb-steps h2,
+.lb-steps h3 {
+	font-size: 1.15em;
+	letter-spacing: normal;
+	font-weight: 600;
+	text-align: center;
+	margin: 1.5em 0;
+}
+
+.lb-steps div {
+	max-width: 270px;
+}
+
+.lb-steps .next-step {
+	width: 75px;
+	text-align: center;
+	/* font-weight: bold; */
+
+	color: #2c3e50;
+	font-size: 1.5em;
+	padding-top: 115px;
+}
+/* === Upload Section === */
+
+.lb-upload-container p {
+	margin: 0;
+	font-size: .8em;
+}
+
+.shadowbox.lb-upload {
+	text-align: center;
+	width: 18em;
+}
+
+.shadowbox.lb-upload {
+	text-align: center;
+	width: 18em;
+}
+
+.notification {
+	text-align: center;
+	width: 22em;
+}
+
+.lb-upload button {
+	margin-top: 12px;
+}
+
+.lb-upload textarea {
+	margin-bottom: .2rem;
+}
+
+#upload-text {
+	margin-bottom: 0;
+}
+/* === Close Upload Icon === */
+
+.lb-close-upload {
+	color: #cc3737;
+	float: right;
+	font-weight: bold;
+	font-size: .6em;
+	border-radius: 10px;
+	border: 2px solid rgba(255, 0, 0, 0.15);
+	padding: 0 6px;
+	margin-right: -22px;
+}
+
+.lb-close-upload:hover {
+	background-color: rgba(255, 0, 0, 0.15);
+	color: #cc3737;
+	cursor: pointer;
+}
+/*
+ * Icons - copied from result.css
+ */
+/*
+.lb-step-ico {
+	position: relative;
+	top: -25px;
+	left: 39%;
+}
+
+.lb-step-ico:before,
+.lb-step-ico:after {
+	content: "";
+	position: absolute;
+}
+*/
+/* Upload */
+/*
+.upload:before {
+	width: 40px;
+	height: 10px;
+	border: 3px solid #999;
+	border-top: 0;
+	margin-top: -5px;
+	background: transparent;
+}
+
+.upload:after {
+	left: 9px;
+	border-width: 14px 14px 0;
+	border-style: solid;
+	border-color: #999 transparent;
+	margin-top: -17px;
+	background: transparent;
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+*/
+/* List */
+/*
+.list:before {
+	left: 15px;
+	width: 11px;
+	height: 25px;
+	border-width: 0 4px 4px 0;
+	border-style: solid;
+	border-color: #999;
+	top: -22px;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(40deg);
+}
+*/
+/* Email */
+/*
+.email:before {
+	width: 37px;
+	height: 22px;
+	border-color: #999;
+	border-style: solid;
+	border-width: 3px;
+	top: -17px;
+}
+
+.email:after {
+	top: 3px;
+	left: 2px;
+	border-width: 13px 20px 0;
+	border-style: solid;
+	border-color: #999 transparent;
+	top: -14px;
+}
+*/
+/* === Icons === */
+
+div.icon {
+	height: 48px;
+	width: 48px;
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+}
+/* === Upload Icon === */
+
+div.icon div.upload {
+	width: 40px;
+	height: 15px;
+	border: 4px solid #2ba6cb;
+	border-top: none;
+	position: absolute;
+	bottom: 0;
+}
+
+div.icon div.pointerTop {
+	width: 15px;
+	height: 15px;
+	border: solid #2ba6cb;
+	border-width: 4px 4px 0 0;
+	position: relative;
+	margin: 0 auto;
+	top: 22px;
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+/* === Tick Icon === */
+
+div.icon div.tick {
+	width: 35px;
+	height: 4px;
+	border-color: #2ba6cb;
+	margin: 0 0 0 10px;
+	position: absolute;
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	bottom: 11px;
+	border-width: 0px 0 4px 0;
+	border-style: solid;
+}
+
+div.icon div.tick:after {
+	content: '';
+	width: 18px;
+	height: 6px;
+	border-color: #2ba6cb;
+	position: absolute;
+	top: -6px;
+	left: -4px;
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	transform: rotate(90deg);
+	border-style: solid;
+	border-width: 0px 0px 4px 0px;
+}
+/* === Bell Icon === */
+
+div.icon div.belltop {
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	border: 2px solid #2ba6cb;
+	border-radius: 50px;
+	left: 17px;
+	bottom: 22px;
+}
+
+div.icon div.belltop:before {
+	content: '';
+	position: absolute;
+	left: -11px;
+	top: 14px;
+	width: 20px;
+	height: 0;
+	border-style: solid;
+	border-color: transparent transparent #2ba6cb transparent;
+	border-width: 0 4px 9px;
+}
+
+div.icon div.belltop:after {
+	content: '';
+	position: absolute;
+	top: 1px;
+	width: 20px;
+	height: 20px;
+	background: #2ba6cb;
+	left: -7px;
+	border-radius: 50px 50px 0 0;
+}
+
+div.icon div.bellbottom {
+	position: absolute;
+	bottom: 5px;
+	left: 8px;
+	width: 28px;
+	height: 2px;
+	background: #2ba6cb;
+}
+
+div.icon div.bellbottom:after {
+	content: '';
+	position: absolute;
+	width: 6px;
+	height: 3px;
+	background: #2ba6cb;
+	border-radius: 0 0 50px 50px;
+	top: 3px;
+	left: 5px;
+}
+/* === Letter Icon === */
+
+.letter {
+	background: #fff;
+	height: 27px;
+	border: 4px solid #2ba6cb;
+	width: 40px;
+	position: absolute;
+	bottom: 0;
+	overflow: hidden;
+}
+
+.letter:before,
+.letter:after {
+	content: '';
+	position: absolute;
+	left: 96%;
+	height: 60px;
+	width: 60px;
+	-webkit-transform: rotate(45deg) skew(-5deg, -5deg);
+	-ms-transform: rotate(45deg) skew(-5deg, -5deg);
+	transform: rotate(45deg) skew(-5deg, -5deg);
+	margin-left: -50px;
+	height: 60px;
+	width: 60px;
+	background-color: #fff;
+	border-color: #2ba6cb;
+	border-style: solid;
+}
+
+.letter:before {
+	bottom: -190%;
+	border-width: 4px 0px 0px 4px;
+}
+
+.letter:after {
+	top: -195%;
+	border-width: 0px 4px 4px 0;
+}
+/* === Dependencies Table === */
+
+table {
+	font-size: .9em;
+}
+
+.cell-L {
+	min-width: 15em;
+}
+
+.cell-M {
+	min-width: 11em;
+}
+
+.cell-S {
+	min-width: 6em;
+}
+
+caption {
+	font-size: .85em;
+	margin-bottom: 4em;
+}
+
+.version {
+	min-width: 10em;
+	padding-left: 0;
+	padding-right: 35px;
+}
+
+tr.dependency-item:nth-child(4n+1),
+tr.dependency-item:nth-child(4n+1) + tr.dependency-xml {
+	background-color: #f0f0f0;
+}
+
+table th:first-child,
+table td:first-child {
+	padding-left: 15px;
+}
+
+table th:last-child,
+table td:last-child {
+	padding-right: 15px;
+}
+
+td.version,
+td.view-xml {
+	position: relative;
+}
+/* === Icons === */
+
+.lb-ico {
+	position: absolute;
+	top: 31%;
+	margin: 0 0 0 10px;
+}
+
+.lb-ico:before,
+.lb-ico:after {
+	content: "";
+	position: absolute;
+}
+/* === Warning Icon === */
+
+.lb-ico-warn:before {
+	content: "!";
+	color: #000;
+	z-index: 2;
+	left: 9.5px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.lb-ico-warn:after {
+	border-width: 0 11px 18px;
+	border-color: #fce04a transparent;
+	background: transparent;
+	z-index: 1;
+	border-style: solid;
+}
+/* === Tick Icon === */
+
+.lb-ico-ok:before {
+	left: 3px;
+	width: 18px;
+	height: 18px;
+	border-radius: 16px;
+	background: #6dc147;
+}
+
+.lb-ico-ok:after {
+	left: 9px;
+	width: 4px;
+	height: 10px;
+	border-width: 0 2px 2px 0;
+	border-style: solid;
+	border-color: #fff;
+	margin-top: 2px;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+/* === Chevron Icon === */
+
+.lb-ico-chevron {
+	padding: 15px 20px;
+	margin: 0;
+	top: 20%;
+}
+
+.lb-ico-chevron:before {
+	content: "";
+	border-width: 0 0 3px 3px;
+	border-color: #2c3e50;
+	border-style: solid;
+	left: 13px;
+	top: 20%;
+	width: 10px;
+	height: 10px;
+	-webkit-transform: rotate(-45deg) scale(1);
+	-ms-transform: rotate(-45deg) scale(1);
+	transform: rotate(-45deg) scale(1);
+	-webkit-transition: border .2s, -webkit-transform .2s, top .2s;
+	transition: border .2s, transform .2s, top .2s;
+}
+
+.lb-ico-chevron:hover:before {
+	border-color: #2ba6cb;
+	-webkit-transform: rotate(-45deg) scale(1.15);
+	-ms-transform: rotate(-45deg) scale(1.15);
+	transform: rotate(-45deg) scale(1.15);
+	-webkit-transition: .5s;
+	transition: .5s;
+}
+
+.active .view-xml .lb-ico-chevron:before {
+	border-color: #2ba6cb;
+	top: 40%;
+	-webkit-transform: rotate(135deg);
+	-ms-transform: rotate(135deg);
+	transform: rotate(135deg);
+}
+/* === XML Code === */
+
+.view-xml span,
+.copy-xml {
+	cursor: pointer;
+}
+
+.xml_result {
+	width: 100%;
+	height: 10em;
+	font-size: .8em;
+	margin: 0;
+}
+
+.xml-acts {
+	list-style: none;
+	font-size: .8em;
+	margin: .5em;
+	float: right;
+}
+
+.xml-acts li {
+	display: inline;
+	padding: 3px 8px;
+	color: #2c3e50;
+}
+
+.copy-xml {
+	position: relative;
+	overflow: hidden;
+}
+
+.copy-xml:before {
+	content: "~>";
+	color: #2ba6cb;
+	font-weight: bold;
+	position: absolute;
+	left: -1.25em;
+	padding-right: 5px;
+	-webkit-transition: .3s;
+	transition: .3s;
+}
+
+.copy-xml.zeroclipboard-is-hover:before {
+	left: -0.8em;
+	-webkit-transition: .55s;
+	transition: .55s;
+}
+
+.dependency-xml td {
+	padding: 0;
+}
+
+.dependency-xml div {
+	width: 40em;
+	height: 11em;
+	float: right;
+	-webkit-transition: all .5s linear;
+	transition: all .5s linear;
+	-webkit-transition-property: opacity, height;
+	transition-property: opacity, height;
+	display: block;
+	position: relative;
+}
+
+tr.active td,
+.dependency-collapsed td {
+	border: 0;
+}
+
+.dependency-collapsed div {
+	opacity: 0;
+	height: 0px;
+}
+
+.no-js .dependency-collapsed div {
+	opacity: 1;
+	height: auto;
+}
+
+.no-js .dependency-collapsed td {
+	border-bottom: 1px solid #E1E1E1;
+}
+
+.no-js .dependency-item td {
+	border-bottom: 0 none;
+}
+/* === Email Form === */
+
+.contact-form {
+	margin: 4rem auto 3rem;
+	width: 50%;
+	text-align: center;
+}
+
+.contact-form form {
+	font-size: .9em;
+}
+
+.contact-form .notification {
+	margin-bottom: 1.5em;
+}
+
+.contact-form input {
+	width: 20em;
+}
+
+.contact-form button {
+	vertical-align: top;
+	/*for some reason, button is misaligned with the input for no more than a pixe but it's anoying - Chrome only*/
+}
+/*
+ * Javascript dependent styles
+ */
+
+#upload-text,
+input[type="file"],
+#upload-file button[type="submit"] {
+	display: none;
+}
+
+.no-js #upload-text,
+.no-js input[type="file"] {
+	display: block;
+}
+
+.no-js #upload-file button[type="submit"] {
+	display: inline-block;
+}
+
+.no-js .browse-btn,
+.no-js .toggle-upload-text {
+	display: none;
+}
+/* ==========================================================================
+   end of Libreeze custom styles
+   ========================================================================== */
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+/*
+ * Image replacement
+ */
+
+.ir {
+	background-color: transparent;
+	border: 0;
+	overflow: hidden;
+	/* IE 6/7 fallback */
+
+	*text-indent: -9999px;
+}
+
+.ir:before {
+	content: "";
+	display: block;
+	width: 0;
+	height: 150%;
+}
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+	display: none !important;
+	visibility: hidden;
+}
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+	clip: auto;
+	height: auto;
+	margin: 0;
+	overflow: visible;
+	position: static;
+	width: auto;
+}
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+	visibility: hidden;
+}
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	/* 1 */
+
+	display: table;
+	/* 2 */
+}
+
+.clearfix:after {
+	clear: both;
+}
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+	*zoom: 1;
+}
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+	/* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+(-o-min-device-pixel-ratio: 5/4),
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 120dpi) {
+	/* Style adjustments for high resolution devices */
+}
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+	* {
+		background: transparent !important;
+		color: #000 !important;
+		/* Black prints faster: h5bp.com/s */
+
+		box-shadow: none !important;
+		text-shadow: none !important;
+	}
+	a,
+	a:visited {
+		text-decoration: underline;
+	}
+	a[href]:after {
+		content: " (" attr(href) ")";
+	}
+	abbr[title]:after {
+		content: " (" attr(title) ")";
+	}
+	/*
+     * Don't show links for images, or javascript/internal links
+     */
+
+	.ir a:after,
+	a[href^="javascript:"]:after,
+	a[href^="#"]:after {
+		content: "";
+	}
+	pre,
+	blockquote {
+		border: 1px solid #999;
+		page-break-inside: avoid;
+	}
+	thead {
+		display: table-header-group;
+		/* h5bp.com/t */
+	}
+	tr,
+	img {
+		page-break-inside: avoid;
+	}
+	img {
+		max-width: 100% !important;
+	}
+	@page {
+		margin: 0.5cm;
+	}
+	p,
+	h2,
+	h3 {
+		orphans: 3;
+		widows: 3;
+	}
+	h2,
+	h3 {
+		page-break-after: avoid;
+	}
+}

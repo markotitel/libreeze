@@ -78,18 +78,17 @@
 							<td>{{ dependency.group_id }}</td>
 							<td>{{ dependency.artifact_id }}</td>
 							<td class="text-right version small">
-								{% if dependency.up_to_date == False %}
-									{% if dependency.version %}
-										{{ dependency.version }}
+                                {% if dependency.version %}
+                                    {{ dependency.version }}
+								    {% if dependency.up_to_date %}
+									    <span class="lb-ico lb-ico-ok"></span>
+                                    {% else %}
 										<span class="lb-ico lb-ico-warn" title="Oops, out of date"></span>
-									{% else %}
-										--
-										<span class="lb-ico"></span>
-									{% endif %}
-								{% else %}
-									{{ dependency.version }}
-									<span class="lb-ico lb-ico-ok"></span>
-								{% endif %}
+                                    {% endif %}
+                                {% else %}
+                                    --
+									<span class="lb-ico"></span>
+                                {% endif %}
 							</td>
 							<td class="text-right">
 								{% if dependency.release %}

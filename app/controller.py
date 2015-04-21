@@ -88,6 +88,8 @@ def parse_xml(xml):
             key = version[2:-1]
             if key in properties_map:
                 version = properties_map[key]
+            else:
+                version = ""
 
         dependency = MavenDependencyDTO(group_id, artifact_id, version)
         dependencies.append(dependency)
@@ -107,7 +109,7 @@ def determine_latest_version(versions):
 
 
 def build_maven_repo_url(group_id, artifact_id):
-    return "http://repo1.maven.org/maven2/" + group_id.replace('.', '/')  + '/' + artifact_id + "/maven-metadata.xml"
+    return "http://repo1.maven.org/maven2/" + group_id.replace('.', '/') + '/' + artifact_id + "/maven-metadata.xml"
 
 
 def check_maven_repo_dependency(group_id, artifact_id):

@@ -97,7 +97,7 @@ h6 {
 }
 
 header {
-	height: 50px;
+	height: 1.15em;
 	margin-bottom: 40px;
 }
 
@@ -135,6 +135,10 @@ footer,
 .container:after {
 	height: 142px;
 }
+
+.project .container {
+	min-height: initial;
+}
 /* === Notifications === */
 
 .notification {
@@ -170,9 +174,10 @@ footer,
 /* === Helper classes === */
 
 .sub-text {
-	display: block;
-	color: #999;
-	font-size: 0.8em;
+	  display: block;
+  color: #777;
+  font-size: 0.8em;
+  line-height: 1.5em;
 }
 
 .text-center {
@@ -189,18 +194,18 @@ footer,
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-	margin-bottom: 2.5rem;
+	margin: 3em 0 4em 0;
 	width: 100%;
 }
 
 .lb-steps h1,
 .lb-steps h2,
 .lb-steps h3 {
-	font-size: 1.15em;
+	font-size: 1.25em;
 	letter-spacing: normal;
 	font-weight: 600;
 	text-align: center;
-	margin: 1.5em 0;
+	margin: 1.5em 0 1em 0;
 }
 
 .lb-steps div {
@@ -214,7 +219,7 @@ footer,
 
 	color: #2c3e50;
 	font-size: 1.5em;
-	padding-top: 115px;
+	padding-top: 5.15em;
 }
 /* === Upload Section === */
 
@@ -224,11 +229,7 @@ footer,
 }
 
 .shadowbox.lb-upload {
-	text-align: center;
-	width: 18em;
-}
-
-.shadowbox.lb-upload {
+	padding: 55px 20px;
 	text-align: center;
 	width: 18em;
 }
@@ -239,7 +240,12 @@ footer,
 }
 
 .lb-upload button {
-	margin-top: 12px;
+  height: 43px;
+  padding: 0 33px;
+  color: #2c3e50;
+  font-size: 13px;
+  line-height: 43px;
+  letter-spacing: 0.05rem;
 }
 
 .lb-upload textarea {
@@ -267,81 +273,6 @@ footer,
 	color: #cc3737;
 	cursor: pointer;
 }
-/*
- * Icons - copied from result.css
- */
-/*
-.lb-step-ico {
-	position: relative;
-	top: -25px;
-	left: 39%;
-}
-
-.lb-step-ico:before,
-.lb-step-ico:after {
-	content: "";
-	position: absolute;
-}
-*/
-/* Upload */
-/*
-.upload:before {
-	width: 40px;
-	height: 10px;
-	border: 3px solid #999;
-	border-top: 0;
-	margin-top: -5px;
-	background: transparent;
-}
-
-.upload:after {
-	left: 9px;
-	border-width: 14px 14px 0;
-	border-style: solid;
-	border-color: #999 transparent;
-	margin-top: -17px;
-	background: transparent;
-	-webkit-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	transform: rotate(180deg);
-}
-*/
-/* List */
-/*
-.list:before {
-	left: 15px;
-	width: 11px;
-	height: 25px;
-	border-width: 0 4px 4px 0;
-	border-style: solid;
-	border-color: #999;
-	top: -22px;
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(40deg);
-}
-*/
-/* Email */
-/*
-.email:before {
-	width: 37px;
-	height: 22px;
-	border-color: #999;
-	border-style: solid;
-	border-width: 3px;
-	top: -17px;
-}
-
-.email:after {
-	top: 3px;
-	left: 2px;
-	border-width: 13px 20px 0;
-	border-style: solid;
-	border-color: #999 transparent;
-	top: -14px;
-}
-*/
-/* === Icons === */
 
 div.icon {
 	height: 48px;
@@ -498,21 +429,6 @@ div.icon div.bellbottom:after {
 }
 /* === Dependencies Table === */
 
-table {
-	font-size: .9em;
-}
-
-.cell-L {
-	min-width: 15em;
-}
-
-.cell-M {
-	min-width: 11em;
-}
-
-.cell-S {
-	min-width: 6em;
-}
 
 caption {
 	font-size: .85em;
@@ -520,9 +436,7 @@ caption {
 }
 
 .version {
-	min-width: 10em;
-	padding-left: 0;
-	padding-right: 35px;
+	padding-left: 35px;
 }
 
 tr.dependency-item:nth-child(4n+1),
@@ -544,12 +458,108 @@ td.version,
 td.view-xml {
 	position: relative;
 }
+
+/* === XML Code === */
+
+.view-xml span,
+.copy-xml {
+	cursor: pointer;
+}
+
+.xml_result {
+	height: 10em;
+	font-size: .8em;
+	margin: 0;
+}
+
+.xml-acts {
+	list-style: none;
+	font-size: .8em;
+	margin: .5em;
+	float: right;
+}
+
+.xml-acts li {
+	display: inline;
+	padding: 3px 8px;
+	color: #2c3e50;
+}
+
+.copy-xml {
+	position: relative;
+	overflow: hidden;
+}
+
+.copy-xml:before {
+	content: "~>";
+	color: #2ba6cb;
+	font-weight: bold;
+	position: absolute;
+	left: -1.25em;
+	padding-right: 5px;
+	-webkit-transition: .3s;
+	transition: .3s;
+}
+
+.copy-xml.zeroclipboard-is-hover:before {
+	left: -0.8em;
+	-webkit-transition: .55s;
+	transition: .55s;
+}
+
+.dependency-xml td {
+	padding: 0;
+}
+
+.dependency-xml div {
+	width: 50%;
+	height: 11em;
+	float: right;
+	-webkit-transition: all .5s linear;
+	transition: all .5s linear;
+	-webkit-transition-property: opacity, height;
+	transition-property: opacity, height;
+	display: block;
+	position: relative;
+}
+
+.dependency-collapsed div {
+	opacity: 0;
+	height: 0px;
+}
+
+.dep-table {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.dep-table tr:not(.dependency-xml) td:before {
+	display: none;
+}
+
+.dep-table th,
+.dep-table td {
+	display: table-cell;
+}
+
+td.view-xml {
+	border-bottom: 0 none;
+}
+
+tr.active td,
+tr.dependency-collapsed td {
+	border: 0 none;
+}
+
 /* === Icons === */
 
 .lb-ico {
 	position: absolute;
 	top: 31%;
-	margin: 0 0 0 10px;
+}
+
+.version .lb-ico {
+	left: 0;
 }
 
 .lb-ico:before,
@@ -637,98 +647,10 @@ td.view-xml {
 	-ms-transform: rotate(135deg);
 	transform: rotate(135deg);
 }
-/* === XML Code === */
-
-.view-xml span,
-.copy-xml {
-	cursor: pointer;
-}
-
-.xml_result {
-	width: 100%;
-	height: 10em;
-	font-size: .8em;
-	margin: 0;
-}
-
-.xml-acts {
-	list-style: none;
-	font-size: .8em;
-	margin: .5em;
-	float: right;
-}
-
-.xml-acts li {
-	display: inline;
-	padding: 3px 8px;
-	color: #2c3e50;
-}
-
-.copy-xml {
-	position: relative;
-	overflow: hidden;
-}
-
-.copy-xml:before {
-	content: "~>";
-	color: #2ba6cb;
-	font-weight: bold;
-	position: absolute;
-	left: -1.25em;
-	padding-right: 5px;
-	-webkit-transition: .3s;
-	transition: .3s;
-}
-
-.copy-xml.zeroclipboard-is-hover:before {
-	left: -0.8em;
-	-webkit-transition: .55s;
-	transition: .55s;
-}
-
-.dependency-xml td {
-	padding: 0;
-}
-
-.dependency-xml div {
-	width: 40em;
-	height: 11em;
-	float: right;
-	-webkit-transition: all .5s linear;
-	transition: all .5s linear;
-	-webkit-transition-property: opacity, height;
-	transition-property: opacity, height;
-	display: block;
-	position: relative;
-}
-
-tr.active td,
-.dependency-collapsed td {
-	border: 0;
-}
-
-.dependency-collapsed div {
-	opacity: 0;
-	height: 0px;
-}
-
-.no-js .dependency-collapsed div {
-	opacity: 1;
-	height: auto;
-}
-
-.no-js .dependency-collapsed td {
-	border-bottom: 1px solid #E1E1E1;
-}
-
-.no-js .dependency-item td {
-	border-bottom: 0 none;
-}
 /* === Email Form === */
 
 .contact-form {
 	margin: 4rem auto 3rem;
-	width: 50%;
 	text-align: center;
 }
 
@@ -741,12 +663,59 @@ tr.active td,
 }
 
 .contact-form input {
-	width: 20em;
+	width: 23em;
 }
 
 .contact-form button {
 	vertical-align: top;
 	/*for some reason, button is misaligned with the input for no more than a pixe but it's anoying - Chrome only*/
+}
+
+@media only screen and (max-width : 1024px) {
+
+	.dep-table {
+		width: 60%;
+		min-width: 390px;
+	}
+
+	.dep-table th {
+		display: none;
+	}
+
+	.dep-table td {
+		display: block;
+	}
+
+	.dep-table tr:not(.dependency-xml) td:before {
+		content: attr(data-th) " :  ";
+		font-weight: bold;
+		width: 8.5em;
+		display: inline-block;
+}
+	tr.dependency-xml {
+		border-bottom: 2px solid #ddd;
+	}
+	tr.active td {
+		border-bottom: 1px solid #ddd;
+	}
+
+	tr.active td.view-xml,
+	tr.dependency-xml td {
+		border: 0;
+	}
+
+	.dependency-xml div {
+		width: 100%;
+	}
+
+	.version {
+		padding-left: 15px;
+	}
+
+	.version .lb-ico {
+		left: initial;
+  		margin-left: 1em;
+	}
 }
 /*
  * Javascript dependent styles
@@ -770,6 +739,19 @@ input[type="file"],
 .no-js .browse-btn,
 .no-js .toggle-upload-text {
 	display: none;
+}
+
+.no-js .dependency-collapsed div {
+	opacity: 1;
+	height: auto;
+}
+
+.no-js .dependency-collapsed td {
+	border-bottom: 1px solid #E1E1E1;
+}
+
+.no-js .dependency-item td {
+	border-bottom: 0 none;
 }
 /* ==========================================================================
    end of Libreeze custom styles

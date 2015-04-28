@@ -28,7 +28,7 @@
 	<script src="{% static 'app/js/vendor/modernizr-2.6.2.min.js' %}"></script>
 </head>
 
-<body>
+<body class="project">
 	<!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -59,81 +59,74 @@
 			</form>
 		</div>
 
-		<div class="row">
-			<div class="column">
-				<table class="u-full-width">
-					<thead>
-						<tr>
-							<th class="cell-L">Group Id</th>
-							<th class="cell-M">Artifact Id</th>
-							<th class="text-right cell-S">Your version</th>
-							<th class="text-right cell-S">Official</th>
-							<th class="text-right cell-S">Latest</th>
-							<th>XML</th>
-						</tr>
-					</thead>
-					<tbody>
-						{% for dependency in dependencies %}
-						<tr class="dependency-item">
-							<td>{{ dependency.group_id }}</td>
-							<td>{{ dependency.artifact_id }}</td>
-							<td class="text-right version small">
-                                {% if dependency.version %}
-                                    {{ dependency.version }}
-								    {% if dependency.up_to_date %}
-									    <span class="lb-ico lb-ico-ok"></span>
-                                    {% else %}
-										<span class="lb-ico lb-ico-warn" title="Oops, out of date"></span>
-                                    {% endif %}
-                                {% else %}
-                                    --
-									<span class="lb-ico"></span>
-                                {% endif %}
-							</td>
-							<td class="text-right">
-								{% if dependency.release %}
-									{{ dependency.release }}
-								{% else %}
-									--
-								{% endif %}
-							</td>
-							<td class="text-right">
-								{% if dependency.latest %}
-									{{ dependency.latest }}
-								{% else %}
-									--
-								{% endif %}
-							</td>
-							<td class="view-xml">
-								<span class="lb-ico lb-ico-chevron" title="Click to view XML"></span>
-							</td>
-						</tr>
-						<tr class="dependency-xml dependency-collapsed">
-							<td colspan="6">
-								<div>
-									<ul class="xml-acts">
-										<li class="copy-xml" data-clipboard-target="clipboard-text" title="Click to copy xml"><b>copy xml</b></li>
-									</ul>
-									<!-- Textarea preserves indentation so please do not indent it's value -->
-									<textarea readonly class="xml_result" name="clipboard-text" id="clipboard-text">
+	</div> <!-- endof "container" -->
+
+	<table class="dep-table">
+		<thead>
+			<tr>
+				<th class="">Group Id</th>
+				<th class="">Artifact Id</th>
+				<th class="">Your version</th>
+				<th class="">Official</th>
+				<th class="">Latest</th>
+				<th>XML</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for dependency in dependencies %}
+			<tr class="dependency-item">
+				<td data-th="Group Id">{{ dependency.group_id }}</td>
+				<td data-th="Artifact Id">{{ dependency.artifact_id }}</td>
+				<td data-th="Your version" class="version">
+					{% if dependency.version %}
+						{{ dependency.version }}
+						{% if dependency.up_to_date %}
+							<span class="lb-ico lb-ico-ok"></span>
+						{% else %}
+							<span class="lb-ico lb-ico-warn" title="Oops, out of date"></span>
+						{% endif %}
+					{% else %}
+						<span class="lb-ico"></span>
+						--
+					{% endif %}
+				</td>
+				<td data-th="Official">
+					{% if dependency.release %}
+						{{ dependency.release }}
+					{% else %}
+						--
+					{% endif %}
+				</td>
+				<td data-th="Latest">
+					{% if dependency.latest %}
+						{{ dependency.latest }}
+					{% else %}
+						--
+					{% endif %}
+				</td>
+				<td data-th="XML" class="view-xml">
+					<span class="lb-ico lb-ico-chevron" title="Click to view XML"></span>
+				</td>
+			</tr>
+			<tr class="dependency-xml dependency-collapsed">
+				<td colspan="6">
+					<div>
+						<ul class="xml-acts">
+							<li class="copy-xml" data-clipboard-target="clipboard-text" title="Click to copy xml"><b>copy xml</b></li>
+						</ul>
+						<!-- Textarea preserves indentation so please do not indent it's value -->
+						<textarea readonly class="xml_result" name="clipboard-text" id="clipboard-text">
 <dependency>
 	<groupId>{{ dependency.group_id }}</groupId>
 	<artifactId>{{ dependency.artifact_id }}</artifactId>
 	<version>{% if dependency.release %}{{ dependency.release }}{% elif dependency.latest %}{{ dependency.latest }}{% else %}{{ dependency.version }}{% endif %}</version>
 </dependency></textarea>
-								</div>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-<!--
-					<p>out of date: {{dependencies_out_of_date}}
-						<br/> total: {{dependencies_total_count}}</p>
--->
-			</div>
-		</div>
-	</div>
+					</div>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 	<br/>
 	<br/>
 	<br/>

@@ -987,7 +987,15 @@
 			}
 		}
 		/*------- Custom Libreeze styles ------*/
-
+		.cell-L {
+			width: 160px;
+		}
+		.cell-M {
+			width: 130px;
+		}
+		.cell-S {
+			width: 96.6px;
+		}
 		table.dependency-list {
 			margin: 20px 0 30px 0;
 		}
@@ -1002,13 +1010,12 @@
 		}
 
 		table.dependency-list td {
-			padding: 10px 10px 10px 0;
 			border-bottom: 1px solid #999;
 		}
 
-		table.dependency-list td.version {
-			padding-left: 0;
-			padding-right: 15px;
+		table.dependency-list th,
+		table.dependency-list td {
+			padding: 10px 10px 10px 0;
 		}
 
 		table.dependency-list tbody tr:nth-child(2n+1) {
@@ -1023,18 +1030,6 @@
 		table th:last-child, table td:last-child
 		{
 			padding-right: 5px;
-		}
-
-		.cell-L {
-			width: 160px;
-		}
-
-		.cell-M {
-			min-width: 130px;
-		}
-
-		.cell-S {
-			width: 96.6px;
 		}
 
 		caption {
@@ -1052,62 +1047,6 @@
 
 		.text-right {
 			text-align: right;
-		}
-
-		.lb-ico {
-			position: relative;
-			overflow: hidden;
-			padding: 0;
-			margin: 0 0 0 3px;
-		}
-
-		.lb-ico:before,
-		.lb-ico:after {
-			content: "";
-			position: absolute;
-			top: 0;
-		}
-
-		.lb-ico-warn:before {
-			content: "!";
-			color: #000;
-			z-index: 2;
-			left: 6.5px;
-			font-size: 12px;
-			line-height: 16px;
-		}
-
-		.lb-ico-warn:after {
-			border-width: 0 8px 13px;
-			border-color: #fce04a transparent;
-			background: transparent;
-			z-index: 1;
-			border-style: solid;
-		}
-
-		.lb-ico-ok:before {
-			left: 3px;
-			width: 12px;
-			height: 12px;
-			-webkit-border-radius: 16px;
-			-moz-border-radius: 16px;
-			border-radius: 16px;
-			background: #6dc147;
-		}
-
-		.lb-ico-ok:after {
-			left: 7px;
-			width: 2px;
-			height: 6px;
-			border-width: 0 2px 2px 0;
-			border-style: solid;
-			border-color: #fff;
-			margin-top: 1px;
-			-webkit-transform: rotate(45deg);
-			-moz-transform: rotate(45deg);
-			-ms-transform: rotate(45deg);
-			-o-transform: rotate(45deg);
-			transform: rotate(45deg);
 		}
 		/* end of Custom Libreeze styles */
 	</style>
@@ -1148,10 +1087,10 @@
 								<table class="row dependency-list">
 									<thead>
 										<tr>
-											<th class="cell-L">Group Id</th>
-											<th class="cell-M">Artifact Id</th>
-											<th class="text-right cell-S">Official</th>
-											<th class="text-right cell-S">Latest</th>
+											<th class="cell-M">Group Id</th>
+											<th class="cell-L">Artifact Id</th>
+											<th class="cell-S">Official</th>
+											<th class="cell-S">Latest</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -1159,14 +1098,14 @@
 										<tr>
 											<td>{{ dependency.namespace }}</td>
 											<td>{{ dependency.name}}</td>
-											<td class="text-right fix-width">
+											<td>
 								                {% if dependency.release %}
 									                {{ dependency.release }}
 								                {% else %}
 									                --
 								                {% endif %}
 											</td>
-											<td class="text-right fix-width">
+											<td>
 								                {% if dependency.latest %}
 									                {{ dependency.latest }}
 								                {% else %}

@@ -17,13 +17,19 @@ $(function () {
 	}
 
 	function initPasteFile() {
-		$('.toggle-upload-text').click(function (e) {
+		$('button.toggle-upload-text').click(function (e) {
+			$(this).hide();
 			e.stopImmediatePropagation();
-			$('#upload-text').toggle();
+			$('#upload-text').fadeToggle("linear");
 			if ($('#upload-text').is(":visible")){
 				$("textarea[name='pom-code']").focus();
 			}
-			$('button.toggle-upload-text').toggle();
+		});
+
+		$('span.toggle-upload-text').click(function (e) {
+			e.stopImmediatePropagation();
+			$('#upload-text').hide();
+			$('button.toggle-upload-text').fadeToggle("linear");
 		});
 	}
 

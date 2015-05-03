@@ -35,13 +35,16 @@
 
 	<div class="container">
 		<div class="row">
-			<header><a href="/">libreeze.net</a></header>
-			<nav></nav>
-		</div>
-		<div class="row">
 			<div class="column">
-				<div class="lb-steps">
-				
+				<header>
+					<a class="logo" href="/">libreeze.net</a>
+					<nav>
+						<ul>
+							<li><a href="support">Support</a></li>
+						</ul>
+					</nav>
+
+					<div class="lb-steps">
 					<div>
 						<div class="icon">
 							<div class="pointerTop"></div>
@@ -67,43 +70,40 @@
 						<span class="sub-text">and we will send you a notification whenever a new version of your libraries is released</span>
 					</div>
 				</div>
+				</header>
 
 				<br/>
 
-				<!-- conditionally set classes "lb-err", "lb-warn", "lb-success" to declare notification type and class "hidden" to toggle it's visibility -->
-                {% if error %}
-				<div class="notification lb-err">{{ error }}</div>
-                {% endif %}
+				<div class="lb-upload">
+					<!-- conditionally set classes "lb-err", "lb-warn", "lb-success" to declare notification type and class "hidden" to toggle it's visibility -->
+					{% if error %}
+					<div class="notification lb-err">{{ error }}</div>
+					{% endif %}
 
-				<br/>
+					<div class="shadowbox lb-upload-inner">
+						<!-- Browse form -->
+						<form id="upload-file" method="post" action="{% url 'app:submit_file' %}" enctype="multipart/form-data">
+							<button class="browse-btn" type="button">Browse</button>
+							<input type="file" name="pom-file" accept=".xml" />
+							<button type="submit">Upload</button>
+						</form>
 
-				<div class="shadowbox lb-upload">
-					<!-- Browse form -->
-					<form id="upload-file" method="post" action="{% url 'app:submit_file' %}" enctype="multipart/form-data">
-						<button class="browse-btn" type="button">Browse</button>
-						<input type="file" name="pom-file" accept=".xml" />
-						<button type="submit">Upload</button>
-					</form>
+						<span>- or -</span>
 
-					<span>- or -</span>
-
-					<!-- Paste form -->
-					<div>
-						<button type="button" class="toggle-upload-text">Paste</button>
+						<!-- Paste form -->
+						<div>
+							<button type="button" class="toggle-upload-text">Paste</button>
+						</div>
+						<form id="upload-text" method="post" action="{% url 'app:submit_text' %}">
+							<span class="lb-close-upload toggle-upload-text">x</span>
+							<textarea name="pom-code"></textarea>
+							<button type="submit">Upload</button>
+						</form>
 					</div>
-					<form id="upload-text" method="post" action="{% url 'app:submit_text' %}">
-						<span class="lb-close-upload toggle-upload-text">x</span>
-						<textarea name="pom-code"></textarea>
-						<button type="submit">Upload</button>
-					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<br/>
-	<br/>
-	<br/>
 
 	<footer class="text-center">&copy;libreeze 2015</footer>
 

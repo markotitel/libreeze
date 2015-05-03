@@ -35,101 +35,103 @@
 
 	<div class="container">
 		<div class="row">
-			<header><a href="/">libreeze.net</a></header>
-<!--
-			<nav>
-				<ul>
-					<li><a href="support">Support</a></li>
-				</ul>
-			</nav>
--->
+			<header>
+				<a class="logo" href="/">libreeze.net</a>
+				<nav>
+					<ul>
+						<li><a href="support">Support</a></li>
+					</ul>
+				</nav>
+				<h4 class="project-name text-center">{{ project_name }}</h4>
+			</header>
+
+			<div class="contact-form">
+				{% if error %}
+				<div class="notification lb-err">{{ error }}</div>
+				{% endif %}
+
+				<form method="post" action="{% url 'app:submit_email' %}">
+					<label for="email">Leave your email and get notified when new versions are released</label>
+					<input type="text" name="email" id="email"/>
+					<button type="submit">Submit</button>
+				</form>
+			</div>
 		</div>
 
-		<h4 class="row text-center">{{ project_name }}</h4>
 
-		<div class="contact-form">
-			{% if error %}
-			<div class="notification lb-err">{{ error }}</div>
-        	{% endif %}
+		<div class="row">
+			<div class="column">
 
-			<form method="post" action="{% url 'app:submit_email' %}">
-				<label for="email">Leave your email and get notified when new versions are released</label>
-				<input type="text" name="email" id="email"/>
-				<button type="submit">Submit</button>
-			</form>
-		</div>
-
-	</div> <!-- endof "container" -->
-
-	<table class="dep-table">
-		<thead>
-			<tr>
-				<th class="">Group Id</th>
-				<th class="">Artifact Id</th>
-				<th class="">Your version</th>
-				<th class="">Official</th>
-				<th class="">Latest</th>
-				<th>XML</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for dependency in dependencies %}
-			<tr class="dependency-item">
-				<td data-th="Group Id">{{ dependency.group_id }}</td>
-				<td data-th="Artifact Id">{{ dependency.artifact_id }}</td>
-				<td data-th="Your version" class="version">
-					{% if dependency.version %}
-						{{ dependency.version }}
-						{% if dependency.up_to_date %}
-							<span class="lb-ico lb-ico-ok"></span>
-						{% else %}
-							<span class="lb-ico lb-ico-warn" title="Oops, out of date"></span>
-						{% endif %}
-					{% else %}
-						<span class="lb-ico"></span>
-						--
-					{% endif %}
-				</td>
-				<td data-th="Official">
-					{% if dependency.release %}
-						{{ dependency.release }}
-					{% else %}
-						--
-					{% endif %}
-				</td>
-				<td data-th="Latest">
-					{% if dependency.latest %}
-						{{ dependency.latest }}
-					{% else %}
-						--
-					{% endif %}
-				</td>
-				<td data-th="XML" class="view-xml">
-					<span class="lb-ico lb-ico-chevron" title="Click to view XML"></span>
-				</td>
-			</tr>
-			<tr class="dependency-xml dependency-collapsed">
-				<td colspan="6">
-					<div>
-						<ul class="xml-acts">
-							<li class="copy-xml" data-clipboard-target="clipboard-text" title="Click to copy xml"><b>copy xml</b></li>
-						</ul>
-						<!-- Textarea preserves indentation so please do not indent it's value -->
-						<textarea readonly class="xml_result" name="clipboard-text" id="clipboard-text">
+				<table class="dep-table">
+					<thead>
+						<tr>
+							<th class="">Group Id</th>
+							<th class="">Artifact Id</th>
+							<th class="">Your version</th>
+							<th class="">Official</th>
+							<th class="">Latest</th>
+							<th>XML</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for dependency in dependencies %}
+						<tr class="dependency-item">
+							<td data-th="Group Id">{{ dependency.group_id }}</td>
+							<td data-th="Artifact Id">{{ dependency.artifact_id }}</td>
+							<td data-th="Your version" class="version">
+								{% if dependency.version %}
+									{{ dependency.version }}
+									{% if dependency.up_to_date %}
+										<span class="lb-ico lb-ico-ok"></span>
+									{% else %}
+										<span class="lb-ico lb-ico-warn" title="Oops, out of date"></span>
+									{% endif %}
+								{% else %}
+									<span class="lb-ico"></span>
+									--
+								{% endif %}
+							</td>
+							<td data-th="Official">
+								{% if dependency.release %}
+									{{ dependency.release }}
+								{% else %}
+									--
+								{% endif %}
+							</td>
+							<td data-th="Latest">
+								{% if dependency.latest %}
+									{{ dependency.latest }}
+								{% else %}
+									--
+								{% endif %}
+							</td>
+							<td data-th="XML" class="view-xml">
+								<span class="lb-ico lb-ico-chevron" title="Click to view XML"></span>
+							</td>
+						</tr>
+						<tr class="dependency-xml dependency-collapsed">
+							<td colspan="6">
+								<div>
+									<ul class="xml-acts">
+										<li class="copy-xml" data-clipboard-target="clipboard-text" title="Click to copy xml"><b>copy xml</b></li>
+									</ul>
+									<!-- Textarea preserves indentation so please do not indent it's value -->
+									<textarea readonly class="xml_result" name="clipboard-text" id="clipboard-text">
 <dependency>
 	<groupId>{{ dependency.group_id }}</groupId>
 	<artifactId>{{ dependency.artifact_id }}</artifactId>
 	<version>{% if dependency.release %}{{ dependency.release }}{% elif dependency.latest %}{{ dependency.latest }}{% else %}{{ dependency.version }}{% endif %}</version>
 </dependency></textarea>
-					</div>
-				</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-	</table>
-	<br/>
-	<br/>
-	<br/>
+								</div>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div> <!-- endof "container" -->
+
 	<footer class="text-center">&copy;libreeze 2015</footer>
 
 	<!-- JavaScript Includes -->

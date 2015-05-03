@@ -83,10 +83,6 @@ textarea {
    ========================================================================== */
 /* === Global === */
 
-th {
-	vertical-align: top;
-}
-
 h1,
 h2,
 h3,
@@ -97,8 +93,6 @@ h6 {
 }
 
 header {
-	height: 1.15em;
-	margin-bottom: 40px;
 }
 
 textarea {
@@ -112,6 +106,31 @@ button,
 th {
 	color: #2c3e50;
 }
+
+th {
+	vertical-align: top;
+}
+
+nav {
+	float: right;
+}
+
+nav ul {
+	list-style: none;
+	overflow: hidden;
+	margin: 0;
+}
+
+nav li {
+	float: left;
+	margin: 0 0 0 20px;
+}
+
+.project-name {
+	margin-top: 2rem;
+	clear: both;
+}
+
 /* === Sticky Footer === */
 
 html,
@@ -122,7 +141,6 @@ body {
 .container {
 	min-height: 100%;
 	/* equal to footer height */
-
 	margin-bottom: -142px;
 }
 
@@ -136,15 +154,20 @@ footer,
 	height: 142px;
 }
 
-.project .container {
-	min-height: initial;
+footer {
+	padding: 20px 0;
+	margin: 20px 0;
+	font-size: .85rem;
 }
+
 /* === Notifications === */
 
 .notification {
+	text-align: center;
+	width: 80%;
 	margin: 0 auto;
 	font-size: .85em;
-	padding: 14px 25px;
+	padding: 2% 10%;
 }
 
 .notification.lb-err {
@@ -174,10 +197,11 @@ footer,
 /* === Helper classes === */
 
 .sub-text {
-	  display: block;
-  color: #777;
-  font-size: 0.8em;
-  line-height: 1.5em;
+	display: block;
+	color: #777;
+	font-size: 0.8em;
+	line-height: 1.5em;
+	text-align: justify;
 }
 
 .text-center {
@@ -228,15 +252,18 @@ footer,
 	font-size: .8em;
 }
 
-.shadowbox.lb-upload {
-	padding: 55px 20px;
+.lb-upload {
 	text-align: center;
-	width: 18em;
+	margin: 0 auto;
+	width: 300px;
 }
 
-.notification {
-	text-align: center;
-	width: 22em;
+.lb-upload .notification {
+	margin-bottom: 1em;
+}
+
+.shadowbox.lb-upload-inner {
+	padding: 55px 20px;
 }
 
 .lb-upload button {
@@ -261,17 +288,22 @@ footer,
 	color: #cc3737;
 	float: right;
 	font-weight: bold;
-	font-size: .6em;
-	border-radius: 10px;
-	border: 2px solid rgba(255, 0, 0, 0.15);
-	padding: 0 6px;
-	margin-right: -22px;
+	line-height: 1em;
+	width: 1em;
+	height: 1em;
+	font-size: .85em;
+	transform: rotate(0deg);
+	transition: .5s;
+	border-radius: 4px;
+	border: 1px solid #cc3737;
 }
 
 .lb-close-upload:hover {
 	background-color: rgba(255, 0, 0, 0.15);
 	color: #cc3737;
 	cursor: pointer;
+	transform: rotate(180deg);
+	transition: .3s;
 }
 
 div.icon {
@@ -529,8 +561,12 @@ td.view-xml {
 }
 
 .dep-table {
+/*
 	margin: 0 auto;
 	width: 80%;
+*/
+	  width: 120%;
+  margin: 0 -10%;
 }
 
 .dep-table tr:not(.dependency-xml) td:before {
@@ -650,7 +686,8 @@ tr.dependency-collapsed td {
 /* === Email Form === */
 
 .contact-form {
-	margin: 4rem auto 3rem;
+	max-width: 470px;
+	margin: 1em auto;
 	text-align: center;
 }
 
@@ -671,9 +708,10 @@ tr.dependency-collapsed td {
 	/*for some reason, button is misaligned with the input for no more than a pixe but it's anoying - Chrome only*/
 }
 
-@media only screen and (max-width : 1024px) {
+@media only screen and (max-width : 960px) {
 
 	.dep-table {
+		margin: 0 auto;
 		width: 60%;
 		min-width: 390px;
 	}

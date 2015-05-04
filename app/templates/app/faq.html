@@ -23,7 +23,7 @@
 	<link rel='stylesheet' href="//fonts.googleapis.com/css?family=Raleway:400,300,600" type="text/css" />
 
 	<!-- CSS styles -->
-	<link rel="stylesheet" href="{% static 'app/css/lb-upload.css' %}" />
+	<link rel="stylesheet" href="{% static 'app/css/libreeze.css' %}" />
 
 	<script src="{% static 'app/js/vendor/modernizr-2.6.2.min.js' %}"></script>
 </head>
@@ -35,65 +35,96 @@
 
 	<div class="container">
 		<div class="row">
-			<header><a href="/">libreeze.net</a></header>
-<!--
-			<nav>
-				<ul>
-					<li><a href="#">Back</a></li>
-				</ul>
-			</nav>
--->
-		</div>
-		<div class="row">
 			<div class="column">
-				What does it do?<br/>
+				<header>
+					<a class="logo" href="/">libreeze.net</a>
+					<h2 class="text-center">Instant answers to common questions</h2>
+				</header>
+				<div class="faquestions">
+					<ul class="multicol twocol">
+						<li>
+							<a href="#whatdoesitdo">What does it do?</a>
+						</li>
+						<li>
+							<a href="#whatdoineedtodo">What do I need to do?</a>
+						</li>
+						<li>
+							<a href="#whatdoiget">What do I get?</a>
+						</li>
+						<li>
+							<a href="#getnotified">What do I need to do to get notified whenever there is a library update?</a>
+						</li>
+						<li>
+							<a href="#monitorfiles">Can Libreeze monitor more configuration files at the same time?</a>
+						</li>
+						<li>
+							<a href="#projectfile">What do we do with your project configuration file?</a>
+						</li>
+						<li>
+							<a href="#unsubscribe">How to unsubscribe?</a>
+						</li>
+						<li>
+							<a href="#price">What is the price for this service?</a>
+						</li>
+						<li>
+							<a href="#guarantee">Are there any guarantees?</a>
+						</li>
+						<li>
+							<a href="#contact">How to get in contact?</a>
+						</li>
+					</ul>
+				</div>
 
-				&nbsp;&nbsp;Sends you an email when a library you use gets an update.<br/><br/><br/>
+				<div class="faqanswers">
+					<ul>
+						<li id="whatdoesitdo">
+							<h5>What does it do?</h5>
+							<p>Sends you an email when a library you use gets an update.</p>
+						</li>
+						<li id='whatdoineedtodo'>
+							<h5>What do I need to do?</h5>
+							<p>Upload project configuration file (pom file) on Libreeze.net main page.</p>
+						</li>
+						<li id="whatdoiget">
+							<h5>What do I get?</h5>
+							<p>Instant overview of libraries used in your project and if they are up to date.</p>
+						</li>
+						<li id="getnotified">
+							<h5>What do I need to do to get notified whenever there is a library update?</h5>
+							<p>Just leave your email and go through the email verification process. We will send you an email every time a library from your pom gets an update.</p>
+						</li>
+						<li id="monitorfiles">
+							<h5>Can Libreeze monitor more configuration files at the same time?</h5>
+							<p>Yes. Just repeat the process for each project configuration file you would like to receive email notification when some of the libraries get an update.</p>
+						</li>
+						<li id="projectfile">
+							<h5>What do we do with your project configuration file?</h5>
+							<p>After upload we parse the file and get the project name, list of libraries and current versions you use. We do not store your file nor any other information.
+						If you choose to leave your email and subscribe to notifications we will store your email address, project name and a list of library names. Nothing else.</p>
+						</li>
+						<li id="unsubscribe">
+							<h5>How to unsubscribe?</h5>
+							<p>Just click on unsubscribe link in notification email you got from Libreeze. We will delete all related data.</p>
+						</li>
+						<li id="price">
+							<h5>What is the price for this service?</h5>
+							<p>This service is free of charge. </p>
+						</li>
+						<li id="guarantee">
+							<h5>Are there any guarantees?</h5>
+							<p>Since this is a free of charge service we do not guarantee that service will be up and running all the time. We can pause or cancel the service without prior notice. Libreeze.net can not be held responsible for any damages caused by not having the libraries up to date or stoping this service.</p>
 
-				What do I need to do?<br/>
-
-				&nbsp;&nbsp;Upload project configuration file (pom file) on Libreeze.net main page.<br/><br/><br/>
-
-				What do you get?<br/>
-
-				&nbsp;&nbsp;Instant overview of libraries used in your project and if they are up to date.<br/><br/><br/>
-
-				What do I need to do to get notified whenever there is a library update?<br/>
-
-				&nbsp;&nbsp;Just leave your email and go through the email verification process. We will send you an email every time a library from your pom gets an update.<br/><br/><br/>
-
-				Can Libreeze monitor more configuration files at the same time?<br/>
-
-				&nbsp;&nbsp;Yes. Just repeat the process for each project configuration file you would like to receive email notification when some of the libraries get an update.<br/><br/><br/>
-
-				What do we do with your project configuration file?<br/>
-
-				&nbsp;&nbsp;After upload we parse the file and get the project name, list of libraries and current versions you use. We do not store your file nor any other information.
-				If you choose to leave your email and subscribe to notifications we will store your email address, project name and a list of library names. Nothing else.<br/><br/><br/>
-
-				How to unsubscribe?<br/>
-
-				&nbsp;&nbsp;Just click on unsubscribe link in notification email you got from Libreeze. We will delete all related data.<br/><br/><br/>
-
-				What is the price for this service?<br/>
-
-				&nbsp;&nbsp;This service is free of charge. <br/><br/><br/>
-
-				Are there any guarantees?<br/>
-
-				&nbsp;&nbsp;Since this is a free of charge service we do not guarantee that service will be up and running all the time. We can pause or cancel the service without prior notice. Libreeze.net can not be held responsible for any damages caused by not having the libraries up to date or stoping this service.<br/><br/><br/>
-
-				How to get in contact?<br/>
-
-				&nbsp;&nbsp;Email us: contact at libreeze.net.<br/><br/><br/>
-
+						</li>
+						<li id="contact">
+							<h5>How to get in contact?</h5>
+							<p>Email us: contact at libreeze.net.</p>
+						</li>
+					</ul>
+				</div>
+				<a href="#" class="scrollToTop">back to top</a>
 			</div>
 		</div>
 	</div>
-
-	<br/>
-	<br/>
-	<br/>
 
 	<footer class="text-center">&copy;libreeze 2015</footer>
 
@@ -105,18 +136,18 @@
 
 	<!-- Our JS files -->
 	<script src="{% static 'app/js/plugins.js' %}"></script>
-	<script src="{% static 'app/js/lb-fileupload.js' %}"></script>
+	<script src="{% static 'app/js/lb-scrollto.js' %}"></script>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-61878758-1', 'auto');
-  ga('send', 'pageview');
+	  ga('create', 'UA-61878758-1', 'auto');
+	  ga('send', 'pageview');
 
-</script>
+	</script>
 
 </body>
 

@@ -225,3 +225,25 @@ def unsubscribe_project(request):
 def create_unique_code():
     code = uuid.uuid4().__str__()
     return code.replace('-', '')
+
+def support(request):
+	return render(request, 'app/support.html')
+
+def faq(request):
+	return render(request, 'app/faq.html')
+
+
+#--- GUI testing purpose methods
+
+def devtest_verify_email(request):
+	context = {'verified_email': "test@acme.com"}
+	return render(request, 'app/email-verification.html', context)
+
+def devtest_unsubscribe(request):
+    return render(request, 'app/unsubscribe.html')
+
+def devtest_unsubscribe_project(request):
+	context = {'project_name': 'com.wolkabout.m2m : server'}
+	return render(request, 'app/unsubscribe_project.html', context)
+
+#--- end of GUI testing purpose methods

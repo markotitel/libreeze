@@ -23,7 +23,7 @@
 	<link rel='stylesheet' href="//fonts.googleapis.com/css?family=Raleway:400,300,600" type="text/css" />
 
 	<!-- CSS styles -->
-	<link rel="stylesheet" href="{% static 'app/css/lb-upload.css' %}" />
+	<link rel="stylesheet" href="{% static 'app/css/libreeze.css' %}" />
 
 	<script src="{% static 'app/js/vendor/modernizr-2.6.2.min.js' %}"></script>
 </head>
@@ -35,29 +35,19 @@
 
 	<div class="container">
 		<div class="row">
-			<header><a href="/">libreeze.net</a></header>
-<!--
-			<nav>
-				<ul>
-					<li><a href="#">Back</a></li>
-				</ul>
-			</nav>
--->
-		</div>
-		<div class="row">
 			<div class="column">
-				<ol>
-					<li>Lorem Ipsum is simply dummy text of the printing and <a href="#">typesetting industry</a>.</li>
-					<li>Lorem Ipsum is simply dummy text of the printing and typesetting <a href="#">industry</a>.</li>
-					<li>Lorem Ipsum is simply dummy text of the <a href="#">printing and typesetting</a> industry.</li>
+				<header>
+					<a class="logo" href="/">libreeze.net</a>
+					<h2 class="text-center">Hey, no worries, we're here to help you!</h2>
+				</header>
+				<ol class="support-opts">
+					<li>Have you tried with our <a href="/faq">FAQs?</a></li>
+					<li>Still puzzled? Tweet to <a href="https://twitter.com/libreeze_net" target="_blank">@libreeze_net</a></li>
+					<li>No luck? Throws us an email at <a href="mailto:contact@libreeze.net">support@libreeze.net</a></li>
 				</ol>
 			</div>
 		</div>
 	</div>
-
-	<br/>
-	<br/>
-	<br/>
 
 	<footer class="text-center">&copy;libreeze 2015</footer>
 
@@ -69,19 +59,16 @@
 
 	<!-- Our JS files -->
 	<script src="{% static 'app/js/plugins.js' %}"></script>
-	<script src="{% static 'app/js/lb-fileupload.js' %}"></script>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-61878758-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
+		ga('create', 'UA-61878758-1', 'auto');
+		ga('send', 'pageview');
+	</script>
 
 </body>
-
 </html>

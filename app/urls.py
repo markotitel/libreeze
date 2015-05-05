@@ -13,7 +13,7 @@ urlpatterns = patterns('',
                        url(r'^faq', views.faq, name='faq'),
                        url(r'^$', views.index, name='index'),
 
-#					   GUI testing purpose routes,
+                       # GUI testing purpose routes,
                        url(r'^devtest_verify_email$', views.devtest_verify_email, name='devtest_verify_email'),
                        url(r'^devtest_unsubscribe$', views.devtest_unsubscribe, name='devtest_unsubscribe'),
                        url(r'^devtest_unsubscribe_project$', views.devtest_unsubscribe_project, name='devtest_unsubscribe_project')

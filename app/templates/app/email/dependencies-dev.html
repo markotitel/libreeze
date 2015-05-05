@@ -1089,6 +1089,7 @@
 										<tr>
 											<th class="cell-M">Group Id</th>
 											<th class="cell-L">Artifact Id</th>
+                                            <th class="cell-S">Previous</th>
 											<th class="cell-S">Official</th>
 											<th class="cell-S">Latest</th>
 										</tr>
@@ -1098,6 +1099,13 @@
 										<tr>
 											<td>{{ dependency.namespace }}</td>
 											<td>{{ dependency.name}}</td>
+											<td>
+								                {% if dependency.previous %}
+									                {{ dependency.previous }}
+								                {% else %}
+									                --
+								                {% endif %}
+											</td>
 											<td>
 								                {% if dependency.release %}
 									                {{ dependency.release }}

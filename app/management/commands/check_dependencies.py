@@ -28,6 +28,7 @@ class Command(BaseCommand):
             latest, release = check_maven_repo_dependency(dependency.namespace, dependency.name)
             if latest is not None:
                 if dependency.latest != latest or dependency.release != release:
+                    dependency.previous = dependency.latest
                     dependency.latest = latest
                     dependency.release = release
                     dependency.save()

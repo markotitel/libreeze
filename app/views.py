@@ -95,6 +95,8 @@ def submit_email(request):
         if developer.email_verified:
             logger.debug("Developer's mail already verified, proceeding...")
             context = {'verified_email': developer_email}
+            developer.send_emails = True
+            developer.save()
         else:
             # existing dev, email not verified yet
             logger.debug("Developer's mail not yet verified, recreating the code...")
@@ -123,7 +125,7 @@ def submit_email(request):
     if stored_projects.exists():
         stored_project = stored_projects[0]
         logger.debug("Project %s already stored, resetting dependencies..." % stored_project)
-        stored_project.send_updates=True
+        stored_project.send_updates = True
         stored_project.save()
         ProjectDependency.objects.filter(project=stored_project).delete()
         maven_project = stored_project
@@ -193,7 +195,7 @@ def unsubscribe(request):
         developers = Developer.objects.filter(email_verification_code=code)
         if developers.exists():
             developer = developers[0]
-            developer.send_emails=False
+            developer.send_emails = False
             developer.save()
             logger.warn("Developer %s unsubscribed!" % developer.email)
             return render(request, 'app/unsubscribe.html')
@@ -213,7 +215,7 @@ def unsubscribe_project(request):
             project = projects[0]
             project.send_updates=False
             project.save()
-            context = {'project_name': project.group_id + ' : ' + project.artifact_id}
+            context = {'project_name': project.namespace + ' : ' + project.name}
             logger.warn("Project %s unsubscribed!" % project)
             return render(request, 'app/unsubscribe_project.html', context)
         else:

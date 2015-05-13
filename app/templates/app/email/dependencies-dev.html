@@ -1096,7 +1096,7 @@
 									</thead>
 									<tbody>
                                         {% for dependency in dependencies %}
-										<tr>
+										<tr class="{% cycle 'odd' 'even' %}">
 											<td>{{ dependency.namespace }}</td>
 											<td>{{ dependency.name}}</td>
 											<td>

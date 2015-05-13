@@ -374,60 +374,7 @@ div.icon div.tick:after {
 	border-style: solid;
 	border-width: 0px 0px 4px 0px;
 }
-/* === Bell Icon === */
 
-div.icon div.belltop {
-	position: absolute;
-	width: 6px;
-	height: 6px;
-	border: 2px solid #2ba6cb;
-	border-radius: 50px;
-	left: 17px;
-	bottom: 22px;
-}
-
-div.icon div.belltop:before {
-	content: '';
-	position: absolute;
-	left: -11px;
-	top: 14px;
-	width: 20px;
-	height: 0;
-	border-style: solid;
-	border-color: transparent transparent #2ba6cb transparent;
-	border-width: 0 4px 9px;
-}
-
-div.icon div.belltop:after {
-	content: '';
-	position: absolute;
-	top: 1px;
-	width: 20px;
-	height: 20px;
-	background: #2ba6cb;
-	left: -7px;
-	border-radius: 50px 50px 0 0;
-}
-
-div.icon div.bellbottom {
-	position: absolute;
-	bottom: 5px;
-	left: 8px;
-	width: 28px;
-	height: 2px;
-	background: #2ba6cb;
-}
-
-div.icon div.bellbottom:after {
-	content: '';
-	position: absolute;
-	width: 6px;
-	height: 3px;
-	background: #2ba6cb;
-	border-radius: 0 0 50px 50px;
-	top: 3px;
-	left: 5px;
-}
 /* === Letter Icon === */
 
 .letter {
@@ -469,18 +416,16 @@ div.icon div.bellbottom:after {
 }
 /* === Dependencies Table === */
 
-
-caption {
-	font-size: .85em;
-	margin-bottom: 4em;
-}
-
 .version {
 	padding-left: 35px;
 }
 
 tr.dependency-item:nth-child(4n+1),
 tr.dependency-item:nth-child(4n+1) + tr.dependency-xml {
+	background-color: #f0f0f0;
+}
+tr.odd,
+tr.odd + tr.dependency-xml {
 	background-color: #f0f0f0;
 }
 
@@ -568,12 +513,8 @@ td.view-xml {
 }
 
 .dep-table {
-/*
-	margin: 0 auto;
-	width: 80%;
-*/
-	  width: 120%;
-  margin: 0 -10%;
+	width: 120%;
+	margin: 0 -10%;
 }
 
 .dep-table tr:not(.dependency-xml) td:before {
@@ -736,7 +677,7 @@ tr.dependency-collapsed td {
 		font-weight: bold;
 		width: 8.5em;
 		display: inline-block;
-}
+	}
 	tr.dependency-xml {
 		border-bottom: 2px solid #ddd;
 	}

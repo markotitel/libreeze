@@ -64,17 +64,17 @@
 				<table class="dep-table">
 					<thead>
 						<tr>
-							<th class="">Group Id</th>
-							<th class="">Artifact Id</th>
-							<th class="">Your version</th>
-							<th class="">Official</th>
-							<th class="">Latest</th>
+							<th>Group Id</th>
+							<th>Artifact Id</th>
+							<th>Your version</th>
+							<th>Official</th>
+							<th>Latest</th>
 							<th>XML</th>
 						</tr>
 					</thead>
 					<tbody>
 						{% for dependency in dependencies %}
-						<tr class="dependency-item">
+						<tr class="{% cycle 'odd' 'even' %}">
 							<td data-th="Group Id">{{ dependency.group_id }}</td>
 							<td data-th="Artifact Id">{{ dependency.artifact_id }}</td>
 							<td data-th="Your version" class="version">

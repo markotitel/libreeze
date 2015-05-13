@@ -1018,7 +1018,7 @@
 			padding: 10px 10px 10px 0;
 		}
 
-		table.dependency-list tbody tr:nth-child(2n+1) {
+		table.dependency-list tr.odd {
 			background-color: #f0f0f0;
 		}
 
@@ -1064,7 +1064,7 @@
 
 								<table class="row">
 									<tr>
-										<td class="wrapper last">
+										<td class="wrapper">
 
 											<table class="twelve columns">
 												<tr>
@@ -1084,45 +1084,51 @@
 									</tr>
 								</table>
 
-								<table class="row dependency-list">
-									<thead>
-										<tr>
-											<th class="cell-M">Group Id</th>
-											<th class="cell-L">Artifact Id</th>
-                                            <th class="cell-S">Previous</th>
-											<th class="cell-S">Official</th>
-											<th class="cell-S">Latest</th>
-										</tr>
-									</thead>
-									<tbody>
-                                        {% for dependency in dependencies %}
-										<tr class="{% cycle 'odd' 'even' %}">
-											<td>{{ dependency.namespace }}</td>
-											<td>{{ dependency.name}}</td>
-											<td>
-								                {% if dependency.previous %}
-									                {{ dependency.previous }}
-								                {% else %}
-									                --
-								                {% endif %}
-											</td>
-											<td>
-								                {% if dependency.release %}
-									                {{ dependency.release }}
-								                {% else %}
-									                --
-								                {% endif %}
-											</td>
-											<td>
-								                {% if dependency.latest %}
-									                {{ dependency.latest }}
-								                {% else %}
-									                --
-								                {% endif %}
-											</td>
-										</tr>
-                                        {% endfor %}
-									</tbody>
+								<table class="row">
+									<tr>
+										<td class="wrapper">
+											<table class="twelve columns dependency-list">
+												<thead>
+													<tr>
+														<th class="cell-M">Group Id</th>
+														<th class="cell-L">Artifact Id</th>
+														<th class="cell-S">Previous</th>
+														<th class="cell-S">Official</th>
+														<th class="cell-S">Latest</th>
+													</tr>
+												</thead>
+												<tbody>
+													{% for dependency in dependencies %}
+													<tr class="{% cycle 'odd' 'even' %}">
+														<td>{{ dependency.namespace }}</td>
+														<td>{{ dependency.name}}</td>
+														<td>
+															{% if dependency.previous %}
+																{{ dependency.previous }}
+															{% else %}
+																--
+															{% endif %}
+														</td>
+														<td>
+															{% if dependency.release %}
+																{{ dependency.release }}
+															{% else %}
+																--
+															{% endif %}
+														</td>
+														<td>
+															{% if dependency.latest %}
+																{{ dependency.latest }}
+															{% else %}
+																--
+															{% endif %}
+														</td>
+													</tr>
+													{% endfor %}
+												</tbody>
+											</table>
+										</td>
+									</tr>
 								</table>
 
 								<table class="row">

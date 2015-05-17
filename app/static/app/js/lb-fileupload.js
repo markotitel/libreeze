@@ -19,17 +19,46 @@ $(function () {
 	function initPasteFile() {
 		$('button.toggle-upload-text').click(function (e) {
 			$(this).hide();
+
 			e.stopImmediatePropagation();
-			$('#upload-text').fadeToggle("linear");
-			if ($('#upload-text').is(":visible")){
+
+			$('#lb-upload')
+				.animate(
+						{width:'600px'},
+						{ duration: 400, queue: false} ,
+						function(){/*animation complete*/});
+
+			$('#upload-text')
+				.fadeToggle("linear")
+				.animate(
+						{height:'300px'},
+						{ duration: 500, queue: false},
+						function(){/*animation complete*/});
+
+			if ($('#upload-text').is(":visible")) {
 				$("textarea[name='pom-code']").focus();
 			}
 		});
 
 		$('span.toggle-upload-text').click(function (e) {
 			e.stopImmediatePropagation();
-			$('#upload-text').hide();
-			$('button.toggle-upload-text').fadeToggle("linear");
+
+			$('#lb-upload')
+				.animate(
+						{width:'300px'},
+						{ duration: 300, queue: false},
+						function(){/*animation complete*/});
+
+			$('#upload-text')
+				.hide()
+				.animate(
+						{height:'0px'},
+						{ duration: 300, queue: false},
+						function(){/*animation complete*/});
+
+			$('button.toggle-upload-text')
+				.fadeToggle("linear")
+				.animate({ queue: true});
 		});
 	}
 

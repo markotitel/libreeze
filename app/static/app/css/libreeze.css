@@ -82,12 +82,6 @@ textarea {
    ========================================================================== */
 /* === Global === */
 
-textarea {
-	font-size: .75em;
-	height: 15em;
-	width: 100%;
-}
-
 th {
 	vertical-align: top;
 }
@@ -126,26 +120,33 @@ body {
 	height: 100%;
 }
 
-.container {
+.bodywrapper {
 	min-height: 100%;
 	/* equal to footer height */
-	margin-bottom: -142px;
+	margin-bottom: -100px;
 }
 
-.container:after {
+.bodywrapper:after {
 	content: "";
 	display: block;
 }
 
 footer,
-.container:after {
-	height: 142px;
+.bodywrapper:after {
+	height: 100px;
+}
+
+.bodywrapper:after {
+	margin-top: 30px;
 }
 
 footer {
-	padding: 20px 0;
-	margin: 20px 0;
 	font-size: .85em;
+	background-color: #f7f7f7;
+}
+
+.footerwrapper {
+	padding: 25px 0;
 }
 
 /* === Notifications === */
@@ -192,7 +193,7 @@ footer {
 .sub-text {
 	display: block;
 	color: #777;
-	font-size: 0.85em;
+	font-size: .9em;
 	line-height: 1.5em;
 	text-align: justify;
 }
@@ -230,19 +231,11 @@ ul.twocol {
 .lb-steps h1,
 .lb-steps h2,
 .lb-steps h3 {
-	font-size: 1.8rem;
+	font-size: 1.3em;
 	letter-spacing: normal;
 	font-weight: 600;
 	text-align: center;
 	margin: 1.5em 0 1em 0;
-}
-/* Larger than phablet */
-@media (min-width: 550px) {
-	.lb-steps h1,
-	.lb-steps h2,
-	.lb-steps h3 {
-		font-size: 2rem;
-	}
 }
 
 .lb-steps div {
@@ -257,18 +250,18 @@ ul.twocol {
 }
 /* === Upload Section === */
 
-.lb-upload-container p {
+#lb-upload-container p {
 	margin: 0;
 	font-size: .8em;
 }
 
-.lb-upload {
+#lb-upload {
 	text-align: center;
 	margin: 0 auto;
 	width: 300px;
 }
 
-.lb-upload .notification {
+#lb-upload .notification {
 	margin-bottom: 1em;
 }
 
@@ -276,7 +269,7 @@ ul.twocol {
 	padding: 55px 20px;
 }
 
-.lb-upload button {
+#lb-upload button {
   height: 43px;
   padding: 0 33px;
   font-size: 13px;
@@ -284,35 +277,66 @@ ul.twocol {
   letter-spacing: 0.05rem;
 }
 
-.lb-upload textarea {
-	margin-bottom: .2rem;
+#upload-text {
+	height: 0px;
+	margin-bottom: 0;
+}
+
+#upload-text textarea {
+	font-size: .75em;
+	height: 80%;
+	width: 100%;
 }
 
 #upload-text {
-	margin-bottom: 0;
 }
 /* === Close Upload Icon === */
 
-.lb-close-upload {
-	color: #cc3737;
+.lb-close {
+	position: relative;
 	float: right;
-	font-weight: bold;
-	line-height: .8em;
-	padding: .1em .25em;
-	font-size: .8em;
-	border-radius: .8em;
+	width: 18px;
+	height: 18px;
+	margin: 2px;
+	transform: rotate(45deg);
 	border: 1px solid #cc3737;
-	transform: rotate(0deg);
-	transition: .5s;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
 }
 
-.lb-close-upload:hover {
+.lb-close:before,
+.lb-close:after {
+	content: '';
+	pointer-events: none;
+	box-shadow: inset 0 0 0 32px #cc3737;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	-moz-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+
+.lb-close:after {
+	height: 10px;
+	width: 2px;
+}
+
+.lb-close:before {
+	width: 10px;
+	height: 2px;
+}
+
+.lb-close:hover {
 	background-color: rgba(255, 0, 0, 0.09);
 	color: #cc3737;
 	cursor: pointer;
-	transform: rotate(180deg);
-	transition: .3s;
 }
+/* === Upload Icon === */
 
 div.icon {
 	height: 48px;
@@ -321,7 +345,6 @@ div.icon {
 	overflow: hidden;
 	margin: 0 auto;
 }
-/* === Upload Icon === */
 
 div.icon div.upload {
 	width: 40px;
@@ -455,6 +478,9 @@ td.view-xml {
 	height: 10em;
 	font-size: .8em;
 	margin: 0;
+	width: 100%;
+	display: block;
+	clear: both;
 }
 
 .xml-acts {
@@ -496,20 +522,24 @@ td.view-xml {
 }
 
 .dependency-xml div {
-	width: 50%;
 	height: 11em;
+	opacity: 1;
+	width: 50%;
 	float: right;
-	-webkit-transition: all .5s linear;
-	transition: all .5s linear;
-	-webkit-transition-property: opacity, height;
-	transition-property: opacity, height;
 	display: block;
 	position: relative;
+	visibility: visible;
+	transition: all .5s ease-in;
 }
 
 .dependency-collapsed div {
-	opacity: 0;
-	height: 0px;
+    opacity: 0;
+    height: 0;
+	visibility: hidden;
+}
+
+tr.dependency-collapsed td {
+	border-collapse: separate;
 }
 
 .dep-table {
@@ -524,10 +554,6 @@ td.view-xml {
 .dep-table th,
 .dep-table td {
 	display: table-cell;
-}
-
-td.view-xml {
-	border-bottom: 0 none;
 }
 
 tr.active td,
@@ -700,7 +726,7 @@ tr.dependency-collapsed td {
 
 	.version .lb-ico {
 		left: initial;
-  		margin-left: 1em;
+		margin-left: 1em;
 	}
 }
 

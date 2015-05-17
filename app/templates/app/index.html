@@ -33,7 +33,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-	<div class="container">
+	<div class="container bodywrapper">
 		<div class="row">
 			<div class="column">
 				<header>
@@ -74,7 +74,7 @@
 
 				<br/>
 
-				<div class="lb-upload">
+				<div id="lb-upload">
 					<!-- conditionally set classes "lb-err", "lb-warn", "lb-success" to declare notification type and class "hidden" to toggle it's visibility -->
 					{% if error %}
 					<div class="notification lb-err">{{ error }}</div>
@@ -92,7 +92,7 @@
 
 						<!-- Paste form -->
 						<form id="upload-text" method="post" action="{% url 'app:submit_text' %}">
-							<span class="lb-close-upload toggle-upload-text">x</span>
+							<span class="lb-close toggle-upload-text"></span>
 							<textarea name="pom-code"></textarea>
 							<button type="submit">Upload</button>
 						</form>
@@ -105,7 +105,15 @@
 		</div>
 	</div>
 
-	<footer class="text-center">&copy;libreeze 2015</footer>
+	<footer class="text-center">
+		<div class="container footerwrapper">
+			<div class="row">
+				<div class="column">
+					&copy;libreeze 2015
+				</div>
+			</div>
+		</div>
+	</footer>
 
 	<!-- JavaScript Includes -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

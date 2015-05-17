@@ -7,7 +7,6 @@ $(function () {
 
 	function showDependencyCode() {
 		$('.view-xml').click(function () {
-			// Toggle next table row containing dependency xml
 			$(this).closest('tr').toggleClass(_dependencyRowActiveCSSClass);
 			$(this).parent('tr').next('tr.' + _dependencyCodeCSSClass).toggleClass(_dependencyCollapsedCSSClass);
 		});

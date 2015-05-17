@@ -33,7 +33,7 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-	<div class="container">
+	<div class="container bodywrapper">
 		<div class="row">
 			<header>
 				<a class="logo" href="/">libreeze.net</a>
@@ -46,6 +46,7 @@
 			</header>
 
 			<div class="contact-form">
+				<!-- conditionally set classes "lb-err", "lb-warn", "lb-success" to declare notification type and class "hidden" to toggle it's visibility -->
 				{% if error %}
 				<div class="notification lb-err">{{ error }}</div>
 				{% endif %}
@@ -129,9 +130,17 @@
 				</table>
 			</div>
 		</div>
-	</div> <!-- endof "container" -->
+	</div>
 
-	<footer class="text-center">&copy;libreeze 2015</footer>
+	<footer class="text-center">
+		<div class="container footerwrapper">
+			<div class="row">
+				<div class="column">
+					&copy;libreeze 2015
+				</div>
+			</div>
+		</div>
+	</footer>
 
 	<!-- JavaScript Includes -->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

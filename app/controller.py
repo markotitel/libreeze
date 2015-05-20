@@ -169,8 +169,15 @@ def retrieve_latest(project):
 
         # Set up_to_date flag
         if dto.release:
-            dto.up_to_date = dto.version == dto.release
+            dto.up_to_date = is_beta_version(dto.release) or dto.version == dto.release
         elif dto.latest:
-            dto.up_to_date = dto.version == dto.latest
+            dto.up_to_date = is_beta_version(dto.latest) or dto.version == dto.latest
 
     return project
+
+
+beta_tags = ['rc', 'm', 'ea', 'beta']
+
+
+def is_beta_version(version):
+    return any(tag in version.lower() for tag in beta_tags)

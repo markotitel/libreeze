@@ -176,7 +176,7 @@ def retrieve_latest(project):
     return project
 
 
-beta_tags = ['rc', 'm', 'ea', 'beta']
+beta_tags = ['rc', 'm', 'ea', 'beta', 'alpha']
 
 
 def is_beta_version(version):

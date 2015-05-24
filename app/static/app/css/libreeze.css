@@ -101,6 +101,10 @@ nav li {
 	margin: 0 0 0 20px;
 }
 
+header {
+	margin-top: 15px;
+}
+
 header h1,
 header h2 {
 	margin: 7rem 0;
@@ -108,8 +112,7 @@ header h2 {
 }
 
 .logo {
-	text-decoration: none;
-	color: inherit;
+	width: 85px;
 }
 
 /* === Sticky Footer === */
@@ -224,7 +227,7 @@ ul.twocol {
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-	margin: 4em 0;
+	margin: 5em 0 4em;
 	width: 100%;
 }
 
